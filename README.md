@@ -64,7 +64,7 @@ To get a local copy up and running follow these simple steps.
    git clone https://github.com/b3h3m0th/pineapple-planner.git
    ```
 2. Open `PineapplePlanner.sln` in Visual Studio
-3. In Visual Studio Configure `PineapplePlanner.Wpf` as startup project
+3. In Visual Studio configure `PineapplePlanner.Wpf` as startup project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
