@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.Wpf", "PineapplePlanner.Wpf\PineapplePlanner.Wpf.csproj", "{841291DC-6FAF-48E2-8913-F39EBA51C2CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.UI", "PineapplePlanner.UI\PineapplePlanner.UI.csproj", "{9F24A72F-CD5F-464F-9335-7426BB7559D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 UI", "1 UI", "{F5DD04F1-04D1-4F9C-BBB0-8EB65C1F17A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 SHARED", "2 SHARED", "{F4CC2D00-F975-407B-9C23-E11349D9A190}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 TESTS", "3 TESTS", "{D4883BE8-13C2-4E87-A642-85907C34CB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.Domain", "PineapplePlanner.Domain\PineapplePlanner.Domain.csproj", "{09DCFF1C-8512-4EDD-80A2-38334C4255F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.Application", "PineapplePlanner.Application\PineapplePlanner.Application.csproj", "{CAC50ECD-2B1D-4C5E-A312-D0326F63AD2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.Infrastructure", "PineapplePlanner.Infrastructure\PineapplePlanner.Infrastructure.csproj", "{7F1792C6-9236-4EC4-B12C-CDE5F50A0696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.Application.UnitTests", "PineapplePlanner.Application.UnitTests\PineapplePlanner.Application.UnitTests.csproj", "{BCC7F7DF-5441-4B31-B131-79CDE84C9ED7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{841291DC-6FAF-48E2-8913-F39EBA51C2CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{841291DC-6FAF-48E2-8913-F39EBA51C2CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{841291DC-6FAF-48E2-8913-F39EBA51C2CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{841291DC-6FAF-48E2-8913-F39EBA51C2CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F24A72F-CD5F-464F-9335-7426BB7559D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F24A72F-CD5F-464F-9335-7426BB7559D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F24A72F-CD5F-464F-9335-7426BB7559D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F24A72F-CD5F-464F-9335-7426BB7559D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09DCFF1C-8512-4EDD-80A2-38334C4255F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09DCFF1C-8512-4EDD-80A2-38334C4255F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09DCFF1C-8512-4EDD-80A2-38334C4255F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09DCFF1C-8512-4EDD-80A2-38334C4255F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC50ECD-2B1D-4C5E-A312-D0326F63AD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC50ECD-2B1D-4C5E-A312-D0326F63AD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC50ECD-2B1D-4C5E-A312-D0326F63AD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC50ECD-2B1D-4C5E-A312-D0326F63AD2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1792C6-9236-4EC4-B12C-CDE5F50A0696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1792C6-9236-4EC4-B12C-CDE5F50A0696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1792C6-9236-4EC4-B12C-CDE5F50A0696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1792C6-9236-4EC4-B12C-CDE5F50A0696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCC7F7DF-5441-4B31-B131-79CDE84C9ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC7F7DF-5441-4B31-B131-79CDE84C9ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCC7F7DF-5441-4B31-B131-79CDE84C9ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCC7F7DF-5441-4B31-B131-79CDE84C9ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{841291DC-6FAF-48E2-8913-F39EBA51C2CC} = {F5DD04F1-04D1-4F9C-BBB0-8EB65C1F17A2}
+		{9F24A72F-CD5F-464F-9335-7426BB7559D3} = {F5DD04F1-04D1-4F9C-BBB0-8EB65C1F17A2}
+		{09DCFF1C-8512-4EDD-80A2-38334C4255F5} = {F4CC2D00-F975-407B-9C23-E11349D9A190}
+		{CAC50ECD-2B1D-4C5E-A312-D0326F63AD2A} = {F4CC2D00-F975-407B-9C23-E11349D9A190}
+		{7F1792C6-9236-4EC4-B12C-CDE5F50A0696} = {F4CC2D00-F975-407B-9C23-E11349D9A190}
+		{BCC7F7DF-5441-4B31-B131-79CDE84C9ED7} = {D4883BE8-13C2-4E87-A642-85907C34CB70}
+	EndGlobalSection
+EndGlobal
