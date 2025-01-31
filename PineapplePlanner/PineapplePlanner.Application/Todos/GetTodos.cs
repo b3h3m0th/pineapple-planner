@@ -13,7 +13,7 @@ namespace PineapplePlanner.Application
 
         public class Result
         {
-            public List<Todo> Todos { get; set; } = new List<Todo>();
+            public List<Todo>? Todos { get; set; }
         }
 
         public class QueryHandler : IRequestHandler<Query, Result>
@@ -26,7 +26,19 @@ namespace PineapplePlanner.Application
                 {
                     await Task.Delay(500);
 
-                    return result;
+                    result.Todos = new List<Todo>()
+                    {
+                        new Todo()
+                        {
+                            Id = 1,
+                            Name = "Todo1"
+                        },
+                        new Todo()
+                        {
+                            Id = 2,
+                            Name = "Todo2"
+                        }
+                    };
                 }
                 catch (Exception ex)
                 {

@@ -8,13 +8,11 @@ namespace PineapplePlanner.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IServiceCollection serviceCollection)
         {
             InitializeComponent();
 
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddWpfBlazorWebView();
-            Resources.Add("services", serviceCollection.BuildServiceProvider());
+            blazorWebView.Services = serviceCollection.BuildServiceProvider();
         }
     }
 }

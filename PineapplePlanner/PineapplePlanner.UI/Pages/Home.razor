@@ -1,3 +1,22 @@
-﻿@page "/"
+﻿@using MediatR
+@using PineapplePlanner.Domain.Entities
 
-Home page
+@page "/"
+@inject IMediator _mediator
+
+Todos:
+<br />
+
+@if (_todosResult != null)
+{
+    @foreach (Todo todo in _todosResult.Todos ?? new())
+    {
+        <div>@todo.Id @todo.Name</div>
+    }
+}
+else
+{
+    <div>Loading...</div>
+}
+
+<div>@_error</div>
