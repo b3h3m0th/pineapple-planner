@@ -7,11 +7,5 @@ namespace PineapplePlanner.Application.UnitTests
         {
             Assert.True(true);
         }
-
-        [Fact]
-        public void Test2()
-        {
-            Assert.False(false);
-        }
     }
 }
