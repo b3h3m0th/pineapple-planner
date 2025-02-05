@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.13)  5 FEB 2025 17:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.13)  5 FEB 2025 17:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -870,8 +870,9 @@ Package biblatex Info: Automatic encoding selection.
 \openout3 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' found.
- (main.bbl)
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
 Package biblatex Info: Reference section=0 on input line 53.
 Package biblatex Info: Reference segment=0 on input line 53.
 Package hyperref Info: Link coloring ON on input line 53.
@@ -879,7 +880,6 @@ Package hyperref Info: Link coloring ON on input line 53.
 \openout5 = `main.out'.
 
 \c@lstlisting=\count476
-
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 Package caption Info: Begin \AtBeginDocument code.
@@ -957,7 +957,18 @@ No file main.toc.
 
 
 [3]
-<images/infrastructure-proposal.png, id=30, 293.59688pt x 560.8453pt>
+
+LaTeX Warning: Citation 'hoofnagle2019european' on page 4 undefined on input line 113.
+
+
+Overfull \hbox (7.9412pt too wide) in paragraph at lines 110--114
+\OT1/cmr/m/n/12 ploited for com-mer-cial gain fos-ters trust and trans-parency. [] 
+ []
+
+
+LaTeX Warning: Citation 'montag2019addictive' on page 4 undefined on input line 116.
+
+<images/infrastructure-proposal.png, id=28, 293.59688pt x 560.8453pt>
 File: images/infrastructure-proposal.png Graphic file (type png)
 <use images/infrastructure-proposal.png>
 Package pdftex.def Info: images/infrastructure-proposal.png  used on input line 133.
@@ -971,375 +982,85 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--149
 
  []
 
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Misplaced \noalign.
-\hline ->\noalign 
-                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
-l.166   \end{tabularx}
+c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:168: Misplaced \noalign.
+<recently read> \noalign 
+                         
+l.168   \end{tabularx}
                       
 I expect to see \noalign only after the \cr of
 an alignment. Proceed, and I'll ignore this case.
 
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: You can't use `\hrule' here except with leaders.
-\hline ->\noalign {\ifnum 0=`}\fi \hrule 
-                                         \@height \arrayrulewidth \futurelet...
-l.166   \end{tabularx}
-                      
-To put a horizontal rule in an hbox or an alignment,
-you should use \leaders or \hrulefill (see The TeXbook).
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Missing number, treated as zero.
-<to be read again> 
-                   \futurelet 
-l.166   \end{tabularx}
-                      
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \futurelet 
-l.166   \end{tabularx}
-                      
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.166   \end{tabularx}
-                      
-You have given more \span or & marks than there were
-in the preamble to the \halign or \valign now in progress.
-So I'll assume that you meant to type \cr instead.
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Misplaced \noalign.
-\hline ->\noalign 
-                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
-l.166   \end{tabularx}
+c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:168: Misplaced \noalign.
+<recently read> \noalign 
+                         
+l.168   \end{tabularx}
                       
 I expect to see \noalign only after the \cr of
 an alignment. Proceed, and I'll ignore this case.
 
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: You can't use `\hrule' here except with leaders.
-\hline ->\noalign {\ifnum 0=`}\fi \hrule 
-                                         \@height \arrayrulewidth \futurelet...
-l.166   \end{tabularx}
-                      
-To put a horizontal rule in an hbox or an alignment,
-you should use \leaders or \hrulefill (see The TeXbook).
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Missing number, treated as zero.
-<to be read again> 
-                   \futurelet 
-l.166   \end{tabularx}
-                      
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \futurelet 
-l.166   \end{tabularx}
-                      
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.166   \end{tabularx}
-                      
-You have given more \span or & marks than there were
-in the preamble to the \halign or \valign now in progress.
-So I'll assume that you meant to type \cr instead.
-
-
-Overfull \hbox (39.71623pt too wide) in paragraph at lines 166--166
-[]|\OT1/cmr/bx/n/10 Requirement
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-[]|\OT1/cmr/m/n/10 The
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 user
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 shall
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 be
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 able
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 spect
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 their
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-[]|\OT1/cmr/m/n/10 The
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 user
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 shall
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 be
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 able
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 man-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 age
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 their
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-[]|\OT1/cmr/m/n/10 The
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 user
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 link
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 their
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 task
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 data
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 their
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 ac-
- []
-
-
-Overfull \hbox (1.70966pt too wide) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 count.| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-[]|\OT1/cmr/m/n/10 The
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 user
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 shall
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 be
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 able
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 pri-or-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 166--166
-\OT1/cmr/m/n/10 i-tize
- []
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Misplaced \noalign.
-\hline ->\noalign 
-                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
-l.166   \end{tabularx}
+c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:168: Misplaced \noalign.
+<recently read> \noalign 
+                         
+l.168   \end{tabularx}
                       
 I expect to see \noalign only after the \cr of
 an alignment. Proceed, and I'll ignore this case.
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: You can't use `\hrule' here except with leaders.
-\hline ->\noalign {\ifnum 0=`}\fi \hrule 
-                                         \@height \arrayrulewidth \futurelet...
-l.166   \end{tabularx}
-                      
-To put a horizontal rule in an hbox or an alignment,
-you should use \leaders or \hrulefill (see The TeXbook).
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Missing number, treated as zero.
-<to be read again> 
-                   \futurelet 
-l.166   \end{tabularx}
-                      
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \futurelet 
-l.166   \end{tabularx}
-                      
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:166: Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.166   \end{tabularx}
-                      
-You have given more \span or & marks than there were
-in the preamble to the \halign or \valign now in progress.
-So I'll assume that you meant to type \cr instead.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [6
 
 ]
-
-[7]
-Underfull \hbox (badness 6608) in paragraph at lines 189--189
+Underfull \hbox (badness 6608) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Deinoras
  []
 
 
-Underfull \hbox (badness 6608) in paragraph at lines 189--189
+Underfull \hbox (badness 6608) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Deinoras
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Deinoras
  []
 
 
-Underfull \hbox (badness 6608) in paragraph at lines 189--189
+Underfull \hbox (badness 6608) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 6608) in paragraph at lines 189--189
+Underfull \hbox (badness 6608) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--189
+Underfull \hbox (badness 10000) in paragraph at lines 191--191
 []|\OT1/cmr/m/n/10 Deinoras
  []
+
+
+
+[7
+
+]
+
+LaTeX Warning: Empty bibliography on input line 199.
 
 
 
 [8
-
-]
-
-[9
 
 ] (main.aux)
  ***********
@@ -1371,17 +1092,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42226 strings out of 473899
- 953010 string characters out of 5726499
+ 42185 strings out of 473899
+ 951777 string characters out of 5726499
  1871409 words of memory out of 5000000
- 64505 multiletter control sequences out of 15000+600000
- 563801 words of font info for 55 fonts, out of 8000000 for 9000
+ 64470 multiletter control sequences out of 15000+600000
+ 563455 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,10n,107p,1351b,1804s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (9 pages, 164348 bytes).
+ 99i,10n,107p,1351b,1802s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on main.pdf (8 pages, 144768 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 25 named destinations out of 1000 (max. 500000)
+ 101 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

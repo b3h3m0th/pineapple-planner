@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1738773581.01564 "main.bcf" "main.bbl" "main" 1738773658.88838 0
-  "main.bcf" 1738773658 108100 e72a7a379f0794e72b706c2ce4955331 "pdflatex"
+["biber main"] 1738773581.01564 "main.bcf" "main.bbl" "main" 1738773722.73826 0
+  "main.bcf" 1738773722 108100 e72a7a379f0794e72b706c2ce4955331 "pdflatex"
   "references/references.bib" 1738679378 1101 52541164f12ae4f321c23108a155a842 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1738773657.15166 "c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex" "main.pdf" "main" 1738773658.88903 2
+["pdflatex"] 1738773721.03467 "c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex" "main.pdf" "main" 1738773722.73932 2
   "C:/Users/simon/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1737541153 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/simon/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1728847532 11948198 c18287ba30b5b374b0a9256b9a8f8cba ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx10.tfm" 1136765053 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -22,7 +22,6 @@
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy10.tfm" 1136765053 1124 6c73e740cf17375f03eec0ee63599741 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136765053 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
-  "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti10.tfm" 1136765053 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136765053 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmtt12.tfm" 1136765053 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247596666 34811 78b52f49e893bcba91bd7581cdc144c0 ""
@@ -30,7 +29,6 @@
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1247596666 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
-  "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb" 1247596666 24252 1e4e051947e12dfb50fee0b7f4e26e3a ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -228,14 +226,14 @@
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1718356376 7243 e5dac1240636811edb77568b81818372 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/simon/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex" 1738773654 7565 22dac365d0c14602640926b2e13c11ec ""
+  "c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex" 1738773718 7588 17383f050596f4da46eba1f35d2a8ecf ""
   "images/hkr.png" 1728847418 20939 e1efd39bf60cc42892cb4a4133ec1324 ""
   "images/infrastructure-proposal.png" 1738686213 22659 5699e65b5f9b5dc9e7f92e8e01e2d8dc ""
-  "main.aux" 1738773658 2200 735ebe5f705b71f0f8b35b0a5866a7a7 "pdflatex"
-  "main.bbl" 1738773583 4472 61c5debe06d442d916786c7cfbc64785 "biber main"
-  "main.out" 1738773658 473 dc946348f027745b5a94b7986740ed76 "pdflatex"
-  "main.tex" 1738773654 7565 22dac365d0c14602640926b2e13c11ec ""
-  "main.toc" 1738773658 406 735b8de6c8814ac505974d61e711afc2 "pdflatex"
+  "main.aux" 1738773722 2026 a0c0912875bbf6c3ad2f934ce8a485a8 "pdflatex"
+  "main.bbl" 0 -1 0 "biber main"
+  "main.out" 1738773722 473 dc946348f027745b5a94b7986740ed76 "pdflatex"
+  "main.tex" 1738773718 7588 17383f050596f4da46eba1f35d2a8ecf ""
+  "main.toc" 1738773722 406 7dfdd36e2886000268b24569a58f6485 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
