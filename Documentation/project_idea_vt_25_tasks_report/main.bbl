@@ -19,6 +19,31 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
+    \entry{nayak2019impact}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=8019ad03632d04e0c23b78f95d43bdc3}{%
+           family={Nayak},
+           familyi={N\bibinitperiod},
+           given={Shalini\bibnamedelima G},
+           giveni={S\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{8019ad03632d04e0c23b78f95d43bdc3}
+      \strng{fullhash}{8019ad03632d04e0c23b78f95d43bdc3}
+      \strng{fullhashraw}{8019ad03632d04e0c23b78f95d43bdc3}
+      \strng{bibnamehash}{8019ad03632d04e0c23b78f95d43bdc3}
+      \strng{authorbibnamehash}{8019ad03632d04e0c23b78f95d43bdc3}
+      \strng{authornamehash}{8019ad03632d04e0c23b78f95d43bdc3}
+      \strng{authorfullhash}{8019ad03632d04e0c23b78f95d43bdc3}
+      \strng{authorfullhashraw}{8019ad03632d04e0c23b78f95d43bdc3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Caring Sciences}
+      \field{number}{3}
+      \field{title}{Impact of Procrastination and Time-Management on Academic Stress among Undergraduate Nursing Students: A Cross Sectional Study.}
+      \field{volume}{12}
+    \endentry
     \entry{bek2014study}{article}{}{}
       \name{author}{3}{}{%
         {{hash=aa541c438c5708f67937ec612edef10a}{%
@@ -45,8 +70,8 @@
       \strng{authornamehash}{8f07bfc86f32ec0bd6b0ae3283037953}
       \strng{authorfullhash}{08c737e2a5b1a9bf20550b69b8a20c3a}
       \strng{authorfullhashraw}{08c737e2a5b1a9bf20550b69b8a20c3a}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{A Study on how Notes and Lists Integrates with a Group Calendar}
@@ -80,8 +105,8 @@
       \strng{authornamehash}{fe614ad4e4b055acbfbda6ccc4dd5d34}
       \strng{authorfullhash}{737156ec1cc58bf9eddaf6b919f414bd}
       \strng{authorfullhashraw}{737156ec1cc58bf9eddaf6b919f414bd}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Information \& Communications Technology Law}
@@ -126,8 +151,8 @@
       \strng{authornamehash}{3c7e59bcf7784939fb02100e4ec97704}
       \strng{authorfullhash}{eb8d5b78654fecbb1a3a88209807b27c}
       \strng{authorfullhashraw}{eb8d5b78654fecbb1a3a88209807b27c}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{International journal of environmental research and public health}
