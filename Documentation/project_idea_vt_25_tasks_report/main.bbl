@@ -19,6 +19,38 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
+    \entry{bek2014study}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=aa541c438c5708f67937ec612edef10a}{%
+           family={Bek},
+           familyi={B\bibinitperiod},
+           given={Alex\bibnamedelima M},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=8551bec59832b13cde7302fd4891f7ec}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={Peter\bibnamedelima A},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=46f8dc91ace6bace1a5c139f0f442f89}{%
+           family={Nielsen},
+           familyi={N\bibinitperiod},
+           given={Thorbj{ø}rn\bibnamedelima K},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \strng{namehash}{8f07bfc86f32ec0bd6b0ae3283037953}
+      \strng{fullhash}{08c737e2a5b1a9bf20550b69b8a20c3a}
+      \strng{fullhashraw}{08c737e2a5b1a9bf20550b69b8a20c3a}
+      \strng{bibnamehash}{08c737e2a5b1a9bf20550b69b8a20c3a}
+      \strng{authorbibnamehash}{08c737e2a5b1a9bf20550b69b8a20c3a}
+      \strng{authornamehash}{8f07bfc86f32ec0bd6b0ae3283037953}
+      \strng{authorfullhash}{08c737e2a5b1a9bf20550b69b8a20c3a}
+      \strng{authorfullhashraw}{08c737e2a5b1a9bf20550b69b8a20c3a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A Study on how Notes and Lists Integrates with a Group Calendar}
+    \endentry
     \entry{hoofnagle2019european}{article}{}{}
       \name{author}{3}{}{%
         {{hash=e285aa4d823b92049f9b2f98c438d196}{%
@@ -48,8 +80,8 @@
       \strng{authornamehash}{fe614ad4e4b055acbfbda6ccc4dd5d34}
       \strng{authorfullhash}{737156ec1cc58bf9eddaf6b919f414bd}
       \strng{authorfullhashraw}{737156ec1cc58bf9eddaf6b919f414bd}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Information \& Communications Technology Law}
@@ -94,8 +126,8 @@
       \strng{authornamehash}{3c7e59bcf7784939fb02100e4ec97704}
       \strng{authorfullhash}{eb8d5b78654fecbb1a3a88209807b27c}
       \strng{authorfullhashraw}{eb8d5b78654fecbb1a3a88209807b27c}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{International journal of environmental research and public health}
