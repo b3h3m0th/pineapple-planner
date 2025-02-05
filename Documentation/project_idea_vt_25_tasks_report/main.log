@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.13)  5 FEB 2025 17:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.13)  5 FEB 2025 17:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -870,16 +870,17 @@ Package biblatex Info: Automatic encoding selection.
 \openout3 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' not found.
-
-No file main.bbl.
+Package biblatex Info: ... file 'main.bbl' found.
+ (main.bbl)
 Package biblatex Info: Reference section=0 on input line 53.
 Package biblatex Info: Reference segment=0 on input line 53.
 Package hyperref Info: Link coloring ON on input line 53.
+ (main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
 \c@lstlisting=\count476
+
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 Package caption Info: Begin \AtBeginDocument code.
@@ -918,7 +919,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<images/hkr.png, id=6, 231.86626pt x 170.43675pt>
+<images/hkr.png, id=30, 231.86626pt x 170.43675pt>
 File: images/hkr.png Graphic file (type png)
 <use images/hkr.png>
 Package pdftex.def Info: images/hkr.png  used on input line 56.
@@ -949,26 +950,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--90
 
 
 
-[2]
-No file main.toc.
+[2] (main.toc)
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
 
 
 [3]
-
-LaTeX Warning: Citation 'hoofnagle2019european' on page 4 undefined on input line 113.
-
-
-Overfull \hbox (7.9412pt too wide) in paragraph at lines 110--114
-\OT1/cmr/m/n/12 ploited for com-mer-cial gain fos-ters trust and trans-parency. [] 
- []
-
-
-LaTeX Warning: Citation 'montag2019addictive' on page 4 undefined on input line 116.
-
-<images/infrastructure-proposal.png, id=28, 293.59688pt x 560.8453pt>
+<images/infrastructure-proposal.png, id=60, 293.59688pt x 560.8453pt>
 File: images/infrastructure-proposal.png Graphic file (type png)
 <use images/infrastructure-proposal.png>
 Package pdftex.def Info: images/infrastructure-proposal.png  used on input line 133.
@@ -978,75 +967,51 @@ Package pdftex.def Info: images/infrastructure-proposal.png  used on input line 
 [4]
 
 [5 <./images/infrastructure-proposal.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 141--149
+Underfull \hbox (badness 10000) in paragraph at lines 141--146
 
  []
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:168: Misplaced \noalign.
-<recently read> \noalign 
-                         
-l.168   \end{tabularx}
-                      
-I expect to see \noalign only after the \cr of
-an alignment. Proceed, and I'll ignore this case.
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:168: Misplaced \noalign.
-<recently read> \noalign 
-                         
-l.168   \end{tabularx}
-                      
-I expect to see \noalign only after the \cr of
-an alignment. Proceed, and I'll ignore this case.
-
-c:/Users/simon/Documents/obsidian/simon/01 - HKR/01 - Courses/05 - Agile Development/Project/Repository/pineapple-planner/Documentation/project_idea_vt_25_tasks_report/main.tex:168: Misplaced \noalign.
-<recently read> \noalign 
-                         
-l.168   \end{tabularx}
-                      
-I expect to see \noalign only after the \cr of
-an alignment. Proceed, and I'll ignore this case.
 
 
 
 [6
 
 ]
-Underfull \hbox (badness 6608) in paragraph at lines 191--191
+Underfull \hbox (badness 6608) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Deinoras
  []
 
 
-Underfull \hbox (badness 6608) in paragraph at lines 191--191
+Underfull \hbox (badness 6608) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Deinoras
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Deinoras
  []
 
 
-Underfull \hbox (badness 6608) in paragraph at lines 191--191
+Underfull \hbox (badness 6608) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 6608) in paragraph at lines 191--191
+Underfull \hbox (badness 6608) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Varvara Al-a-dy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 []|\OT1/cmr/m/n/10 Deinoras
  []
 
@@ -1056,10 +1021,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 191--191
 
 ]
 
-LaTeX Warning: Empty bibliography on input line 199.
-
-
-
 [8
 
 ] (main.aux)
@@ -1067,42 +1028,24 @@ LaTeX Warning: Empty bibliography on input line 199.
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  DC946348F027745B5A94B7986740ED76;473.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: DC946348F027745B5A94B7986740ED76;473.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42185 strings out of 473899
- 951777 string characters out of 5726499
- 1871409 words of memory out of 5000000
- 64470 multiletter control sequences out of 15000+600000
- 563455 words of font info for 54 fonts, out of 8000000 for 9000
+ 42242 strings out of 473899
+ 953695 string characters out of 5726499
+ 1871910 words of memory out of 5000000
+ 64515 multiletter control sequences out of 15000+600000
+ 563801 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,10n,107p,1351b,1802s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (8 pages, 144768 bytes).
+ 99i,10n,107p,1351b,1836s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on main.pdf (8 pages, 167115 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
- 22 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 137 PDF objects out of 1000 (max. 8388607)
+ 25 named destinations out of 1000 (max. 500000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 
