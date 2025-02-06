@@ -1,8 +1,9 @@
 ﻿using PineapplePlanner.Domain.Enums;
+using PineapplePlanner.Domain.Interfaces;
 
 namespace PineapplePlanner.Domain.Entities
 {
-    public class Task
+    public class Task : IBaseFirestoreData
     {
         public int Id { get; set; }
         public required string Name { get; set; }

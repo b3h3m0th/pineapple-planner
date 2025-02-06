@@ -2,5 +2,6 @@
 {
     public interface IBaseFirestoreData
     {
+        public int Id { get; set; }
     }
 }
