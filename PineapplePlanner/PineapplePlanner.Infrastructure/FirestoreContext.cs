@@ -13,10 +13,8 @@ namespace PineapplePlanner.Infrastructure
         {
             string projectId = "your-firebase-project-id";
             _firestoreDb = FirestoreDb.Create(projectId);
-            Console.WriteLine("Firestore initialized.");
         }
 
-        // Public property to access the singleton instance
         public static FirestoreContext Instance
         {
             get
