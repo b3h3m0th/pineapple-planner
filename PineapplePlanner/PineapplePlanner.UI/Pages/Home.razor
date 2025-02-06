@@ -11,7 +11,7 @@ Todos:
 
 @if (_todosResult != null)
 {
-    @foreach (Domain.Entities.Task todo in _todosResult.Todos ?? new())
+    @foreach (Domain.Entities.Task todo in _tasks ?? new())
     {
         <div>@todo.Id @todo.Name</div>
     }
