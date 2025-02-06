@@ -93,7 +93,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [Blazor-url]: https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor
 [C#]: https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=csharp&logoColor=white
 [C#-url]: https://learn.microsoft.com/en-us/dotnet/csharp/
-
-```
-
-```
