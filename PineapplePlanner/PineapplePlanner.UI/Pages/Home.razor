@@ -4,14 +4,14 @@
 
 @page "/"
 @inject IMediator _mediator
-@* @inject ITaskRepository _taskRepository *@
+@inject ITaskRepository _taskRepository
 
 Todos:
 <br />
 
 @if (_todosResult != null)
 {
-    @foreach (Domain.Entities.Task todo in _tasks.Concat(_todosResult.Todos).ToList() ?? new())
+    @foreach (Domain.Entities.Task todo in _tasks.Concat(_todosResult.Todos ?? new()).ToList() ?? new())
     {
         <div>@todo.Id @todo.Name</div>
     }
