@@ -6,7 +6,6 @@ namespace PineapplePlanner.Infrastructure
     {
         private readonly FirestoreDb _firestoreDb;
 
-        // Private constructor to prevent direct instantiation
         public FirestoreContext()
         {
             string projectId = "your-firebase-project-id";
