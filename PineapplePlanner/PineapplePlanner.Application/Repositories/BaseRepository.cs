@@ -8,10 +8,12 @@ namespace PineapplePlanner.Application.Repositories;
 public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreData
 {
     private readonly FirestoreService _firestoreService;
+    private readonly string _collectionName;
 
     public BaseRepository(FirestoreService firestoreService)
     {
         _firestoreService = firestoreService;
+        _collectionName = typeof(T).Name + "s";
     }
 
     public async Task AddAsync(T entity)
