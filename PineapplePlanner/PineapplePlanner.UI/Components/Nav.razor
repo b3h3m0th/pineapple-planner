@@ -1,24 +1,34 @@
+@inject NavigationManager _navigationManager
+
 <nav>
     <ul>
-        <li class="logo">
-            <NavLink href="/">
+        <NavLink href="/">
+            <li class="logo">
                 <div>Pineapple Planner</div>
-            </NavLink>
-        </li>
-        <li>
-            <NavLink href="/">
+            </li>
+        </NavLink>
+        <NavLink href="/">
+            <li>
                 Overview
-            </NavLink>
-        </li>
-        <li>
-            <NavLink href="/tasks">
+            </li>
+        </NavLink>
+        <NavLink href="/tasks">
+            <li>
                 Tasks
-            </NavLink>
-        </li>
-        <li>
-            <NavLink href="/calendar">
+            </li>
+        </NavLink>
+        <NavLink href="/calendar">
+            <li>
                 Calendar
-            </NavLink>
+            </li>
+        </NavLink>
+        <li class="separator">
+            <hr />
         </li>
+        <NavLink href="/settings">
+            <li>
+                Settings
+            </li>
+        </NavLink>
     </ul>
 </nav>

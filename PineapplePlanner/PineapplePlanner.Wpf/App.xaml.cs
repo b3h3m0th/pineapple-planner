@@ -24,7 +24,8 @@ namespace PineapplePlanner.Wpf
             MainWindow mainWindow = new MainWindow(serviceCollection)
             {
                 Height = 500,
-                Width = 1000
+                Width = 1000,
+                Title = "Pineapple Planner"
             };
             mainWindow.Show();
         }
