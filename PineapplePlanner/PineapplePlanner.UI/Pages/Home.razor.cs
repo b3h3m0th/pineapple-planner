@@ -13,7 +13,7 @@ namespace PineapplePlanner.UI.Pages
             try
             {
                 _todosResult = await _mediator.Send(new GetTodos.Query());
-                //_tasks = await _taskRepository.GetAllAsync();
+                _tasks = await _taskRepository.GetAllAsync();
             }
             catch (Exception e)
             {
