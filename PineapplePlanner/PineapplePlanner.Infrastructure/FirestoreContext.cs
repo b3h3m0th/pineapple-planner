@@ -1,13 +1,15 @@
-﻿namespace PineapplePlanner.Infrastructure
+﻿using Google.Cloud.Firestore;
+
+namespace PineapplePlanner.Infrastructure
 {
-    public sealed class FirebaseDbService
+    public sealed class FirestoreContext
     {
-        private static FirebaseDbService _instance = null;
+        private static FirestoreContext? _instance = null;
         private static readonly object _lock = new object();
         private readonly FirestoreDb _firestoreDb;
 
         // Private constructor to prevent direct instantiation
-        private FirebaseDbService()
+        private FirestoreContext()
         {
             string projectId = "your-firebase-project-id";
             _firestoreDb = FirestoreDb.Create(projectId);
@@ -15,7 +17,7 @@
         }
 
         // Public property to access the singleton instance
-        public static FirebaseDbService Instance
+        public static FirestoreContext Instance
         {
             get
             {
@@ -25,7 +27,7 @@
                     {
                         if (_instance == null)
                         {
-                            _instance = new FirebaseDbService();
+                            _instance = new FirestoreContext();
                         }
                     }
                 }
