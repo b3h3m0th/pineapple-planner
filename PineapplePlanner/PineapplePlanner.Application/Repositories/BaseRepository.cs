@@ -28,11 +28,11 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         return snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
     }
 
-    public async Task<T> GetByIdAsync(string id)
+    public async Task<T?> GetByIdAsync(string id)
     {
         DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
         DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-        return snapshot.Exists ? snapshot.ConvertTo<T>() : null;
+        return snapshot.Exists ? snapshot.ConvertTo<T>() : default;
     }
 
     public async Task UpdateAsync(T entity)
@@ -43,7 +43,7 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
 
     public async Task DeleteAsync(string id)
     {
-        DocumentReference docRef = _firestoreDb.Collection(_collectionName).Document(id);
+        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
         await docRef.DeleteAsync();
     }
 }
