@@ -1,13 +1,23 @@
-﻿using PineapplePlanner.Application.Interfaces;
+﻿using Google.Cloud.Firestore;
+using PineapplePlanner.Application.Interfaces;
 using PineapplePlanner.Domain.Interfaces;
+using PineapplePlanner.Infrastructure;
 
 namespace PineapplePlanner.Application.Repositories;
 
 public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreData
 {
-    public Task AddAsync(T entity)
+    private readonly FirestoreService _firestoreService;
+
+    public BaseRepository(FirestoreService firestoreService)
     {
-        throw new NotImplementedException();
+        _firestoreService = firestoreService;
+    }
+
+    public async Task AddAsync(T entity)
+    {
+        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
+        await docRef.SetAsync(entity);
     }
 
     public Task DeleteAsync(string id)
