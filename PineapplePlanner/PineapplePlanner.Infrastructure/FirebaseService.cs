@@ -2,7 +2,7 @@
 
 namespace PineapplePlanner.Infrastructure
 {
-    public sealed class FirestoreContext
+    public sealed class FirebaseService
     {
         private FirestoreDb _firestoreDb;
 
@@ -12,7 +12,7 @@ namespace PineapplePlanner.Infrastructure
             set { _firestoreDb = value; }
         }
 
-        public FirestoreContext()
+        public FirebaseService()
         {
             string projectId = "";
             _firestoreDb = FirestoreDb.Create(projectId);
