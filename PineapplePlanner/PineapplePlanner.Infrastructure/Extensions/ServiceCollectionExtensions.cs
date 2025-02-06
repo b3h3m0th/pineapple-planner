@@ -5,9 +5,9 @@ namespace PineapplePlanner.UI.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddUIServices(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            services.AddSingleton<FirebaseService>();
+            services.AddSingleton<FirestoreService>();
 
             return services;
         }

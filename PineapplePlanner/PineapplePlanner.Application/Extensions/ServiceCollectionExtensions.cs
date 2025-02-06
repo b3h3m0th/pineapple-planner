@@ -1,13 +1,17 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PineapplePlanner.Infrastructure;
+using PineapplePlanner.Application.Interfaces;
+using PineapplePlanner.Application.Repositories;
+using PineapplePlanner.Domain.Interfaces;
 
 namespace PineapplePlanner.UI.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddUIServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddSingleton<FirebaseService>();
+            services.AddInfrastructureServices();
+
+            services.AddScoped<IBaseRespository<IBaseFirestoreData>, BaseRepository<IBaseFirestoreData>>();
 
             return services;
         }
