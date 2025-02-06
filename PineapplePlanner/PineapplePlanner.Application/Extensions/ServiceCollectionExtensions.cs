@@ -9,8 +9,6 @@ namespace PineapplePlanner.UI.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddInfrastructureServices();
-
             services.AddScoped<IBaseRespository<IBaseFirestoreData>, BaseRepository<IBaseFirestoreData>>();
 
             return services;
