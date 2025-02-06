@@ -5,7 +5,7 @@ namespace PineapplePlanner.Application.Repositories;
 
 public class BaseRepository<T> : IBaseRespository<T>
 {
-    public BaseRepository(FirestoreContext firestoreContext)
+    public BaseRepository(FirebaseService firestoreContext)
     {
     }
 
