@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PineapplePlanner.Application.Interfaces;
 using PineapplePlanner.Application.Repositories;
-using PineapplePlanner.Domain.Interfaces;
 
 namespace PineapplePlanner.UI.Extensions
 {
@@ -9,7 +8,8 @@ namespace PineapplePlanner.UI.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IBaseRespository<IBaseFirestoreData>, BaseRepository<IBaseFirestoreData>>();
+            //services.AddScoped<IBaseRespository<IBaseFirestoreData>, BaseRepository<IBaseFirestoreData>>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
 
             return services;
         }
