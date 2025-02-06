@@ -1,8 +1,9 @@
-﻿using PineapplePlanner.Domain.Enums;
+﻿using PineapplePlanner.Application.Interfaces;
+using PineapplePlanner.Domain.Enums;
 
 namespace PineapplePlanner.Application.Repositories;
 
-public class BaseRepository<T> : IBaseRepository<T>
+public class BaseRepository<T> : IBaseRespository<T>
 {
     private readonly Collection _collection;
     public FirestoreDb _firestoreDb;
@@ -16,7 +17,7 @@ public class BaseRepository<T> : IBaseRepository<T>
     /// <inheritdoc />
     public async Task<List<T>> GetAllAsync<T>() where T : IBaseFirestoreData
     {
-        Query query = _firestoreDb.Collection(_collection.ToString());
+        var query = _firestoreDb.Collection(_collection.ToString());
         var querySnapshot = await query.GetSnapshotAsync();
         var list = new List<T>();
         foreach (var documentSnapshot in querySnapshot.Documents)
