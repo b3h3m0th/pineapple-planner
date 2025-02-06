@@ -6,7 +6,6 @@ namespace PineapplePlanner.Application.Repositories;
 public class BaseRepository<T> : IBaseRespository<T>
 {
     private readonly Collection _collection;
-    public FirestoreDb _firestoreDb;
 
     public BaseRepository(Collection collection)
     {
@@ -74,51 +73,9 @@ public class BaseRepository<T> : IBaseRespository<T>
         await recordRef.DeleteAsync();
     }
 
-    /// <inheritdoc />
-    public async Task<List<T>> QueryRecordsAsync<T>(Query query) where T : IBaseFirestoreData
+    public async Task<List<T>> QueryRecordsAsync(object query)
     {
-        var querySnapshot = await query.GetSnapshotAsync();
-        var list = new List<T>();
-        foreach (var documentSnapshot in querySnapshot.Documents)
-        {
-            if (!documentSnapshot.Exists) continue;
-            var data = documentSnapshot.ConvertTo<T>();
-            if (data == null) continue;
-            data.Id = documentSnapshot.Id;
-            list.Add(data);
-        }
-
-        return list;
-    }
-
-    public Task<List<T>> GetAllAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<object> GetAsync(T entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<T> AddAsync(T entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<T> UpdateAsync(T entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteAsync(T entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<T>> QueryRecordsAsync(object query)
-    {
-        throw new NotImplementedException();
+        return new List<T>();
     }
 }
 

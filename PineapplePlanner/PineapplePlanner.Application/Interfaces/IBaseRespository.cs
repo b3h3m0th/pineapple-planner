@@ -1,6 +1,8 @@
-﻿namespace PineapplePlanner.Application.Interfaces
+﻿using PineapplePlanner.Domain.Interfaces;
+
+namespace PineapplePlanner.Application.Interfaces
 {
-    public interface IBaseRespository<T>
+    public interface IBaseRespository<T> where T : IBaseFirestoreData
     {
         Task<List<T>> GetAllAsync();
 
