@@ -4,14 +4,18 @@ namespace PineapplePlanner.Infrastructure
 {
     public sealed class FirestoreContext
     {
-        private readonly FirestoreDb _firestoreDb;
+        private FirestoreDb _firestoreDb;
+
+        public FirestoreDb FirestoreDb
+        {
+            get { return _firestoreDb; }
+            set { _firestoreDb = value; }
+        }
 
         public FirestoreContext()
         {
             string projectId = "your-firebase-project-id";
             _firestoreDb = FirestoreDb.Create(projectId);
         }
-
-        public FirestoreDb GetDb() => _firestoreDb;
     }
 }
