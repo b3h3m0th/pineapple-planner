@@ -22,14 +22,10 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         await docRef.SetAsync(entity);
     }
 
-    public Task DeleteAsync(string id)
+    public async Task<List<T>> GetAllAsync()
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<T>> GetAllAsync()
-    {
-        throw new NotImplementedException();
+        QuerySnapshot snapshot = await _firestoreService.FirestoreDb.Collection(_collectionName).GetSnapshotAsync();
+        return snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
     }
 
     public Task<T> GetByIdAsync(string id)
@@ -37,9 +33,16 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         throw new NotImplementedException();
     }
 
-    public Task UpdateAsync(T entity)
+    public async Task UpdateAsync(T entity)
     {
-        throw new NotImplementedException();
+        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
+        await docRef.SetAsync(entity, SetOptions.Overwrite);
+    }
+
+    public async Task DeleteAsync(string id)
+    {
+        DocumentReference docRef = _firestoreDb.Collection(_collectionName).Document(id);
+        await docRef.DeleteAsync();
     }
 }
 
