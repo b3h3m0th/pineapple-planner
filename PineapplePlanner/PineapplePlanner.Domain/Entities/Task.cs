@@ -8,5 +8,6 @@
         public DateTime DateCreated { get; set; }
         public DateTime? Reminder { get; set; }
         public DateTime? DateDeleted { get; set; }
+        public List<Tag> Tags { get; set; } = new List<Tag>();
     }
 }
