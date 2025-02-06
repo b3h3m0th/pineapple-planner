@@ -1,44 +1,33 @@
 ﻿using PineapplePlanner.Application.Interfaces;
-using PineapplePlanner.Infrastructure;
+using PineapplePlanner.Domain.Interfaces;
 
 namespace PineapplePlanner.Application.Repositories;
 
-public class BaseRepository<T> : IBaseRespository<T>
+public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreData
 {
-    public BaseRepository(FirebaseService firestoreContext)
+    public Task AddAsync(T entity)
     {
+        throw new NotImplementedException();
     }
 
-    public async Task<List<T>> GetAllAsync()
+    public Task DeleteAsync(string id)
     {
-        return new List<T>();
+        throw new NotImplementedException();
     }
 
-    public async Task<object> GetAsync(T entity)
+    public Task<List<T>> GetAllAsync()
     {
-        return entity;
+        throw new NotImplementedException();
     }
 
-    public async Task<T> AddAsync(T entity)
+    public Task<T> GetByIdAsync(string id)
     {
-        return entity;
+        throw new NotImplementedException();
     }
 
-    /// <inheritdoc />
-    public async Task<T> UpdateAsync(T entity)
+    public Task UpdateAsync(T entity)
     {
-        return entity;
-    }
-
-    /// <inheritdoc />
-    public async Task<T> DeleteAsync(T entity)
-    {
-        return entity;
-    }
-
-    public async Task<List<T>> QueryRecordsAsync(object query)
-    {
-        return new List<T>();
+        throw new NotImplementedException();
     }
 }
 
