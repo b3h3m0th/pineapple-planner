@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PineapplePlanner.Application;
+using PineapplePlanner.Infrastructure;
 
 namespace PineapplePlanner.UI.Extensions
 {
@@ -7,7 +7,7 @@ namespace PineapplePlanner.UI.Extensions
     {
         public static IServiceCollection AddUIServices(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTodos).Assembly));
+            services.AddSingleton<FirestoreContext>();
 
             return services;
         }
