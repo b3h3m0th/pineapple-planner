@@ -4,7 +4,7 @@ namespace PineapplePlanner.Domain.Entities
 {
     public class Tag : IBaseFirestoreData
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public required string Name { get; set; }
         public string Color { get; set; } = string.Empty;
     }

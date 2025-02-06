@@ -7,6 +7,7 @@ public class TaskRepository : BaseRepository<Domain.Entities.Task>, ITaskReposit
 {
     public TaskRepository(FirestoreService firestoreService) : base(firestoreService)
     {
+
     }
 }
 

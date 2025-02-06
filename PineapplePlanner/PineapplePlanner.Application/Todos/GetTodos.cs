@@ -29,12 +29,12 @@ namespace PineapplePlanner.Application
                     {
                         new Domain.Entities.Task()
                         {
-                            Id = 1,
+                            Id = "1",
                             Name = "Todo1"
                         },
                         new Domain.Entities.Task()
                         {
-                            Id = 2,
+                            Id = "2",
                             Name = "Todo2"
                         }
                     };
