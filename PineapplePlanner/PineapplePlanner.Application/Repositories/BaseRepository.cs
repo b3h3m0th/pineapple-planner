@@ -15,7 +15,7 @@ public class BaseRepository<T> : IBaseRespository<T>
     }
 
     /// <inheritdoc />
-    public async Task<List<T>> GetAllAsync<T>() where T : IBaseFirestoreData
+    public async Task<List<T>> GetAllAsync()
     {
         var query = _firestoreDb.Collection(_collection.ToString());
         var querySnapshot = await query.GetSnapshotAsync();
@@ -33,7 +33,7 @@ public class BaseRepository<T> : IBaseRespository<T>
     }
 
     /// <inheritdoc />
-    public async Task<object> GetAsync<T>(T entity) where T : IBaseFirestoreData
+    public async Task<object> GetAsync(T entity)
     {
         var docRef = _firestoreDb.Collection(_collection.ToString()).Document(entity.Id);
         var snapshot = await docRef.GetSnapshotAsync();
@@ -48,7 +48,7 @@ public class BaseRepository<T> : IBaseRespository<T>
     }
 
     /// <inheritdoc />
-    public async Task<T> AddAsync<T>(T entity) where T : IBaseFirestoreData
+    public async Task<T> AddAsync(T entity)
     {
         var colRef = _firestoreDb.Collection(_collection.ToString());
         var doc = await colRef.AddAsync(entity);
@@ -58,7 +58,7 @@ public class BaseRepository<T> : IBaseRespository<T>
     }
 
     /// <inheritdoc />
-    public async Task<T> UpdateAsync<T>(T entity) where T : IBaseFirestoreData
+    public async Task<T> UpdateAsync(T entity)
     {
         var recordRef = _firestoreDb.Collection(_collection.ToString()).Document(entity.Id);
         await recordRef.SetAsync(entity, SetOptions.MergeAll);
@@ -68,7 +68,7 @@ public class BaseRepository<T> : IBaseRespository<T>
     }
 
     /// <inheritdoc />
-    public async Task DeleteAsync<T>(T entity) where T : IBaseFirestoreData
+    public async Task DeleteAsync(T entity)
     {
         var recordRef = _firestoreDb.Collection(_collection.ToString()).Document(entity.Id);
         await recordRef.DeleteAsync();
@@ -89,6 +89,36 @@ public class BaseRepository<T> : IBaseRespository<T>
         }
 
         return list;
+    }
+
+    public Task<List<T>> GetAllAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<object> GetAsync(T entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<T> AddAsync(T entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<T> UpdateAsync(T entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteAsync(T entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<T>> QueryRecordsAsync(object query)
+    {
+        throw new NotImplementedException();
     }
 }
 
