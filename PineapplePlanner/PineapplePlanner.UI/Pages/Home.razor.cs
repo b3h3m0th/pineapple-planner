@@ -8,15 +8,22 @@ namespace PineapplePlanner.UI.Pages
 
         protected override async System.Threading.Tasks.Task OnParametersSetAsync()
         {
-
-            await _taskRepository.AddAsync(new Domain.Entities.Task()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Name = "test",
-                DateDue = DateTime.UtcNow,
-                CreatedAt = DateTime.UtcNow,
-                Priority = Domain.Enums.Priority.High
-            });
+            //await _taskRepository.AddAsync(new Domain.Entities.Task()
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Name = "test",
+            //    DateDue = DateTime.UtcNow,
+            //    CreatedAt = DateTime.UtcNow,
+            //    Priority = Domain.Enums.Priority.High,
+            //    Tags = new List<Tag>()
+            //    {
+            //        new Tag()
+            //        {
+            //            Id = Guid.NewGuid().ToString(),
+            //            Name = "tag1",
+            //        }
+            //    }
+            //});
 
             _tasksResult = await _taskRepository.GetAllAsync();
 
