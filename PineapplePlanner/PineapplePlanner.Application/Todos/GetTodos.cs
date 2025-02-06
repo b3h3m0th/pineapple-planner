@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using PineapplePlanner.Domain.Entities;
 using System.Diagnostics;
 
 namespace PineapplePlanner.Application
