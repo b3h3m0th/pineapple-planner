@@ -19,17 +19,45 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
 
     public async Task<ResultBase<List<T>>> GetAllAsync()
     {
+        var result = ResultBase<List<T>>.Success();
+
         try
         {
             QuerySnapshot snapshot = await _firestoreService.FirestoreDb.Collection(_collectionName).GetSnapshotAsync();
             var documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
 
-            return ResultBase<List<T>>.Success(documents);
+            return new ResultBase<List<T>>(documents);
+
+            List<T>? entities = null;
+
+            foreach (var document in snapshot.Documents)
+            {
+                try
+                {
+                    Console.WriteLine($"Document Data: {document.ToDictionary()}"); // Log raw data
+                    var entity = document.ConvertTo<T>();
+
+                    if (entities == null)
+                    {
+                        entities = new List<T>();
+                    }
+
+                    entities.Add(entity);
+                }
+                catch (Exception ex)
+                {
+                    result.AddErrorAndSetFailure(ex.Message + ex.StackTrace);
+                }
+            }
+
+            result.Data = entities;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return ResultBase<List<T>>.Failure();
+            result.AddErrorAndSetFailure(ex.Message + ex.StackTrace);
         }
+
+        return result;
     }
 
     public async Task<ResultBase<T?>> GetByIdAsync(string id)

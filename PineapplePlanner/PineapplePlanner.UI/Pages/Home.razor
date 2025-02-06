@@ -3,16 +3,30 @@
 @using PineapplePlanner.Domain.Entities
 
 @page "/"
+
 @inject IMediator _mediator
 @inject ITaskRepository _taskRepository
 
 Todos:
 <br />
 
-@foreach (Domain.Entities.Task task in _tasks ?? new())
+@if (_tasksResult.Data != null)
 {
-    <div>@task.Id @task.Name</div>
+    @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
+    {
+        <div>@task.Id @task.Name @task.DateDue.ToString() @task.Priority</div>
+    }
+}
+else if (_tasksResult.Errors.Any())
+{
+    @foreach (string error in _tasksResult.Errors)
+    {
+        <div>@error</div>
+    }
+}
+else
+{
+    <div>Loading...</div>
 }
 
-<div>@_error</div>
 

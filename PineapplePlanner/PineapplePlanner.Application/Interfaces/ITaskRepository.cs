@@ -2,5 +2,6 @@
 {
     public interface ITaskRepository : IBaseRespository<Domain.Entities.Task>
     {
+
     }
 }

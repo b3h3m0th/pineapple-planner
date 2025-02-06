@@ -19,8 +19,18 @@ namespace PineapplePlanner.Domain.Entities
         [FirestoreProperty("Priority")]
         public string? PriorityString
         {
-            get => Priority?.ToString();
-            set => Priority = Enum.Parse<Priority>(value ?? string.Empty);
+            private get => Priority?.ToString();
+            set
+            {
+                if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out var parsedPriority))
+                {
+                    Priority = parsedPriority;
+                }
+                else
+                {
+                    Priority = null;
+                }
+            }
         }
 
         public Priority? Priority { get; set; }
@@ -40,8 +50,8 @@ namespace PineapplePlanner.Domain.Entities
         [FirestoreProperty]
         public DateTime? Reminder { get; set; }
 
-        [FirestoreProperty]
-        public List<Tag> Tags { get; set; } = new List<Tag>();
+        //[FirestoreProperty]
+        //public List<Tag> Tags { get; set; } = new List<Tag>();
     }
 }
 

@@ -1,28 +1,24 @@
-﻿namespace PineapplePlanner.UI.Pages
+﻿using PineapplePlanner.Domain.Shared;
+
+namespace PineapplePlanner.UI.Pages
 {
     public partial class Home
     {
-        private List<Domain.Entities.Task> _tasks = new List<Domain.Entities.Task>();
-        private string _error = string.Empty;
+        private ResultBase<List<Domain.Entities.Task>> _tasksResult = new ResultBase<List<Domain.Entities.Task>>();
 
         protected override async System.Threading.Tasks.Task OnParametersSetAsync()
         {
-            try
-            {
-                //_tasks = await _taskRepository.GetAllAsync();
 
-                //await _taskRepository.AddAsync(new Domain.Entities.Task()
-                //{
-                //    Id = Guid.NewGuid().ToString(),
-                //    Name = "test",
-                //    DateDue = DateTime.UtcNow,
-                //    CreatedAt = DateTime.UtcNow,
-                //});
-            }
-            catch (Exception e)
+            await _taskRepository.AddAsync(new Domain.Entities.Task()
             {
-                _error = e.Message + e.StackTrace;
-            }
+                Id = Guid.NewGuid().ToString(),
+                Name = "test",
+                DateDue = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
+                Priority = Domain.Enums.Priority.High
+            });
+
+            _tasksResult = await _taskRepository.GetAllAsync();
 
             await base.OnParametersSetAsync();
         }
