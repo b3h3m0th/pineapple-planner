@@ -28,9 +28,11 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         return snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
     }
 
-    public Task<T> GetByIdAsync(string id)
+    public async Task<T> GetByIdAsync(string id)
     {
-        throw new NotImplementedException();
+        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
+        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+        return snapshot.Exists ? snapshot.ConvertTo<T>() : null;
     }
 
     public async Task UpdateAsync(T entity)
