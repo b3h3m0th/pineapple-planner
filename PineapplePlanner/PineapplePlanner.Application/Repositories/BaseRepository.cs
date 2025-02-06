@@ -1,17 +1,6 @@
-﻿using static PineapplePlanner.Application.GetTodos;
+﻿using PineapplePlanner.Domain.Enums;
 
 namespace PineapplePlanner.Application.Repositories
-{
-    internal class BaseRepository
-    {
-    }
-}
-
-using Firestore.Enums;
-using Firestore.Interfaces;
-using Google.Cloud.Firestore;
-
-namespace Firestore.Repositories;
 
 /// <summary>
 ///     Represents the base repository.
@@ -26,10 +15,6 @@ public class BaseRepository<T> : IBaseRepository<T>
     {
         // This should live in the appsetting file and injected - This is just an example.
         _collection = collection;
-        var filepath = @"C:\Users\PieterLi\Downloads\test-6a89e-firebase-adminsdk-f41k9-5d045d5ead.json";
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", filepath);
-        _firestoreDb = FirestoreDb.Create("test-6a89e");
-
     }
 
     /// <inheritdoc />
