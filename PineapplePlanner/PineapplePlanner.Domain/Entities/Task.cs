@@ -7,6 +7,7 @@
         public string? Description { get; set; }
         public DateTime CompletedAt { get; set; }
         public DateTime? Reminder { get; set; }
+        public DateTime? Due { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public List<Tag> Tags { get; set; } = new List<Tag>();
