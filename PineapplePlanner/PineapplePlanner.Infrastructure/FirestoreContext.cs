@@ -14,7 +14,7 @@ namespace PineapplePlanner.Infrastructure
 
         public FirestoreContext()
         {
-            string projectId = "your-firebase-project-id";
+            string projectId = "";
             _firestoreDb = FirestoreDb.Create(projectId);
         }
     }
