@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PineapplePlanner.Application.Interfaces;
 using PineapplePlanner.Application.Repositories;
 
 namespace PineapplePlanner.UI.Extensions
