@@ -1,10 +1,7 @@
-﻿using PineapplePlanner.Application;
-
-namespace PineapplePlanner.UI.Pages
+﻿namespace PineapplePlanner.UI.Pages
 {
     public partial class Home
     {
-        private GetTodos.Result _todosResult = new GetTodos.Result();
         private List<Domain.Entities.Task> _tasks = new List<Domain.Entities.Task>();
         private string _error = string.Empty;
 
@@ -12,12 +9,19 @@ namespace PineapplePlanner.UI.Pages
         {
             try
             {
-                _todosResult = await _mediator.Send(new GetTodos.Query());
-                _tasks = await _taskRepository.GetAllAsync();
+                //_tasks = await _taskRepository.GetAllAsync();
+
+                //await _taskRepository.AddAsync(new Domain.Entities.Task()
+                //{
+                //    Id = Guid.NewGuid().ToString(),
+                //    Name = "test",
+                //    DateDue = DateTime.UtcNow,
+                //    CreatedAt = DateTime.UtcNow,
+                //});
             }
             catch (Exception e)
             {
-                _error = e.Message;
+                _error = e.Message + e.StackTrace;
             }
 
             await base.OnParametersSetAsync();

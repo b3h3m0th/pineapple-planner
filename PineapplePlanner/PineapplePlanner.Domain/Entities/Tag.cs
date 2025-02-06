@@ -1,12 +1,19 @@
-﻿using PineapplePlanner.Domain.Interfaces;
+﻿using Google.Cloud.Firestore;
+using PineapplePlanner.Domain.Interfaces;
 
 namespace PineapplePlanner.Domain.Entities
 {
+    [FirestoreData]
     public class Tag : IBaseFirestoreData
     {
-        public string Id { get; set; }
+        [FirestoreProperty]
+        public required string Id { get; set; }
+
+        [FirestoreProperty]
         public required string Name { get; set; }
-        public string Color { get; set; } = string.Empty;
+
+        [FirestoreProperty]
+        public string? Color { get; set; }
     }
 }
 

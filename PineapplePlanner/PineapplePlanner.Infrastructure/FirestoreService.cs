@@ -1,4 +1,6 @@
-﻿using Google.Cloud.Firestore;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Firestore;
+using Google.Cloud.Firestore.V1;
 
 namespace PineapplePlanner.Infrastructure
 {
@@ -14,8 +16,12 @@ namespace PineapplePlanner.Infrastructure
 
         public FirestoreService()
         {
-            string projectId = "";
-            _firestoreDb = FirestoreDb.Create(projectId);
+            //pineapple-planner-firebase-adminsdk-fbsvc-475f3f085a.json
+
+            var credential = GoogleCredential.FromFile("firebase-key.json");
+            var builder = new FirestoreClientBuilder { Credential = credential };
+
+            _firestoreDb = FirestoreDb.Create("pineapple-planner", builder.Build());
         }
     }
 }

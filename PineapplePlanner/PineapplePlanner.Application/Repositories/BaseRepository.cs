@@ -1,14 +1,15 @@
 ﻿using Google.Cloud.Firestore;
 using PineapplePlanner.Application.Interfaces;
 using PineapplePlanner.Domain.Interfaces;
+using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.Infrastructure;
 
 namespace PineapplePlanner.Application.Repositories;
 
 public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreData
 {
-    private readonly FirestoreService _firestoreService;
-    private readonly string _collectionName;
+    protected readonly FirestoreService _firestoreService;
+    protected readonly string _collectionName;
 
     public BaseRepository(FirestoreService firestoreService)
     {
@@ -16,35 +17,80 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         _collectionName = typeof(T).Name + "s";
     }
 
-    public async Task AddAsync(T entity)
+    public async Task<ResultBase<List<T>>> GetAllAsync()
     {
-        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
-        await docRef.SetAsync(entity);
+        try
+        {
+            QuerySnapshot snapshot = await _firestoreService.FirestoreDb.Collection(_collectionName).GetSnapshotAsync();
+            var documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
+
+            return ResultBase<List<T>>.Success(documents);
+        }
+        catch (Exception)
+        {
+            return ResultBase<List<T>>.Failure();
+        }
     }
 
-    public async Task<List<T>> GetAllAsync()
+    public async Task<ResultBase<T?>> GetByIdAsync(string id)
     {
-        QuerySnapshot snapshot = await _firestoreService.FirestoreDb.Collection(_collectionName).GetSnapshotAsync();
-        return snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
+        try
+        {
+            DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
+            DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+            var document = snapshot.Exists ? snapshot.ConvertTo<T>() : default;
+
+            return ResultBase<T?>.Success(document);
+        }
+        catch (Exception)
+        {
+            return ResultBase<T?>.Failure();
+        }
     }
 
-    public async Task<T?> GetByIdAsync(string id)
+    public async Task<ResultBase> AddAsync(T entity)
     {
-        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
-        DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-        return snapshot.Exists ? snapshot.ConvertTo<T>() : default;
+        try
+        {
+            DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
+            await docRef.SetAsync(entity);
+
+            return ResultBase.Success();
+        }
+        catch (Exception)
+        {
+            return ResultBase.Failure();
+        }
     }
 
-    public async Task UpdateAsync(T entity)
+    public async Task<ResultBase> UpdateAsync(T entity)
     {
-        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
-        await docRef.SetAsync(entity, SetOptions.Overwrite);
+        try
+        {
+            DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
+            await docRef.SetAsync(entity, SetOptions.Overwrite);
+
+            return ResultBase.Success();
+        }
+        catch (Exception)
+        {
+            return ResultBase.Failure();
+        }
     }
 
-    public async Task DeleteAsync(string id)
+    public async Task<ResultBase> DeleteAsync(string id)
     {
-        DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
-        await docRef.DeleteAsync();
+        try
+        {
+            DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
+            await docRef.DeleteAsync();
+
+            return ResultBase.Success();
+        }
+        catch (Exception)
+        {
+            return ResultBase.Failure();
+        }
     }
 }
 

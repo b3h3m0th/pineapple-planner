@@ -9,16 +9,10 @@
 Todos:
 <br />
 
-@if (_todosResult != null)
+@foreach (Domain.Entities.Task task in _tasks ?? new())
 {
-    @foreach (Domain.Entities.Task todo in _tasks.Concat(_todosResult.Todos ?? new()).ToList() ?? new())
-    {
-        <div>@todo.Id @todo.Name</div>
-    }
-}
-else
-{
-    <div>Loading...</div>
+    <div>@task.Id @task.Name</div>
 }
 
 <div>@_error</div>
+
