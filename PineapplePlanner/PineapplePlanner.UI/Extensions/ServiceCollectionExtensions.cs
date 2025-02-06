@@ -7,7 +7,7 @@ namespace PineapplePlanner.UI.Extensions
     {
         public static IServiceCollection AddUIServices(this IServiceCollection services)
         {
-            services.AddApplicationServices();
+            //services.AddApplicationServices();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTodos).Assembly));
 
