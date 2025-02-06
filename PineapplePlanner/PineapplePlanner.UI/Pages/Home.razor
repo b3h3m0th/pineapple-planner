@@ -1,8 +1,10 @@
 ﻿@using MediatR
+@using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.Domain.Entities
 
 @page "/"
 @inject IMediator _mediator
+@inject ITaskRepository _taskRepository
 
 Todos:
 <br />
