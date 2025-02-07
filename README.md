@@ -63,8 +63,9 @@ To get a local copy up and running follow these simple steps.
    ```sh
    git clone https://github.com/b3h3m0th/pineapple-planner.git
    ```
-2. Open `PineapplePlanner.sln` in Visual Studio
-3. In Visual Studio configure `PineapplePlanner.Wpf` as startup project
+2. Add your Firebase credentials file `firebase-key.json` in the root of the `PineapplePlanner.Wpf` project.
+3. Open `PineapplePlanner.sln` in Visual Studio
+4. In Visual Studio configure `PineapplePlanner.Wpf` as startup project
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

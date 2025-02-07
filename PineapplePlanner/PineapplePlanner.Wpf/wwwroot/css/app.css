@@ -1,5 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -32,3 +38,9 @@ html, body {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+    a {
+        text-decoration: none;
+        color: initial;
+    }
+

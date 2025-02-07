@@ -1,22 +1,32 @@
 ﻿@using MediatR
+@using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.Domain.Entities
 
 @page "/"
+
 @inject IMediator _mediator
+@inject ITaskRepository _taskRepository
 
-Todos:
-<br />
+<div class="overview">
+    Todos:
+    <br />
 
-@if (_todosResult != null)
-{
-    @foreach (Todo todo in _todosResult.Todos ?? new())
+    @if (_tasksResult.Data != null)
     {
-        <div>@todo.Id @todo.Name</div>
+        @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
+        {
+            <div>@task.Id @task.Name @task.DateDue.ToString() @task.Priority</div>
+        }
     }
-}
-else
-{
-    <div>Loading...</div>
-}
-
-<div>@_error</div>
+    else if (_tasksResult.Errors.Any())
+    {
+        @foreach (string error in _tasksResult.Errors)
+        {
+            <div>@error</div>
+        }
+    }
+    else
+    {
+        <div>Loading...</div>
+    }
+</div>

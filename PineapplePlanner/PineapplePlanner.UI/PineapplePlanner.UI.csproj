@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PineapplePlanner.Application\PineapplePlanner.Application.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Domain\PineapplePlanner.Domain.csproj" />
   </ItemGroup>

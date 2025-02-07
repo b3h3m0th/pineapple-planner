@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PineapplePlanner.Domain\PineapplePlanner.Domain.csproj" />
+    <ProjectReference Include="..\PineapplePlanner.Infrastructure\PineapplePlanner.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
