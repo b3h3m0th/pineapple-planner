@@ -103,7 +103,7 @@ namespace PineapplePlanner.UI.Services
                     claims.Add(new Claim(ClaimTypes.Email, emailClaim));
                 }
 
-                ClaimsPrincipal user = new ClaimsPrincipal(new ClaimsIdentity(claims));
+                ClaimsPrincipal user = new ClaimsPrincipal(new ClaimsIdentity(claims, "firebase"));
 
                 ((FirebaseAuthStateProvider)_authProvider)?.MarkUserAsAuthenticated(user);
             }
