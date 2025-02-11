@@ -34,9 +34,9 @@ namespace PineapplePlanner.UI.Services
             _auth = FirebaseAuth.DefaultInstance;
         }
 
-        public async Task<ResultBase<FirebaseUser>> LoginAsync(string email, string password)
+        public async Task<ResultBase> LoginAsync(string email, string password)
         {
-            ResultBase<FirebaseUser> result = ResultBase<FirebaseUser>.Success();
+            ResultBase result = ResultBase.Success();
 
             try
             {
@@ -51,6 +51,28 @@ namespace PineapplePlanner.UI.Services
                     result.AddErrorAndSetFailure(signInResult?.Error ?? "");
                     ((FirebaseAuthStateProvider)_authProvider)?.MarkUserAsLoggedOut();
                 }
+            }
+            catch (Exception ex)
+            {
+                result.AddErrorAndSetFailure(ex.Message);
+            }
+
+            return result;
+        }
+
+        public async Task<ResultBase> RegisterAsync(string email, string password)
+        {
+            ResultBase result = ResultBase.Success();
+
+            try
+            {
+                UserRecord userRecord = await _auth.CreateUserAsync(new UserRecordArgs()
+                {
+                    Email = email,
+                    Password = password
+                });
+
+                await LoginAsync(email, password);
             }
             catch (Exception ex)
             {

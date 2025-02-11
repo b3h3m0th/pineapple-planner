@@ -1,5 +1,4 @@
 ﻿using PineapplePlanner.Domain.Shared;
-using PineapplePlanner.UI.Models.Auth;
 
 namespace PineapplePlanner.UI.Pages
 {
@@ -13,7 +12,7 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleLogin()
         {
-            ResultBase<FirebaseUser> result = await _authService.LoginAsync(_email, _password);
+            ResultBase result = await _authService.LoginAsync(_email, _password);
 
             if (result.IsSuccess)
             {

@@ -18,7 +18,6 @@ const initializeFirebase = async () => {
         login: async function (email, password) {
             try {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                alert(JSON.stringify(userCredential));
                 return ({
                     success: true,
                     user: {
