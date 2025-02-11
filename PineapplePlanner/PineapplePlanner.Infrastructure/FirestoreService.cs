@@ -16,7 +16,7 @@ namespace PineapplePlanner.Infrastructure
 
         public FirestoreService()
         {
-            GoogleCredential credential = GoogleCredential.FromFile("firebase-key.json");
+            GoogleCredential credential = GoogleCredential.FromFile("firebase-adminsdk-key.json");
             FirestoreClientBuilder builder = new FirestoreClientBuilder() { Credential = credential };
 
             _firestoreDb = FirestoreDb.Create("pineapple-planner", builder.Build());
