@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 using PineapplePlanner.Application;
+using PineapplePlanner.UI.Providers;
+using PineapplePlanner.UI.Services;
 
 namespace PineapplePlanner.UI.Extensions
 {
@@ -9,6 +12,9 @@ namespace PineapplePlanner.UI.Extensions
         {
             services.AddApplicationServices();
 
+            services.AddScoped<AuthenticationStateProvider, FirebaseAuthStateProvider>();
+            services.AddScoped<FirebaseAuthenticationService>();
+            services.AddAuthorizationCore();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTodos).Assembly));
 
             return services;

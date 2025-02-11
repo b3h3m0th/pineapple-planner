@@ -1,4 +1,11 @@
-﻿@page "/settings"
+﻿@using Microsoft.AspNetCore.Authorization
+@using PineapplePlanner.UI.Services
+
+@page "/settings"
+
+@attribute [Authorize]
+
+@inject FirebaseAuthenticationService _authService
 
 Settings
 

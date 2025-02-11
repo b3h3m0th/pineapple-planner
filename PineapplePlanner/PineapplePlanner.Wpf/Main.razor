@@ -1,9 +1,21 @@
-<Router AppAssembly="@GetType().Assembly" AdditionalAssemblies=@(new[] { typeof(PineapplePlanner.UI.Pages.Home).Assembly})>
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout=@(typeof(PineapplePlanner.UI.Layouts.MainLayout))/>
-    </Found>
-    <NotFound>
-        <h1>Not found</h1>
-        <p>Sorry, there's nothing here.</p>
-    </NotFound>
-</Router>
+@using Microsoft.AspNetCore.Components.Authorization
+
+@inject NavigationManager _navigationManager
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="@GetType().Assembly" AdditionalAssemblies=@(new[] { typeof(PineapplePlanner.UI.Pages.Home).Assembly})>
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout=@(typeof(PineapplePlanner.UI.Layouts.MainLayout))>
+                <NotAuthorized>
+                    @{
+                        _navigationManager.NavigateTo("/login");
+                    }
+                </NotAuthorized>
+            </AuthorizeRouteView>
+        </Found>
+        <NotFound>
+            <h1>Not found</h1>
+            <p>Sorry, there's nothing here.</p>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>

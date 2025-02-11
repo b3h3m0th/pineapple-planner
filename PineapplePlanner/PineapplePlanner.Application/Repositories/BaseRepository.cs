@@ -27,30 +27,6 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
             var documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
 
             return new ResultBase<List<T>>(documents);
-
-            List<T>? entities = null;
-
-            foreach (var document in snapshot.Documents)
-            {
-                try
-                {
-                    Console.WriteLine($"Document Data: {document.ToDictionary()}"); // Log raw data
-                    var entity = document.ConvertTo<T>();
-
-                    if (entities == null)
-                    {
-                        entities = new List<T>();
-                    }
-
-                    entities.Add(entity);
-                }
-                catch (Exception ex)
-                {
-                    result.AddErrorAndSetFailure(ex.Message + ex.StackTrace);
-                }
-            }
-
-            result.Data = entities;
         }
         catch (Exception ex)
         {
