@@ -1,5 +1,6 @@
 ﻿using FirebaseAdmin;
 using FirebaseAdmin.Auth;
+using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using PineapplePlanner.Domain.Shared;
@@ -24,7 +25,10 @@ namespace PineapplePlanner.UI.Services
 
             if (FirebaseApp.DefaultInstance == null)
             {
-                FirebaseApp.Create();
+                FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromFile("firebase-adminsdk-key.json")
+                });
             }
 
             _auth = FirebaseAuth.DefaultInstance;
