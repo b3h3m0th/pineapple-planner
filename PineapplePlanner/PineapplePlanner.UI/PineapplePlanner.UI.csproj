@@ -13,12 +13,19 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.12" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PineapplePlanner.Application\PineapplePlanner.Application.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Domain\PineapplePlanner.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\Register.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
   </ItemGroup>
 
 </Project>
