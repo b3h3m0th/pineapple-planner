@@ -10,7 +10,7 @@
 @inject AuthenticationStateProvider _authProvider
 @inject NavigationManager _navigationManager
 
-<form>
+<div>
     <h1>Register</h1>
     <label for="email">Email</label>
     <input @bind-value=@_email id="email" type="email" /><br />
@@ -18,7 +18,7 @@
     <input @bind-value=@_password id="password" type="password" /><br />
     <button type="submit" @onclick=@HandleRegister>Register</button><br />
     <a href="/login">Already have an account yet?</a>
-</form>
+</div>
 
 @_message
 <br />

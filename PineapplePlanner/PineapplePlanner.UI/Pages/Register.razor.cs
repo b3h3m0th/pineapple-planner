@@ -1,6 +1,5 @@
 ﻿using Microsoft.JSInterop;
 using PineapplePlanner.Domain.Shared;
-using PineapplePlanner.UI.Models.Auth;
 using PineapplePlanner.UI.Providers;
 using System.Security.Claims;
 
@@ -11,8 +10,8 @@ namespace PineapplePlanner.UI.Pages
         private string _error = "";
         private string _message = "";
 
-        private string _email = string.Empty;
-        private string _password = string.Empty;
+        private string _email = "test@gmail.com";
+        private string _password = "test123";
 
         [JSInvokable]
         public async Task OnAuthStateChanged(string idToken)
@@ -38,19 +37,15 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleRegister()
         {
-            try
-            {
-                ResultBase<FirebaseUser> result = await _authService.LoginAsync(_email, _password);
-                _message = (result.Errors.Any()).ToString();
+            ResultBase result = await _authService.RegisterAsync(_email, _password);
 
-                if (result.Errors.Any())
-                {
-                    _error += result.Errors[0];
-                }
-            }
-            catch (Exception ex)
+            if (result.IsSuccess)
             {
-                _error += ex.Message + ex.StackTrace;
+                _navigationManager.NavigateTo("/");
+            }
+            else
+            {
+                _error = string.Join(", ", result.Errors);
             }
 
             StateHasChanged();
