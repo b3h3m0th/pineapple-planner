@@ -52,6 +52,9 @@ namespace PineapplePlanner.Domain.Entities
 
         [FirestoreProperty]
         public List<Tag> Tags { get; set; } = new List<Tag>();
+
+        [FirestoreProperty]
+        public string? UserUid { get; set; }
     }
 }
 

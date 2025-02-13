@@ -14,6 +14,9 @@ namespace PineapplePlanner.Domain.Entities
 
         [FirestoreProperty]
         public string? Color { get; set; }
+
+        [FirestoreProperty]
+        public string? UserUid { get; set; }
     }
 }
 
