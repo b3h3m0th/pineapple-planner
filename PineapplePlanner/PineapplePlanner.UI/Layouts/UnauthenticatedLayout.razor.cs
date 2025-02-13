@@ -1,6 +1,6 @@
 ﻿namespace PineapplePlanner.UI.Layouts
 {
-    public partial class MainLayout
+    public partial class UnauthenticatedLayout
     {
     }
 }
