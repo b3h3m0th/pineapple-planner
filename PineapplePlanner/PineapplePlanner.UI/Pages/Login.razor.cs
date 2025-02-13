@@ -25,3 +25,4 @@ namespace PineapplePlanner.UI.Pages
         }
     }
 }
+
