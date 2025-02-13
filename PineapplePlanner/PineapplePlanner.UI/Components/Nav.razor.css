@@ -1,7 +1,8 @@
 nav {
     height: 100%;
     padding: 20px;
-    width: 300px;
+    max-width: 300px;
+    flex: 1;
 }
 
     nav ul, li {

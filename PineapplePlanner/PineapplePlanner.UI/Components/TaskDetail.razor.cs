@@ -13,5 +13,14 @@ namespace PineapplePlanner.UI.Components
         [Parameter]
         public Domain.Entities.Task? Task { get; set; }
 
+        private void Close()
+        {
+            IsOpen = false;
+
+            if (IsOpenChanged.HasDelegate)
+            {
+                IsOpenChanged.InvokeAsync(IsOpen);
+            }
+        }
     }
 }

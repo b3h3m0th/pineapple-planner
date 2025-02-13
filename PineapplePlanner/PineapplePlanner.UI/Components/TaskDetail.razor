@@ -1,3 +1,6 @@
-<div class="task-detail">
-
-</div>
+@if (IsOpen)
+{
+    <div class="task-detail">
+        <span @onclick=@Close>Close</span>
+    </div>
+}

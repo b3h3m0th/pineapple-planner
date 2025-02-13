@@ -13,7 +13,7 @@
 @inject AuthenticationStateProvider _authProvider
 @inject NavigationManager _navigationManager
 
-<div> 
+<div class="login">
     <h1>Login</h1>
     <label for="email">Email</label>
     <input @bind-value=@_email id="email" type="email" /><br />
@@ -21,9 +21,8 @@
     <input @bind-value=@_password id="password" type="password" /><br />
     <button @onclick=@HandleLogin>Login</button><br />
     <a href="/register">Don't have an account yet?</a>
+
+    @_message
+    <br />
+    @_error
 </div>
-
-@_message
-<br />
-@_error
-

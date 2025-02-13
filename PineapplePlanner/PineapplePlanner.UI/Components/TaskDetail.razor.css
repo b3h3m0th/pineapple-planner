@@ -1,0 +1,7 @@
+.task-detail {
+    height: 100%;
+    max-width: 400px;
+    flex: 1;
+    padding: 20px;
+    background: red;
+}
