@@ -22,10 +22,10 @@ jobs:
           dotnet-version: "8.0.x"
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore PineapplePlanner/PineapplePlanner.sln
 
       - name: Build solution
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build PineapplePlanner/PineapplePlanner.sln --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --verbosity normal
+        run: dotnet test PineapplePlanner/PineapplePlanner.sln --configuration Release --no-build --verbosity normal
