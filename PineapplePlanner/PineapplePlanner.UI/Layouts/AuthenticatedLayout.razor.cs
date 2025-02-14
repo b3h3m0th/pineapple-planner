@@ -5,10 +5,18 @@
         private bool _isTaskDetailOpen = false;
         private Domain.Entities.Task? _detailTask;
 
-        private void HandleCreateTask()
+        public void OpenTaskDetail(Domain.Entities.Task? task = null)
+        {
+            _detailTask = task;
+            _isTaskDetailOpen = true;
+            StateHasChanged();
+        }
+
+        public void CloseTaskDetail()
         {
             _detailTask = null;
-            _isTaskDetailOpen = true;
+            _isTaskDetailOpen = false;
+            StateHasChanged();
         }
     }
 }

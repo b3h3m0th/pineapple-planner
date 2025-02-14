@@ -1,12 +1,15 @@
-﻿using PineapplePlanner.Domain.Shared;
+﻿using Microsoft.AspNetCore.Components;
+using PineapplePlanner.Domain.Shared;
+using PineapplePlanner.UI.Layouts;
 
 namespace PineapplePlanner.UI.Pages
 {
     public partial class Home
     {
+        [CascadingParameter(Name = "AuthenticatedLayout")]
+        public AuthenticatedLayout? AuthenticatedLayout { get; set; }
+
         private ResultBase<List<Domain.Entities.Task>> _tasksResult = new ResultBase<List<Domain.Entities.Task>>();
-        private Domain.Entities.Task? _detailTask;
-        private bool _isDetailOpen;
 
         protected override async System.Threading.Tasks.Task OnParametersSetAsync()
         {
@@ -34,8 +37,7 @@ namespace PineapplePlanner.UI.Pages
 
         private void HandleEditTask(Domain.Entities.Task task)
         {
-            _isDetailOpen = true;
-            _detailTask = task;
+            AuthenticatedLayout?.OpenTaskDetail(task);
         }
     }
 }
