@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace PineapplePlanner.UI.Components
 {
     public partial class Nav : IDisposable
     {
+        [Parameter]
+        public EventCallback OnCreateTask { get; set; }
+
         private AuthenticationState? _authenticationState;
 
         protected override async Task OnInitializedAsync()
@@ -21,6 +25,14 @@ namespace PineapplePlanner.UI.Components
         private async Task HandleLogout()
         {
             await _authenticationService.LogoutAsync();
+        }
+
+        private async Task HandleCreateTask()
+        {
+            if (OnCreateTask.HasDelegate)
+            {
+                await OnCreateTask.InvokeAsync();
+            }
         }
 
         public void Dispose()

@@ -4,8 +4,9 @@
 @inherits LayoutComponentBase
 
 <div class="authenticated-layout">
-    <Nav />
+    <Nav OnCreateTask=@HandleCreateTask />
     <main>
         @Body
     </main>
+    <TaskDetail @bind-IsOpen=@_isTaskDetailOpen Task=@_detailTask></TaskDetail>
 </div>
