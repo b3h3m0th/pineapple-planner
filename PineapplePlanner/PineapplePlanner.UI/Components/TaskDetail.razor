@@ -1,8 +1,21 @@
+@using Microsoft.AspNetCore.Components.Forms
 @if (IsOpen)
 {
     <div class="task-detail">
         <span @onclick=@Close>Close</span>
         <br />
-        <span>@Task?.Id</span>
+        <label for="name">Name</label>
+        <input @bind-value=@Task.Name id="name" name="name" /><br />
+        <label for="description">Description</label>
+        <textarea @onchange=@HandleDescriptionChange id="description" name="description">@Task.Description</textarea><br />
+        <label for="description">Due</label>
+        <input type="date" @bind-value=@Task.DateDue id="due" name="due" /><br />
+        <label for="priority">Priority</label>
+        <InputSelect @bind-value=@Task.Priority name="priority" id="priority">
+            @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>())
+            {
+                <option value=@priority>@priority</option>
+            }
+        </InputSelect>
     </div>
 }

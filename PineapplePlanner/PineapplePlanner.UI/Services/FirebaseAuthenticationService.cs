@@ -40,15 +40,15 @@ namespace PineapplePlanner.UI.Services
 
             try
             {
-                SignInResult? signInResult = await _jsRuntime.InvokeAsync<SignInResult>("firebaseAuth.login", email, password);
+                SignInResult? loginResult = await _jsRuntime.InvokeAsync<SignInResult>("firebaseAuth.login", email, password);
 
-                if (signInResult?.Success == true && !string.IsNullOrEmpty(signInResult.User?.Token))
+                if (loginResult?.Success == true && !string.IsNullOrEmpty(loginResult.User?.Token))
                 {
-                    await ProcessAuthStateAsync(signInResult.User.Token);
+                    await ProcessAuthStateAsync(loginResult.User.Token);
                 }
                 else
                 {
-                    result.AddErrorAndSetFailure(signInResult?.Error ?? "");
+                    result.AddErrorAndSetFailure(loginResult?.Error ?? "");
                     ((FirebaseAuthStateProvider)_authProvider)?.MarkUserAsLoggedOut();
                 }
             }
@@ -66,13 +66,10 @@ namespace PineapplePlanner.UI.Services
 
             try
             {
-                UserRecord userRecord = await _auth.CreateUserAsync(new UserRecordArgs()
-                {
-                    Email = email,
-                    Password = password
-                });
+                var registerResult = await _jsRuntime.InvokeAsync<object>("firebaseAuth.register", email, password);
 
-                await LoginAsync(email, password);
+                result.AddErrorAndSetFailure("Verification Email sent");
+                //await LoginAsync(email, password);
             }
             catch (Exception ex)
             {
