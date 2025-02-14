@@ -1,9 +1,9 @@
 @using Microsoft.AspNetCore.Components.Forms
+
 @if (IsOpen)
 {
     <div class="task-detail">
-        <span @onclick=@Close>Close</span>
-        <br />
+        <span @onclick=@Close>Close</span><br />
         <label for="name">Name</label>
         <input @bind-value=@Task.Name id="name" name="name" /><br />
         <label for="description">Description</label>
