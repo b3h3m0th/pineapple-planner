@@ -3,9 +3,10 @@ import {
     getAuth,
     onAuthStateChanged,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    createUserWithEmailAndPassword,
+    sendEmailVerification
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
 
 const initializeFirebase = async () => {
     const response = await fetch("firebase-config.json");
@@ -17,13 +18,42 @@ const initializeFirebase = async () => {
     window.firebaseAuth = {
         login: async function (email, password) {
             try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+
+                if (!userCredentials.user.emailVerified) {
+                    return ({
+                        success: false,
+                        error: "Email not verified"
+                    });
+                }
+
                 return ({
                     success: true,
                     user: {
-                        email: userCredential.user.email,
-                        uid: userCredential.user.uid,
-                        token: await userCredential.user.getIdToken()
+                        email: userCredentials.user.email,
+                        uid: userCredentials.user.uid,
+                        token: await userCredentials.user.getIdToken()
+                    }
+                });
+            } catch (error) {
+                return ({
+                    success: false,
+                    error: error.message
+                });
+            }
+        },
+        register: async function (email, password) {
+            try {
+                const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+
+                await sendEmailVerification(userCredentials.user);
+
+                return ({
+                    success: true,
+                    user: {
+                        email: userCredentials.user.email,
+                        uid: userCredentials.user.uid,
+                        token: await userCredentials.user.getIdToken()
                     }
                 });
             } catch (error) {

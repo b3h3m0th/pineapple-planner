@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Components.Forms
+@using PineapplePlanner.Application.Interfaces
+@using PineapplePlanner.UI.Services
+
+@inject FirebaseAuthenticationService _authenticationService
+@inject ITaskRepository _taskRepository
+
+@if (IsOpen)
+{
+    <div class="task-detail">
+        <span @onclick=@HandleClose>Close</span><br />
+        <label for="name">Name</label>
+        <input @bind-value=@Task.Name id="name" name="name" /><br />
+        <label for="description">Description</label>
+        <textarea @onchange=@HandleDescriptionChange id="description" name="description">@Task.Description</textarea><br />
+        <label for="description">Due</label>
+        <input type="date" @bind-value=@Task.DateDue id="due" name="due" /><br />
+        <label for="priority">Priority</label>
+        <InputSelect @bind-value=@Task.Priority name="priority" id="priority">
+            @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>())
+            {
+                <option value=@priority>@priority</option>
+            }
+        </InputSelect>
+        <button @onclick=@HandleSave>Save</button><br />
+        @if (!string.IsNullOrEmpty(Task.Id))
+        {
+            <button @onclick=@HandleDelete>Delete</button>
+        }
+    </div>
+}

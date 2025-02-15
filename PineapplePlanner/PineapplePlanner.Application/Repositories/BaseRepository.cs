@@ -52,19 +52,25 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         }
     }
 
-    public async Task<ResultBase> AddAsync(T entity)
+    public virtual async Task<ResultBase<T>> AddAsync(T entity)
     {
+        ResultBase<T> result = ResultBase<T>.Success();
+
         try
         {
+            entity.Id = Guid.NewGuid().ToString();
             DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
             await docRef.SetAsync(entity);
 
-            return ResultBase.Success();
+            result.Data = entity;
+            return result;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return ResultBase.Failure();
+            result.AddErrorAndSetFailure(ex.Message);
         }
+
+        return result;
     }
 
     public async Task<ResultBase> UpdateAsync(T entity)

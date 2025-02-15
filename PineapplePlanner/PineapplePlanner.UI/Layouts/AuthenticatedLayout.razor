@@ -1,0 +1,14 @@
+@using Microsoft.AspNetCore.Components.Authorization
+@using PineapplePlanner.UI.Components
+
+@inherits LayoutComponentBase
+
+<CascadingValue Name="AuthenticatedLayout" Value=@this>
+    <div class="authenticated-layout">
+        <Nav />
+        <main>
+            @Body
+        </main>
+        <TaskDetail @bind-IsOpen=@_isTaskDetailOpen Task=@_detailTask></TaskDetail>
+    </div>
+</CascadingValue>

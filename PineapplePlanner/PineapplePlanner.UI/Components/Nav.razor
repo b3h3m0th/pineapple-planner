@@ -15,11 +15,6 @@
         </NavLink>
         <NavLink href="/">
             <li>
-                Overview
-            </li>
-        </NavLink>
-        <NavLink href="/tasks">
-            <li>
                 Tasks
             </li>
         </NavLink>
@@ -51,5 +46,8 @@
                 </li>
             </NavLink>
         }
+        <li>
+            <button @onclick=@HandleCreateTask>Create task</button>
+        </li>
     </ul>
 </nav>

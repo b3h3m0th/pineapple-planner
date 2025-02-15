@@ -2,34 +2,39 @@
 @using Microsoft.AspNetCore.Authorization
 @using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.Domain.Entities
+@using PineapplePlanner.UI.Components
+@using PineapplePlanner.UI.Layouts
 
 @page "/"
 
 @attribute [Authorize]
 
+@* @layout MainLayout *@
+
 @inject IMediator _mediator
 @inject ITaskRepository _taskRepository
 
-<div class="overview">
-    Todos:
-    <br />
-
-    @if (_tasksResult.Data != null)
-    {
-        @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
+<div class="home">
+    <div class="tasks-list">
+        Todos:
+        <br />
+        @if (_tasksResult.Data != null)
         {
-            <div>@task.Id @task.Name @task.DateDue.ToString() @task.Priority</div>
+            @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
+            {
+                <div @onclick=@(() => HandleEditTask(task))>@task.Id @task.Name @task.DateDue.ToString() @task.Priority</div>
+            }
         }
-    }
-    else if (_tasksResult.Errors.Any())
-    {
-        @foreach (string error in _tasksResult.Errors)
+        else if (_tasksResult.Errors.Any())
         {
-            <div>@error</div>
+            @foreach (string error in _tasksResult.Errors)
+            {
+                <div>@error</div>
+            }
         }
-    }
-    else
-    {
-        <div>Loading...</div>
-    }
+        else
+        {
+            <div>Loading...</div>
+        }
+    </div>
 </div>
