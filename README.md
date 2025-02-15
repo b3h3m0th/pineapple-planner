@@ -78,7 +78,7 @@ TBA
 
 ## Contributors
 
-<a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
+<a href="https://github.com/b3h3m0th/pineapple-planner/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=b3h3m0th/pineapple-planner" alt="contrib.rocks image" />
 </a>
 
