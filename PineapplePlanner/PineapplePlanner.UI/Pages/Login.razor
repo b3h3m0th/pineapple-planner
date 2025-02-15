@@ -10,14 +10,16 @@
 @inject AuthenticationStateProvider _authProvider
 @inject NavigationManager _navigationManager
 
-<div> 
+<div class="login-container">
     <h1>Login</h1>
-    <label for="email">Email</label>
-    <input @bind-value=@_email id="email" type="email" /><br />
-    <label for="password">Password</label>
-    <input @bind-value=@_password id="password" type="password" /><br />
+    <!--<label for="email">Email</label>-->
+    <input @bind-value=@_email id="email" type="email" placeholder="email" />
+    <!--<label for="password">Password</label>-->
+    <input @bind-value=@_password id="password" type="password" placeholder="password"/><br/>
     <button @onclick=@HandleLogin>Login</button><br />
-    <a href="/register">Don't have an account yet?</a>
+    <p>Not registered? <a href="/register">Create an account</a></p>
+    
+
 </div>
 
 @_message
