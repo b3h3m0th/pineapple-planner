@@ -18,5 +18,10 @@
             _isTaskDetailOpen = false;
             StateHasChanged();
         }
+
+        new public void StateHasChanged()
+        {
+            base.StateHasChanged();
+        }
     }
 }

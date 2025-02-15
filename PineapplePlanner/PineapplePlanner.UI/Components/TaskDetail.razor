@@ -1,9 +1,14 @@
 @using Microsoft.AspNetCore.Components.Forms
+@using PineapplePlanner.Application.Interfaces
+@using PineapplePlanner.UI.Services
+
+@inject FirebaseAuthenticationService _authenticationService
+@inject ITaskRepository _taskRepository
 
 @if (IsOpen)
 {
     <div class="task-detail">
-        <span @onclick=@Close>Close</span><br />
+        <span @onclick=@HandleClose>Close</span><br />
         <label for="name">Name</label>
         <input @bind-value=@Task.Name id="name" name="name" /><br />
         <label for="description">Description</label>
@@ -17,5 +22,10 @@
                 <option value=@priority>@priority</option>
             }
         </InputSelect>
+        <button @onclick=@HandleSave>Save</button><br />
+        @if (!string.IsNullOrEmpty(Task.Id))
+        {
+            <button @onclick=@HandleDelete>Delete</button>
+        }
     </div>
 }
