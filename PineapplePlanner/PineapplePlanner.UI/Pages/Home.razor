@@ -1,9 +1,11 @@
 ﻿@using MediatR
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 @using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.Domain.Entities
 @using PineapplePlanner.UI.Components
 @using PineapplePlanner.UI.Layouts
+@using PineapplePlanner.UI.Providers
 
 @page "/"
 
@@ -11,8 +13,8 @@
 
 @* @layout MainLayout *@
 
-@inject IMediator _mediator
 @inject ITaskRepository _taskRepository
+@inject AuthenticationStateProvider _authStateProvider
 
 <div class="home">
     <div class="tasks-list">
@@ -22,7 +24,7 @@
         {
             @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
             {
-                <div @onclick=@(() => HandleEditTask(task))>@task.Id @task.Name @task.DateDue.ToString() @task.Priority</div>
+                <div @onclick=@(() => HandleEditTask(task))>@task.UserUid @task.Name @task.DateDue.ToString() @task.Priority</div>
             }
         }
         else if (_tasksResult.Errors.Any())

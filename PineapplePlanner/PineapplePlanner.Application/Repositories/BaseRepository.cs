@@ -8,8 +8,8 @@ namespace PineapplePlanner.Application.Repositories;
 
 public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreData
 {
-    protected readonly FirestoreService _firestoreService;
     protected readonly string _collectionName;
+    protected readonly FirestoreService _firestoreService;
 
     public BaseRepository(FirestoreService firestoreService)
     {
@@ -17,13 +17,16 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         _collectionName = typeof(T).Name + "s";
     }
 
-    public async Task<ResultBase<List<T>>> GetAllAsync()
+    public async Task<ResultBase<List<T>>> GetAllAsync(string userId)
     {
         var result = ResultBase<List<T>>.Success();
 
         try
         {
-            QuerySnapshot snapshot = await _firestoreService.FirestoreDb.Collection(_collectionName).GetSnapshotAsync();
+            QuerySnapshot snapshot = await _firestoreService.FirestoreDb
+                .Collection(_collectionName)
+                .WhereEqualTo("UserUid", userId)
+                .GetSnapshotAsync();
             var documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
 
             return new ResultBase<List<T>>(documents);
@@ -36,7 +39,7 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         return result;
     }
 
-    public async Task<ResultBase<T?>> GetByIdAsync(string id)
+    public async Task<ResultBase<T?>> GetByIdAsync(string userId, string id)
     {
         try
         {

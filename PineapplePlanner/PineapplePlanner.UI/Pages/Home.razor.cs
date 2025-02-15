@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Layouts;
+using PineapplePlanner.UI.Providers;
 
 namespace PineapplePlanner.UI.Pages
 {
@@ -11,7 +12,9 @@ namespace PineapplePlanner.UI.Pages
 
         private ResultBase<List<Domain.Entities.Task>> _tasksResult = new ResultBase<List<Domain.Entities.Task>>();
 
-        protected override async System.Threading.Tasks.Task OnParametersSetAsync()
+        private string _message;
+
+        protected override async Task OnParametersSetAsync()
         {
             //await _taskRepository.AddAsync(new Domain.Entities.Task()
             //{
@@ -30,9 +33,20 @@ namespace PineapplePlanner.UI.Pages
             //    }
             //});
 
-            _tasksResult = await _taskRepository.GetAllAsync();
+            await LoadTasks();
 
             await base.OnParametersSetAsync();
+        }
+
+        private async Task LoadTasks()
+        {
+            string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
+            _message = firebaseUid;
+
+            if (!string.IsNullOrEmpty(firebaseUid))
+            {
+                _tasksResult = await _taskRepository.GetAllAsync(firebaseUid);
+            }
         }
 
         private void HandleEditTask(Domain.Entities.Task task)

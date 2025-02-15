@@ -1,9 +1,12 @@
+@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using PineapplePlanner.Application.Interfaces
+@using PineapplePlanner.UI.Providers
 @using PineapplePlanner.UI.Services
 
-@inject FirebaseAuthenticationService _authenticationService
 @inject ITaskRepository _taskRepository
+@inject FirebaseAuthenticationService _authenticationService
+@inject AuthenticationStateProvider _authStateProvider
 
 @if (IsOpen)
 {
