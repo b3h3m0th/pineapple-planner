@@ -12,8 +12,6 @@ namespace PineapplePlanner.UI.Pages
 
         private ResultBase<List<Domain.Entities.Task>> _tasksResult = new ResultBase<List<Domain.Entities.Task>>();
 
-        private string _message;
-
         protected override async Task OnParametersSetAsync()
         {
             //await _taskRepository.AddAsync(new Domain.Entities.Task()
@@ -41,7 +39,6 @@ namespace PineapplePlanner.UI.Pages
         private async Task LoadTasks()
         {
             string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
-            _message = firebaseUid;
 
             if (!string.IsNullOrEmpty(firebaseUid))
             {

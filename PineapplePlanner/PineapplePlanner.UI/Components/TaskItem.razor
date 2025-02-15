@@ -1,0 +1,15 @@
+@using PineapplePlanner.Domain.Entities
+
+<div class="task-item">
+    <input type="checkbox" id="completed" name="completed" @onchange=@HandleCompleteChange />
+    <div class="content" @onclick=@HandleOnClick>
+        <span>@Task.Name</span>
+        <span>@Task.Description</span>
+        <div class="tags">
+            @foreach (Tag tag in Task.Tags)
+            {
+                <div>@tag.Name</div>
+            }
+        </div>
+    </div>
+</div>

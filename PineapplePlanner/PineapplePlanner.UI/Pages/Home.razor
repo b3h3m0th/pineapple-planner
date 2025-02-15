@@ -24,7 +24,7 @@
         {
             @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
             {
-                <div @onclick=@(() => HandleEditTask(task))>@task.UserUid @task.Name @task.DateDue.ToString() @task.Priority</div>
+                <TaskItem Task=@task OnClick=@(() => HandleEditTask(task)) />
             }
         }
         else if (_tasksResult.Errors.Any())
