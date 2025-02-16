@@ -50,5 +50,12 @@ namespace PineapplePlanner.UI.Pages
         {
             AuthenticatedLayout?.OpenTaskDetail(task);
         }
+
+        private async Task HandleTaskCompleteChange(Domain.Entities.Task task)
+        {
+            await _taskRepository.UpdateAsync(task);
+
+            AuthenticatedLayout?.OpenTaskDetail(task);
+        }
     }
 }

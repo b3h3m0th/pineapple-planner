@@ -36,10 +36,7 @@ namespace PineapplePlanner.UI.Components
 
         private async Task HandleSave()
         {
-            if (IsCompleted)
-            {
-                Task.CompletedAt = DateTime.UtcNow;
-            }
+            Task.CompletedAt = IsCompleted ? DateTime.UtcNow : null;
 
             if (!string.IsNullOrEmpty(Task.Id))
             {

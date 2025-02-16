@@ -1,7 +1,9 @@
 @using PineapplePlanner.Domain.Entities
 
 <div class="task-item">
-    <input type="checkbox" id="completed" name="completed" @onchange=@HandleCompleteChange />
+    <div class="completed">
+        <input checked=@(Task.CompletedAt != null) type="checkbox" id="completed" name="completed" @oninput=@HandleCompleteChange />
+    </div>
     <div class="content" @onclick=@HandleOnClick>
         <span>@Task.Name</span>
         <span>@Task.Description</span>

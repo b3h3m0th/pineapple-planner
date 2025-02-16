@@ -24,7 +24,7 @@
         {
             @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
             {
-                <TaskItem Task=@task OnClick=@(() => HandleEditTask(task)) />
+                <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
             }
         }
         else if (_tasksResult.Errors.Any())

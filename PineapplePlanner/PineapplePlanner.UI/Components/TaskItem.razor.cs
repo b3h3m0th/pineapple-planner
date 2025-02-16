@@ -21,10 +21,11 @@ namespace PineapplePlanner.UI.Components
             }
         }
 
-        private async Task HandleCompleteChange()
+        private async Task HandleCompleteChange(ChangeEventArgs args)
         {
             if (OnCompleteChange.HasDelegate)
             {
+                Task.CompletedAt = (bool?)args?.Value == true ? DateTime.UtcNow : null;
                 await OnCompleteChange.InvokeAsync(Task);
             }
         }
