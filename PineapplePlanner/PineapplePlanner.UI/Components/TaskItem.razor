@@ -1,12 +1,21 @@
 @using PineapplePlanner.Domain.Entities
 
-<MudPaper Class="pa-4 ma-2 flex task-item" Elevation="3">
+<MudPaper Class="pa-4 ma-2 flex task-item" Elevation="25">
     <div class="completed">
-        <input checked=@(Task.CompletedAt != null) type="checkbox" id="completed" name="completed" @oninput=@HandleCompleteChange />
+        <MudCheckBox Value=@(Task.CompletedAt != null) Color=@Color.Surface T=@bool @oninput=@HandleCompleteChange />
     </div>
     <div class="content" @onclick=@HandleOnClick>
-        <span>@Task.Name</span>
-        <span>@Task.Description</span>
+        <MudText Typo="Typo.h6" Style=@($"text-decoration: {(IsCompleted ?"line-through" : "none")}")>
+            @Task.Name
+        </MudText>
+        <MudText Typo="Typo.body2" Style=@($"text-decoration: {(IsCompleted ?"line-through" : "none")}")>
+            @Task.Description
+        </MudText>
+        <div>
+            <MudChip T=@string Color=@PriorityColor Size=@Size.Small>
+                @Task.Priority
+            </MudChip>
+        </div>
         <div class="tags">
             @foreach (Tag tag in Task.Tags)
             {
