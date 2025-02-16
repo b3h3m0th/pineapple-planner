@@ -1,6 +1,6 @@
 @using PineapplePlanner.Domain.Entities
 
-<div class="task-item">
+<MudPaper Class="pa-4 ma-2 flex task-item" Elevation="3">
     <div class="completed">
         <input checked=@(Task.CompletedAt != null) type="checkbox" id="completed" name="completed" @oninput=@HandleCompleteChange />
     </div>
@@ -14,4 +14,4 @@
             }
         </div>
     </div>
-</div>
+</MudPaper>

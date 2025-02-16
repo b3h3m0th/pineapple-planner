@@ -1,5 +1,6 @@
 .task-item {
     display: flex;
+    flex-direction: row;
     padding: 8px;
     border-radius: 8px;
     background: #eaeaea;

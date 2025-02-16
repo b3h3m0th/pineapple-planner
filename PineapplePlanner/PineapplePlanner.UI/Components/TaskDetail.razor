@@ -11,7 +11,7 @@
 @if (IsOpen)
 {
     <div class="task-detail">
-        <span @onclick=@HandleClose>Close</span><br />
+        <MudIcon Icon=@Icons.Material.Rounded.Close Title="Close" @onclick=@HandleClose /><br/>
         <label for="name">Name</label>
         <input @bind-value=@Task.Name id="name" name="name" /><br />
         <label for="description">Description</label>

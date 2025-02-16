@@ -6,46 +6,22 @@
 @inject AuthenticationStateProvider _authenticationStateProvider
 @inject FirebaseAuthenticationService _authenticationService
 
-<nav>
-    <ul>
-        <NavLink href="/">
-            <li class="logo">
-                <div>Pineapple Planner</div>
-            </li>
-        </NavLink>
-        <NavLink href="/">
-            <li>
-                <MudIcon Icon=@Icons.Material.Rounded.Task Title="Task" />
-                Tasks
-            </li>
-        </NavLink>
-        <NavLink href="/calendar">
-            <li>
-                <MudIcon Icon=@Icons.Material.Rounded.CalendarMonth Title="Calendar" />
-                Calendar
-            </li>
-        </NavLink>
-        <li class="separator">
-            <hr />
-        </li>
-        <NavLink href="/settings">
-            <li>
-                <MudIcon Icon=@Icons.Material.Rounded.Settings Title="Settings" />
-                Settings
-            </li>
-        </NavLink>
-        <li class="create-task">
+<MudPaper Width="250px" Class="py-3" Elevation="25">
+    <MudNavMenu Rounded="true" Margin="Margin.Normal" Color=@Color.Surface Class="pa-2">
+        <MudText Typo="Typo.h6" Class="px-4">Pineapple Planner</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Test</MudText>
+        <MudDivider Class="my-2" />
+        <MudNavLink Match=@NavLinkMatch.All Href="/" Icon=@Icons.Material.Rounded.Task>Tasks</MudNavLink>
+        <MudNavLink Match=@NavLinkMatch.All Href="/calendar" Icon=@Icons.Material.Rounded.CalendarMonth>Calendar</MudNavLink>
+        <div class="create-task">
             <MudFab Color=Color.Surface StartIcon=@Icons.Material.Filled.Add OnClick=@HandleCreateTask />
             <span>New task</span>
-        </li>
+        </div>
         @if (_authenticationState?.User.Identity?.IsAuthenticated == true)
         {
-            <li class="profile">
-                @_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value
-                <a href="/" @onclick=@HandleLogout>
-                    <MudIcon Icon=@Icons.Material.Rounded.Logout Title="Logout" />
-                </a>
-            </li>
+            <MudNavGroup Icon=@Icons.Material.Rounded.AccountCircle Title=@_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value Expanded="true">
+                <MudNavLink Icon=@Icons.Material.Rounded.Logout @onclick=@HandleLogout>Logout</MudNavLink>
+            </MudNavGroup>
         }
         else
         {
@@ -55,5 +31,5 @@
                 </li>
             </NavLink>
         }
-    </ul>
-</nav>
+    </MudNavMenu>
+</MudPaper>

@@ -18,8 +18,6 @@
 
 <div class="home">
     <div class="tasks-list">
-        Todos:
-        <br />
         @if (_tasksResult.Data != null)
         {
             @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
