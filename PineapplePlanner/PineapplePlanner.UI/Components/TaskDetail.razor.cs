@@ -64,6 +64,7 @@ namespace PineapplePlanner.UI.Components
             await _taskRepository.DeleteAsync(Task.Id);
 
             AuthenticatedLayout?.StateHasChanged();
+            HandleClose();
         }
 
         private void HandleClose()
