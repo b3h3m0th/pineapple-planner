@@ -15,11 +15,13 @@
         </NavLink>
         <NavLink href="/">
             <li>
+                <MudIcon Icon=@Icons.Material.Rounded.Task Title="Task" />
                 Tasks
             </li>
         </NavLink>
         <NavLink href="/calendar">
             <li>
+                <MudIcon Icon=@Icons.Material.Rounded.CalendarMonth Title="Calendar" />
                 Calendar
             </li>
         </NavLink>
@@ -28,14 +30,21 @@
         </li>
         <NavLink href="/settings">
             <li>
+                <MudIcon Icon=@Icons.Material.Rounded.Settings Title="Settings" />
                 Settings
             </li>
         </NavLink>
+        <li class="create-task">
+            <MudFab Color=Color.Surface StartIcon=@Icons.Material.Filled.Add OnClick=@HandleCreateTask />
+            <span>New task</span>
+        </li>
         @if (_authenticationState?.User.Identity?.IsAuthenticated == true)
         {
-            <li>
-                @_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value<br />
-                <a href="/" @onclick=@HandleLogout>Logout</a>
+            <li class="profile">
+                @_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value
+                <a href="/" @onclick=@HandleLogout>
+                    <MudIcon Icon=@Icons.Material.Rounded.Logout Title="Logout" />
+                </a>
             </li>
         }
         else
@@ -46,8 +55,5 @@
                 </li>
             </NavLink>
         }
-        <li>
-            <button @onclick=@HandleCreateTask>Create task</button>
-        </li>
     </ul>
 </nav>
