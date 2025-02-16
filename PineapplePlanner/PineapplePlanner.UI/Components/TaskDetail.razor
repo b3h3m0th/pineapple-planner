@@ -15,7 +15,7 @@
         <label for="name">Name</label>
         <input @bind-value=@Task.Name id="name" name="name" /><br />
         <label for="description">Description</label>
-        <textarea @onchange=@HandleDescriptionChange id="description" name="description">@Task.Description</textarea><br />
+        <textarea @bind=@Task.Description @bind:event="onchange" id="description" name="description">@Task.Description</textarea><br />
         <label for="description">Due</label>
         <input type="date" @bind-value=@Task.DateDue id="due" name="due" /><br />
         <label for="priority">Priority</label>
@@ -24,7 +24,7 @@
             {
                 <option value=@priority>@priority</option>
             }
-        </InputSelect>
+        </InputSelect><br />
         <button @onclick=@HandleSave>Save</button><br />
         @if (!string.IsNullOrEmpty(Task.Id))
         {

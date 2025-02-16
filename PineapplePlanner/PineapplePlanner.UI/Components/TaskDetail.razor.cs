@@ -30,11 +30,6 @@ namespace PineapplePlanner.UI.Components
             await base.OnParametersSetAsync();
         }
 
-        private void HandleDescriptionChange(ChangeEventArgs args)
-        {
-            Task.Description = args.Value?.ToString();
-        }
-
         private async Task HandleSave()
         {
             string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
