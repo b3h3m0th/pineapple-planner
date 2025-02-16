@@ -25,6 +25,7 @@
                 <option value=@priority>@priority</option>
             }
         </InputSelect><br />
+        <input type="checkbox" @bind=@IsCompleted id="completed" name="completed" /><br />
         <button @onclick=@HandleSave>Save</button><br />
         @if (!string.IsNullOrEmpty(Task.Id))
         {

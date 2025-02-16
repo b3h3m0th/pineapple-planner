@@ -18,6 +18,8 @@ namespace PineapplePlanner.UI.Components
         [Parameter]
         public Domain.Entities.Task Task { get; set; } = default!;
 
+        public bool IsCompleted { get; set; }
+
         protected override async Task OnParametersSetAsync()
         {
             Task ??= new Domain.Entities.Task()
@@ -27,11 +29,18 @@ namespace PineapplePlanner.UI.Components
                 DateDue = DateTime.UtcNow,
             };
 
+            IsCompleted = Task.CompletedAt != null;
+
             await base.OnParametersSetAsync();
         }
 
         private async Task HandleSave()
         {
+            if (IsCompleted)
+            {
+                Task.CompletedAt = DateTime.UtcNow;
+            }
+
             if (!string.IsNullOrEmpty(Task.Id))
             {
                 await _taskRepository.UpdateAsync(Task);
@@ -53,6 +62,8 @@ namespace PineapplePlanner.UI.Components
         private async Task HandleDelete()
         {
             await _taskRepository.DeleteAsync(Task.Id);
+
+            AuthenticatedLayout?.StateHasChanged();
         }
 
         private void HandleClose()
