@@ -32,14 +32,22 @@ namespace PineapplePlanner.UI.Components
 
         private async Task HandleSave()
         {
-            string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
-
-            if (!string.IsNullOrEmpty(firebaseUid))
+            if (!string.IsNullOrEmpty(Task.Id))
             {
-                Task.UserUid = firebaseUid;
-                await _taskRepository.AddAsync(Task);
-                AuthenticatedLayout?.StateHasChanged();
+                await _taskRepository.UpdateAsync(Task);
             }
+            else
+            {
+                string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
+
+                if (!string.IsNullOrEmpty(firebaseUid))
+                {
+                    Task.UserUid = firebaseUid;
+                    await _taskRepository.AddAsync(Task);
+                }
+            }
+
+            AuthenticatedLayout?.StateHasChanged();
         }
 
         private async Task HandleDelete()

@@ -66,7 +66,6 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
             await docRef.SetAsync(entity);
 
             result.Data = entity;
-            return result;
         }
         catch (Exception ex)
         {
@@ -76,19 +75,23 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         return result;
     }
 
-    public async Task<ResultBase> UpdateAsync(T entity)
+    public virtual async Task<ResultBase<T>> UpdateAsync(T entity)
     {
+        ResultBase<T> result = ResultBase<T>.Success();
+
         try
         {
             DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(entity.Id);
             await docRef.SetAsync(entity, SetOptions.Overwrite);
 
-            return ResultBase.Success();
+            result.Data = entity;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return ResultBase.Failure();
+            result.AddErrorAndSetFailure(ex.Message);
         }
+
+        return result;
     }
 
     public async Task<ResultBase> DeleteAsync(string id)

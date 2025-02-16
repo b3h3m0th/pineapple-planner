@@ -8,7 +8,7 @@ namespace PineapplePlanner.Application.Interfaces
         Task<ResultBase<List<T>>> GetAllAsync(string userId);
         Task<ResultBase<T?>> GetByIdAsync(string userId, string id);
         Task<ResultBase<T>> AddAsync(T entity);
-        Task<ResultBase> UpdateAsync(T entity);
+        Task<ResultBase<T>> UpdateAsync(T entity);
         Task<ResultBase> DeleteAsync(string id);
     }
 }
