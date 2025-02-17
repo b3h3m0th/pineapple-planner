@@ -1,13 +1,18 @@
 .task-item {
     display: flex;
+    flex-direction: row;
     padding: 8px;
     border-radius: 8px;
     background: #eaeaea;
 }
 
+.task-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .completed {
-    flex: 0;
-    min-width: 40px;
+    min-width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
