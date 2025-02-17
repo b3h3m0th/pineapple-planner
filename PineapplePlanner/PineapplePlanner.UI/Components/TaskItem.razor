@@ -11,6 +11,7 @@
         <MudText Typo="Typo.body2" Style=@($"text-decoration: {(IsCompleted ?"line-through" : "none")}")>
             @Task.Description
         </MudText>
+        <MudDivider Class="my-2"></MudDivider>
         <div>
             @if (Task.Priority != Domain.Enums.Priority.None && Task.Priority != null)
             {
