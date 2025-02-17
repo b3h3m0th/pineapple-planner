@@ -26,7 +26,7 @@ input {
 button {
     background-color: #007bff;
     border-radius: 30px;
-    color: white;
+    color: #000000;
     padding: 10px;
     border: none;
     margin: auto;
@@ -40,11 +40,11 @@ button {
     }
 
 a {
-    color: cadetblue;
+    color: #5F9EA0;
     background-color: transparent;
     text-decoration: none;
 }
 
 p {
-    color: darkgreen;
+    color: #013220;
 }

@@ -27,7 +27,7 @@ input {
 button {
     background-color: #007bff;
     border-radius: 30px;
-    color: white;
+    color: #ffffff;
     padding: 10px;
     border: none;
     margin: auto;
@@ -41,11 +41,11 @@ button:hover {
 }
 
 a {
-    color: cadetblue;
+    color: #5F9EA0;
     background-color: transparent;
     text-decoration: none;
 }
 
 p {
-    color: darkgreen;
+    color: #013220;
 }
