@@ -2,5 +2,6 @@
     height: 100%;
     max-width: 400px;
     flex: 1;
-    padding: 20px;
+    padding: 20px !important;
+    background: red !important;
 }

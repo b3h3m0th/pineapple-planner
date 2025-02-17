@@ -6,6 +6,11 @@
     background: #eaeaea;
 }
 
+.task-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .completed {
     min-width: 60px;
     display: flex;

@@ -36,7 +36,7 @@ namespace PineapplePlanner.Domain.Entities
         public Priority? Priority { get; set; }
 
         [FirestoreProperty]
-        public DateTime DateDue { get; set; }
+        public DateTime? DateDue { get; set; }
 
         [FirestoreProperty]
         public DateTime? CompletedAt { get; set; }
