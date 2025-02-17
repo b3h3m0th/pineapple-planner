@@ -3,5 +3,9 @@
     max-width: 400px;
     flex: 1;
     padding: 20px !important;
-    background: red !important;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
 }

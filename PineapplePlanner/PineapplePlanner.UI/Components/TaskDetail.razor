@@ -37,29 +37,31 @@
 
 @if (IsOpen)
 {
-    <MudPaper Class="task-detail p-4" Elevation="25">
-        <div class="task-header">
-            <MudIconButton Icon=@Icons.Material.Rounded.Close OnClick=@HandleClose Color=@Color.Surface />
-        </div>
-        <MudForm Class="p-4">
-            <MudTextField Label="Name" @bind-Value="Task.Name" Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
-            <MudTextField T="string" Label="Description" @bind-Value="Task.Description" Variant="@Variant.Outlined" FullWidth="true" Lines="4" Margin=@Margin.Dense />
-            <MudDatePicker Label="Due Date" @bind-Date=@Task.DateDue Variant=@Variant.Outlined Margin=@Margin.Dense></MudDatePicker>
-            <MudSelect T=@(Domain.Enums.Priority?) @bind-Value="Task.Priority" Label="Priority" Variant=@Variant.Outlined FullWidth="true" Margin=@Margin.Dense>
-                @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>())
-                {
-                    <MudSelectItem T=@(Domain.Enums.Priority?) Value=@priority>@priority</MudSelectItem>
-                }
-            </MudSelect>
-            <MudCheckBox @bind-Value="IsCompleted" Label="Completed" Color=@Color.Surface T="bool" Margin=@Margin.Dense/>
-            <div class="task-actions">
-                <MudButton OnClick=@HandleSave Color=@Color.Surface Variant=@Variant.Outlined>Save</MudButton>
-
-                @if (!string.IsNullOrEmpty(Task.Id))
-                {
-                    <MudButton OnClick=@HandleDelete Color=@Color.Error Variant=@Variant.Outlined>Delete</MudButton>
-                }
+    <MudPaper Elevation="25">
+        <div class="task-detail">
+            <div>
+                <MudIconButton Icon=@Icons.Material.Rounded.Close OnClick=@HandleClose Color=@Color.Surface />
             </div>
-        </MudForm>
+            <MudForm Class="p-4">
+                <MudTextField Label="Name" @bind-Value="Task.Name" Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
+                <MudTextField T="string" Label="Description" @bind-Value="Task.Description" Variant="@Variant.Outlined" FullWidth="true" Lines="4" Margin=@Margin.Dense />
+                <MudDatePicker Label="Due Date" @bind-Date=@Task.DateDue Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                <MudSelect T=@(Domain.Enums.Priority?) @bind-Value="Task.Priority" Label="Priority" Variant=@Variant.Outlined FullWidth="true" Margin=@Margin.Dense>
+                    @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>())
+                    {
+                        <MudSelectItem T=@(Domain.Enums.Priority?) Value=@priority>@priority</MudSelectItem>
+                    }
+                </MudSelect>
+                <MudCheckBox @bind-Value="IsCompleted" Label="Completed" Color=@Color.Surface T="bool" Margin=@Margin.Dense />
+                <div class="task-actions">
+                    <MudButton OnClick=@HandleSave Color=@Color.Surface Variant=@Variant.Outlined>Save</MudButton>
+
+                    @if (!string.IsNullOrEmpty(Task.Id))
+                    {
+                        <MudButton OnClick=@HandleDelete Color=@Color.Error Variant=@Variant.Outlined>Delete</MudButton>
+                    }
+                </div>
+            </MudForm>
+        </div>
     </MudPaper>
 }

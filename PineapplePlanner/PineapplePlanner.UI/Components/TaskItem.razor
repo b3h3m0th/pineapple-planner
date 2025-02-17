@@ -12,9 +12,12 @@
             @Task.Description
         </MudText>
         <div>
-            <MudChip T=@string Color=@PriorityColor Size=@Size.Small>
-                @Task.Priority
-            </MudChip>
+            @if (Task.Priority != Domain.Enums.Priority.None && Task.Priority != null)
+            {
+                <MudChip T=@string Color=@PriorityColor Size=@Size.Small>
+                    @Task.Priority
+                </MudChip>
+            }
         </div>
         <div class="tags">
             @foreach (Tag tag in Task.Tags)
