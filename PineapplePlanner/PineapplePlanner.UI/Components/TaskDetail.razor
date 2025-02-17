@@ -8,33 +8,6 @@
 @inject FirebaseAuthenticationService _authenticationService
 @inject AuthenticationStateProvider _authStateProvider
 
-@if (false)
-{
-    <div class="task-detail">
-        <MudIcon Icon=@Icons.Material.Rounded.Close Title="Close" @onclick=@HandleClose /><br />
-        <label for="name">Name</label>
-        <input @bind-value=@Task.Name id="name" name="name" /><br />
-        <label for="description">Description</label>
-        <textarea @bind=@Task.Description @bind:event="onchange" id="description" name="description">@Task.Description</textarea><br />
-        <label for="description">Due</label>
-        <input type="date" @bind-value=@Task.DateDue id="due" name="due" /><br />
-        <label for="priority">Priority</label>
-        <InputSelect @bind-value=@Task.Priority name="priority" id="priority">
-            @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>())
-            {
-                <option value=@priority>@priority</option>
-            }
-        </InputSelect><br />
-        <label for="completed">Completed</label>
-        <input type="checkbox" @bind=@IsCompleted id="completed" name="completed" /><br />
-        <button @onclick=@HandleSave>Save</button><br />
-        @if (!string.IsNullOrEmpty(Task.Id))
-        {
-            <button @onclick=@HandleDelete>Delete</button>
-        }
-    </div>
-}
-
 @if (IsOpen)
 {
     <MudPaper Elevation="25">
