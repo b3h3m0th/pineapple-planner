@@ -10,22 +10,28 @@
     <ul>
         <NavLink href="/">
             <li class="logo">
-                <div>Pineapple Planner</div>
+                <img src="https://ih1.redbubble.net/image.1016237361.5288/flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+                     alt="Pineapple planner"
+                     width="75"
+                     height="75"
+                     style="object-fit: cover; object-position: center;">
             </li>
         </NavLink>
         <NavLink href="/">
             <li>
-                Overview
+                <button>Overview</button>
             </li>
         </NavLink>
         <NavLink href="/tasks">
             <li>
-                Tasks
+                <button>Tasks</button>
+                
             </li>
         </NavLink>
         <NavLink href="/calendar">
             <li>
-                Calendar
+                <button>Calendar</button>
+                
             </li>
         </NavLink>
         <li class="separator">
@@ -33,23 +39,16 @@
         </li>
         <NavLink href="/settings">
             <li>
-                Settings
+                <button>Settings</button>
+            
             </li>
         </NavLink>
         @if (_authenticationState?.User.Identity?.IsAuthenticated == true)
         {
             <li>
-                @_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value<br />
-                <a href="/" @onclick=@HandleLogout>Logout</a>
+                Hello, @_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value !<br />
+                <button><a href="/" @onclick=@HandleLogout>Log out</a></button>
             </li>
-        }
-        else
-        {
-            <NavLink href="/login">
-                <li>
-                    Login
-                </li>
-            </NavLink>
         }
     </ul>
 </nav>
