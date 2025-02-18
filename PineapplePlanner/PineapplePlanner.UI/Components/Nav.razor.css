@@ -1,16 +1,17 @@
 .create-task {
-    margin-top: 100%;
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
     margin-bottom: 10px;
+    flex: 1;
 }
 
 
-    .logo {
-        margin-bottom: 8px;
-    }
+.logo {
+    margin-bottom: 8px;
+}
 
 .choice-container {
     background-color: #ffffff;
@@ -55,3 +56,15 @@ img {
     align-items: center;
 }
 
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
