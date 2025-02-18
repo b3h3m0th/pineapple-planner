@@ -9,6 +9,14 @@ namespace PineapplePlanner.UI.Providers
 
         private ClaimsPrincipal? _currentUser;
 
+        public string? FirebaseUid
+        {
+            get
+            {
+                return GetAuthenticationStateAsync().Result.User.Claims.FirstOrDefault(c => c.Type == "FirebaseUid")?.Value;
+            }
+        }
+
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             return Task.FromResult(new AuthenticationState(_currentUser ?? _anonymous));

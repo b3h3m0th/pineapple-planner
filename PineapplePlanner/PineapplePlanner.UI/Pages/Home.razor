@@ -1,35 +1,40 @@
 ﻿@using MediatR
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 @using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.Domain.Entities
+@using PineapplePlanner.UI.Components
+@using PineapplePlanner.UI.Layouts
+@using PineapplePlanner.UI.Providers
 
 @page "/"
 
 @attribute [Authorize]
 
-@inject IMediator _mediator
+@* @layout MainLayout *@
+
 @inject ITaskRepository _taskRepository
+@inject AuthenticationStateProvider _authStateProvider
 
-<div class="overview">
-    Todos:
-    <br />
-
-    @if (_tasksResult.Data != null)
-    {
-        @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
+<div class="home">
+    <div class="tasks-list">
+        @if (_tasksResult.Data != null)
         {
-            <div>@task.Id @task.Name @task.DateDue.ToString() @task.Priority</div>
+            @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
+            {
+                <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
+            }
         }
-    }
-    else if (_tasksResult.Errors.Any())
-    {
-        @foreach (string error in _tasksResult.Errors)
+        else if (_tasksResult.Errors.Any())
         {
-            <div>@error</div>
+            @foreach (string error in _tasksResult.Errors)
+            {
+                <div>@error</div>
+            }
         }
-    }
-    else
-    {
-        <div>Loading...</div>
-    }
+        else
+        {
+            <div>Loading...</div>
+        }
+    </div>
 </div>

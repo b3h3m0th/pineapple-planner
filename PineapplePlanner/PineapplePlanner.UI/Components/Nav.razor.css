@@ -1,28 +1,17 @@
-nav {
-    height: 100%;
-    padding: 0px;
-    width: 250px;
-    background-color: #faebd7;
+.create-task {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex: 1;
 }
 
-    nav ul, li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
 
-    nav li {
-        padding: 8px;
-        margin: 4px;
-    }
-
-    nav li:not(.separator,.logo) {
-        border-radius: 8px;
-    }
-
-    .logo {
-        margin-bottom: 8px;
-    }
+.logo {
+    margin-bottom: 8px;
+}
 
 .choice-container {
     background-color: #ffffff;
@@ -67,3 +56,15 @@ img {
     align-items: center;
 }
 
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

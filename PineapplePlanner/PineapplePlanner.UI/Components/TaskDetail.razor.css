@@ -1,0 +1,11 @@
+.task-detail {
+    height: 100%;
+    width: 400px;
+    flex: 1;
+    padding: 20px !important;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
