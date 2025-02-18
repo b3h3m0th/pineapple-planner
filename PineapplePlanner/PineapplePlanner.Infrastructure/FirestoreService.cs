@@ -16,9 +16,7 @@ namespace PineapplePlanner.Infrastructure
 
         public FirestoreService()
         {
-            // Credential file should be stored in %APPDATA%/PineapplePlanner/firebase-key.json
-            String credentialPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PineapplePlanner\\firebase-key.json");
-            GoogleCredential credential = GoogleCredential.FromFile(credentialPath);
+            GoogleCredential credential = GoogleCredential.FromFile("firebase-adminsdk-key.json");
             FirestoreClientBuilder builder = new FirestoreClientBuilder() { Credential = credential };
 
             _firestoreDb = FirestoreDb.Create("pineapple-planner", builder.Build());
