@@ -30,7 +30,7 @@
                 </div>
                 @if (_authenticationState?.User.Identity?.IsAuthenticated == true)
                 {
-                    <MudNavGroup Icon=@Icons.Material.Rounded.AccountCircle Title=@_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value Expanded="true">
+                    <MudNavGroup Icon=@Icons.Material.Rounded.AccountCircle Title=@_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value>
                         <MudNavLink Icon=@Icons.Material.Rounded.Logout @onclick=@HandleLogout>Logout</MudNavLink>
                     </MudNavGroup>
                 }
