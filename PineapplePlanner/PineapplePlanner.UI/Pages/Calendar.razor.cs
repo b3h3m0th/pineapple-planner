@@ -14,9 +14,15 @@ namespace PineapplePlanner.UI.Pages
 
         private string[] _dayNames = new CultureInfo("en").DateTimeFormat.AbbreviatedDayNames;
 
-        private void HandleCreateTask()
+        private void HandleCreateTask(DateTime? day = null)
         {
-            AuthenticatedLayout?.OpenTaskDetail();
+            AuthenticatedLayout?.OpenTaskDetail(new Domain.Entities.Task()
+            {
+                Id = "",
+                Name = "",
+                DateDue = day,
+                StartDate = day
+            });
         }
     }
 }

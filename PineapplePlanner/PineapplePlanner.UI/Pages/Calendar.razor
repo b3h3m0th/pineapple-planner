@@ -36,9 +36,10 @@
                     <div class="column-body">
                         @for (int hour = 0; hour < 24; hour++)
                         {
-                            DateTime hours = new DateTime().AddHours(hour);
+                            DateTime hours = d.AddHours(hour);
                             var text = hours.ToString("HH:mm");
-                            <div class="day-cell" @onclick=@HandleCreateTask>
+                            
+                            <div class="day-cell" @onclick=@(() => HandleCreateTask(hours))>
                             </div>
                         }
                     </div>

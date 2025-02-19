@@ -9,6 +9,7 @@
         {
             _detailTask = task;
             _isTaskDetailOpen = true;
+
             StateHasChanged();
         }
 
@@ -16,6 +17,7 @@
         {
             _detailTask = null;
             _isTaskDetailOpen = false;
+
             StateHasChanged();
         }
 
