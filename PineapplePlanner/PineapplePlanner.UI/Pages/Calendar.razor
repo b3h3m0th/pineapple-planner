@@ -1,7 +1,49 @@
 ﻿@using Microsoft.AspNetCore.Authorization
+@using System.Globalization
 
 @page "/calendar"
 
 @attribute [Authorize]
 
-Calendar
+<MudPaper Class="pa-4 ma-2" Elevation="25" Style="width: 100%;">
+    <div class="calendar-view">
+        <div class="time-column">
+            <div class="column-header"></div>
+            @for (int hour = 0; hour < 24; hour++)
+            {
+                DateTime hours = new DateTime().AddHours(hour);
+                var text = hours.ToString("HH:mm");
+                <div class="time-cell">
+                    <MudText Typo=@Typo.caption>
+                        @text
+                    </MudText>
+                </div>
+            }
+        </div>
+        <div class="calendar-grid">
+            @for (int day = 0; day < 7; day++)
+            {
+                var dayName = _dayNames[day];
+                DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo("en").DateTimeFormat.FirstDayOfWeek + 7) % 7);
+                DateTime d = firstDateWeek.AddDays(day);
+
+                <div class="day-column">
+                    <div class="column-header">
+                        <MudText Typo=@Typo.caption>
+                            @dayName, @d.Date.Day
+                        </MudText>
+                    </div>
+                    <div class="column-body">
+                        @for (int hour = 0; hour < 24; hour++)
+                        {
+                            DateTime hours = new DateTime().AddHours(hour);
+                            var text = hours.ToString("HH:mm");
+                            <div class="day-cell" @onclick=@HandleCreateTask>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</MudPaper>

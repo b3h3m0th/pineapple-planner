@@ -51,6 +51,12 @@ namespace PineapplePlanner.Domain.Entities
         public DateTime? Reminder { get; set; }
 
         [FirestoreProperty]
+        public DateTime? FromDate { get; set; }
+
+        [FirestoreProperty]
+        public DateTime UntilDate { get; set; }
+
+        [FirestoreProperty]
         public List<Tag> Tags { get; set; } = new List<Tag>();
 
         [FirestoreProperty]
