@@ -19,7 +19,7 @@
                 @for (int hour = 0; hour < 24; hour++)
                 {
                     DateTime hours = new DateTime().AddHours(hour);
-                    var text = hours.ToString("HH:mm");
+                    string text = hours.ToString("HH:mm");
                     <div class="time-cell">
                         <MudText Typo=@Typo.caption>
                             @text
@@ -44,14 +44,16 @@
                             @for (int hour = 0; hour < 24; hour++)
                             {
                                 DateTime hours = d.AddHours(hour);
-                                var text = hours.ToString("HH:mm");
+                                string text = hours.ToString("HH:mm");
 
                                 <div class="day-cell" @onclick=@(() => HandleCreateTask(hours))>
                                     @if (_tasksResult.Data?.Any() == true)
                                     {
-                                        @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate?.Day == d.Day && t.DateDue?.Hour == hours.Hour))
+                                        @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate != null && t.EndDate != null && t.StartDate?.Day == d.Day && t.StartDate?.Hour == hours.Hour))
                                         {
-                                            <div class="calendar-event" @onclick:stopPropagation=@true @onclick=@(() => HandleEditTask(task))>
+                                            double offsetY = ((task.StartDate?.Minute ?? 0d) / 60d) * 100d;
+
+                                            <div class="calendar-event" style=@($"transform: translateY({(offsetY).ToString("0")}%) !important;") @onclick:stopPropagation=@true @onclick=@(() => HandleEditTask(task))>
                                                 <MudText Typo=@Typo.caption>
                                                     @task.Name
                                                 </MudText>
