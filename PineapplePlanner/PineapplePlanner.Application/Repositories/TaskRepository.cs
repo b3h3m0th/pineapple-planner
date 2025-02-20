@@ -16,6 +16,8 @@ public class TaskRepository : BaseRepository<Domain.Entities.Task>, ITaskReposit
         task.CreatedAt = task.CreatedAt.ToUniversalTime();
         task.DeletedAt = task.DeletedAt?.ToUniversalTime();
         task.DateDue = task.DateDue?.ToUniversalTime();
+        task.StartDate = task.StartDate?.ToUniversalTime();
+        task.EndDate = task.EndDate?.ToUniversalTime();
 
         return base.AddAsync(task);
     }
@@ -26,6 +28,8 @@ public class TaskRepository : BaseRepository<Domain.Entities.Task>, ITaskReposit
         task.CreatedAt = task.CreatedAt.ToUniversalTime();
         task.DeletedAt = task.DeletedAt?.ToUniversalTime();
         task.DateDue = task.DateDue?.ToUniversalTime();
+        task.StartDate = task.StartDate?.ToUniversalTime();
+        task.EndDate = task.EndDate?.ToUniversalTime();
 
         return base.UpdateAsync(task);
     }
