@@ -36,6 +36,7 @@ namespace PineapplePlanner.UI.Components
         public void Dispose()
         {
             _authenticationStateProvider.AuthenticationStateChanged -= OnAuthStateChanged;
+            GC.SuppressFinalize(this);
         }
     }
 }

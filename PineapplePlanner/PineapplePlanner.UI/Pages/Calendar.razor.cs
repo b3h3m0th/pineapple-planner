@@ -14,9 +14,9 @@ namespace PineapplePlanner.UI.Pages
         [Parameter]
         public DateTime FirstDate { get; set; } = DateTime.Today;
 
-        private ResultBase<List<Domain.Entities.Task>> _tasksResult = new ResultBase<List<Domain.Entities.Task>>();
+        private ResultBase<List<Domain.Entities.Task>> _tasksResult = new();
 
-        private string[] _dayNames = new CultureInfo("en").DateTimeFormat.AbbreviatedDayNames;
+        private readonly string[] _dayNames = new CultureInfo("en").DateTimeFormat.AbbreviatedDayNames;
 
         protected override async Task OnParametersSetAsync()
         {

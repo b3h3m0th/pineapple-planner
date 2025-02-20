@@ -10,7 +10,7 @@ namespace PineapplePlanner.UI.Pages
         [CascadingParameter(Name = "AuthenticatedLayout")]
         public AuthenticatedLayout? AuthenticatedLayout { get; set; }
 
-        private ResultBase<List<Domain.Entities.Task>> _tasksResult = new ResultBase<List<Domain.Entities.Task>>();
+        private ResultBase<List<Domain.Entities.Task>> _tasksResult = new();
 
         protected override async Task OnParametersSetAsync()
         {
