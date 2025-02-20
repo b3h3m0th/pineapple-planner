@@ -52,8 +52,11 @@
                                         @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate != null && t.EndDate != null && t.StartDate?.Day == d.Day && t.StartDate?.Hour == hours.Hour))
                                         {
                                             double offsetY = ((task.StartDate?.Minute ?? 0d) / 60d) * 100d;
+                                            double height = (((task.EndDate - task.StartDate)?.TotalMinutes ?? 0) / 60d) * 100d;
 
-                                            <div class="calendar-event" style=@($"transform: translateY({(offsetY).ToString("0")}%) !important;") @onclick:stopPropagation=@true @onclick=@(() => HandleEditTask(task))>
+                                            <div class="calendar-event" style=@($"margin-top: {(offsetY * 0.6).ToString("0")}px !important; height: {height.ToString("0")}%")
+                                                 @onclick:stopPropagation=@true
+                                                 @onclick=@(() => HandleEditTask(task))>
                                                 <MudText Typo=@Typo.caption>
                                                     @task.Name
                                                 </MudText>

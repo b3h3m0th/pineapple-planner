@@ -105,7 +105,6 @@
     word-break: break-all;
     text-align: left;
     text-overflow: ellipsis;
-/*    transform: translateY(10%) !important;*/
 }
 
     .calendar-event:hover {
