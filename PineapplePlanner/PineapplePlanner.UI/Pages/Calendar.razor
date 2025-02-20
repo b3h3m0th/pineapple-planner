@@ -49,7 +49,7 @@
                                 {
                                     @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate?.Day == d.Day && t.DateDue?.Hour == hours.Hour))
                                     {
-                                        <div class="calendar-event" @onclick=@(() => HandleEditTask(task))>
+                                        <div class="calendar-event" @onclick:stopPropagation=@true @onclick=@(() => HandleEditTask(task))>
                                             @task.Name
                                         </div>
                                     }

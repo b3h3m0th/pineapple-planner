@@ -100,3 +100,7 @@
 .calendar-event:hover {
     cursor: pointer;
 }
+
+.calendar-event:hover:has(.day-cell){
+    pointer-events: none;
+}
