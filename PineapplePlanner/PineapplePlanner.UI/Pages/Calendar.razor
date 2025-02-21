@@ -65,7 +65,8 @@
                                         {
                                             <div class="calendar-event" style="@GetTaskStyle(task, currentDate)"
                                                  @onclick:stopPropagation=@true
-                                                 @onclick=@(() => HandleEditTask(task))>
+                                                 @onclick=@(() => HandleEditTask(task))
+                                                 title=@(task.Name)>
                                                 <MudText Typo=@Typo.caption>
                                                     @task.Name
                                                 </MudText>

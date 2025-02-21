@@ -114,6 +114,7 @@
     text-overflow: ellipsis;
     pointer-events: all;
     min-height: 30px;
+    padding: 2px;
 }
 
     .calendar-event:hover {
