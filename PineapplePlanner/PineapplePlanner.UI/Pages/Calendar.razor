@@ -64,9 +64,9 @@
                                         @if (TaskOverlapsDay(task, currentDate))
                                         {
                                             <div class="calendar-event" style="@GetTaskStyle(task, currentDate)"
+                                                 title=@task.Name
                                                  @onclick:stopPropagation=@true
-                                                 @onclick=@(() => HandleEditTask(task))
-                                                 title=@(task.Name)>
+                                                 @onclick=@(() => HandleEditTask(task))>
                                                 <MudText Typo=@Typo.caption>
                                                     @task.Name
                                                 </MudText>
