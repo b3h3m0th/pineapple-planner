@@ -20,6 +20,7 @@
                 {
                     DateTime hours = new DateTime().AddHours(hour);
                     string text = hours.ToString("HH:mm");
+
                     <div class="time-cell">
                         <MudText Typo=@Typo.caption>
                             @text
@@ -32,29 +33,29 @@
                 {
                     var dayName = _dayNames[day];
                     DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo("en").DateTimeFormat.FirstDayOfWeek + 7) % 7);
-                    DateTime d = firstDateWeek.AddDays(day);
+                    DateTime currentDate = firstDateWeek.AddDays(day).Date;
 
                     <div class="day-column">
                         <div class="column-header">
                             <MudText Typo=@Typo.caption>
-                                @dayName, @d.Date.Day
+                                @dayName, @currentDate.Day
                             </MudText>
                         </div>
                         <div class="column-body">
                             @for (int hour = 0; hour < 24; hour++)
                             {
-                                DateTime hours = d.AddHours(hour);
-                                string text = hours.ToString("HH:mm");
+                                DateTime hourDate = currentDate.AddHours(hour);
 
-                                <div class="day-cell" @onclick=@(() => HandleCreateTask(hours))>
-                                    @if (_tasksResult.Data?.Any() == true)
+                                <div class="day-cell" @onclick=@(() => HandleCreateTask(hourDate))></div>
+                            }
+                            <div class="column-body__events">
+                                @if (_tasksResult.Data?.Any() == true)
+                                {
+                                    @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate != null && t.EndDate != null))
                                     {
-                                        @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate != null && t.EndDate != null && t.StartDate?.Day == d.Day && t.StartDate?.Hour == hours.Hour))
+                                        @if (TaskOverlapsDay(task, currentDate))
                                         {
-                                            double offsetY = ((task.StartDate?.Minute ?? 0d) / 60d) * 100d;
-                                            double height = (((task.EndDate - task.StartDate)?.TotalMinutes ?? 0) / 60d) * 100d;
-
-                                            <div class="calendar-event" style=@($"margin-top: {(offsetY * 0.6).ToString("0")}px !important; height: {height.ToString("0")}%")
+                                            <div class="calendar-event" style="@GetTaskStyle(task, currentDate)"
                                                  @onclick:stopPropagation=@true
                                                  @onclick=@(() => HandleEditTask(task))>
                                                 <MudText Typo=@Typo.caption>
@@ -63,8 +64,8 @@
                                             </div>
                                         }
                                     }
-                                </div>
-                            }
+                                }
+                            </div>
                         </div>
                     </div>
                 }

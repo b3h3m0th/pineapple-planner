@@ -50,5 +50,31 @@ namespace PineapplePlanner.UI.Pages
         {
             AuthenticatedLayout?.OpenTaskDetail(task);
         }
+
+        private bool TaskOverlapsDay(Domain.Entities.Task task, DateTime day)
+        {
+            DateTime taskStart = task.StartDate ?? DateTime.MinValue;
+            DateTime taskEnd = task.EndDate ?? DateTime.MaxValue;
+            DateTime dayEnd = day.AddDays(1);
+
+            return taskStart < dayEnd && taskEnd > day;
+        }
+
+        private string GetTaskStyle(Domain.Entities.Task task, DateTime currentDate)
+        {
+            DateTime taskStart = task.StartDate ?? DateTime.MinValue;
+            DateTime taskEnd = task.EndDate ?? DateTime.MaxValue;
+
+            DateTime dayStart = currentDate;
+            DateTime dayEnd = currentDate.AddDays(1);
+
+            DateTime displayStart = (taskStart > dayStart) ? taskStart : dayStart;
+            DateTime displayEnd = (taskEnd < dayEnd) ? taskEnd : dayEnd;
+
+            double offsetY = (displayStart - dayStart).TotalMinutes;
+            double height = (displayEnd - displayStart).TotalMinutes;
+
+            return $"margin-top: {offsetY.ToString("0")}px !important; height: {height.ToString("0")}px;";
+        }
     }
 }
