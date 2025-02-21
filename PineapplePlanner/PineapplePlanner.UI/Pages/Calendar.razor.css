@@ -94,8 +94,8 @@
 
 .column-body__events {
     height: 100%;
-    max-width: 80%;
     width: 100%;
+    max-width: 75%;
     display: flex;
     position: absolute;
     pointer-events: none;
@@ -108,7 +108,6 @@
     border-radius: 4px;
     flex: 1;
     height: 100%;
-    padding: 4px;
     overflow: hidden;
     word-break: break-all;
     text-align: left;
@@ -124,4 +123,8 @@
 
         .calendar-event:hover:has(.day-cell) {
             pointer-events: none;
+        }
+
+        .day-cell-event-filler {
+            width: 75%;
         }

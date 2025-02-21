@@ -60,6 +60,15 @@ namespace PineapplePlanner.UI.Pages
             return taskStart < dayEnd && taskEnd > day;
         }
 
+        private bool TaskOverlapsHour(Domain.Entities.Task task, DateTime hour)
+        {
+            DateTime taskStart = task.StartDate ?? DateTime.MinValue;
+            DateTime taskEnd = task.EndDate ?? DateTime.MaxValue;
+            DateTime dayEnd = hour.AddHours(1);
+
+            return taskStart < dayEnd && taskEnd > hour;
+        }
+
         private string GetTaskStyle(Domain.Entities.Task task, DateTime currentDate)
         {
             DateTime taskStart = task.StartDate ?? DateTime.MinValue;

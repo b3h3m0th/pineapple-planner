@@ -46,7 +46,15 @@
                             {
                                 DateTime hourDate = currentDate.AddHours(hour);
 
-                                <div class="day-cell" @onclick=@(() => HandleCreateTask(hourDate))></div>
+                                <div class="day-cell" @onclick=@(() => HandleCreateTask(hourDate))>
+                                    @if (_tasksResult.Data?.Any() == true)
+                                    {
+                                        @if (_tasksResult.Data.Exists(t => t.StartDate != null && t.EndDate != null && TaskOverlapsHour(t, hourDate)))
+                                        {
+                                            <div class="day-cell-event-filler"></div>
+                                        }
+                                    }
+                                </div>
                             }
                             <div class="column-body__events">
                                 @if (_tasksResult.Data?.Any() == true)
