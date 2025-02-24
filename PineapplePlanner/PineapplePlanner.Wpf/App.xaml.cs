@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using PineapplePlanner.UI.Extensions;
+using System.IO;
 using System.Windows;
 
 namespace PineapplePlanner.Wpf
@@ -10,11 +12,13 @@ namespace PineapplePlanner.Wpf
     public partial class App : System.Windows.Application
     {
         public static IServiceProvider? ServiceProvider { get; private set; }
+        public static IConfiguration? Configuration { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             IServiceCollection serviceCollection = new ServiceCollection();
 
+            ConfigureConfiguration();
             ConfigureServices(serviceCollection);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
@@ -33,7 +37,21 @@ namespace PineapplePlanner.Wpf
         protected void ConfigureServices(IServiceCollection services)
         {
             services.AddWpfBlazorWebView();
-            services.AddUIServices();
+
+            if (Configuration != null)
+            {
+                services.AddSingleton(Configuration);
+                services.AddUIServices(Configuration);
+            }
+        }
+
+        private void ConfigureConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            Configuration = builder.Build();
         }
     }
 }

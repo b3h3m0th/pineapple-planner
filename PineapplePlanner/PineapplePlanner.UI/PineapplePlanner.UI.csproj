@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PineapplePlanner.AI\PineapplePlanner.AI.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Application\PineapplePlanner.Application.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Domain\PineapplePlanner.Domain.csproj" />
   </ItemGroup>
