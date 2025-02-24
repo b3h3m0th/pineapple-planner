@@ -30,6 +30,13 @@ namespace PineapplePlanner.AI.Services
             {
                 var requestBody = new
                 {
+                    system_instruction = new
+                    {
+                        parts = new
+                        {
+                            text = $"You are a task management assistant. Use this date-time as the reference point for calculating dates like tomorrow or next week: {DateTime.Now.ToString()}",
+                        }
+                    },
                     contents = new[]
                     {
                         new

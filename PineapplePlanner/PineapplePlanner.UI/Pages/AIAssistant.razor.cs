@@ -61,6 +61,8 @@ namespace PineapplePlanner.UI.Pages
             {
                 await HandleSubmitPrompt();
             }
+
+            StateHasChanged();
         }
 
         private string GetRandomPromptPlaceholderString()
