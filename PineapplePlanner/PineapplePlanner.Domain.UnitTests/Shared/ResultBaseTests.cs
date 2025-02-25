@@ -66,4 +66,77 @@ namespace PineapplePlanner.Domain.UnitTests.Shared
             Assert.Empty(result.Errors);
         }
     }
+
+    public class ResultBaseTTests
+    {
+        [Fact]
+        public void ResultBaseT_Success_ShouldSetIsSuccessTrue()
+        {
+            ResultBase<int> result = ResultBase<int>.Success();
+
+            Assert.True(result.IsSuccess);
+        }
+
+        [Fact]
+        public void ResultBaseT_Success_ShouldContainNoErrors()
+        {
+            ResultBase<int> result = ResultBase<int>.Success();
+
+            Assert.Empty(result.Errors);
+        }
+
+        [Fact]
+        public void ResultBaseT_SuccessWithData_ShouldSetData()
+        {
+            string testData = "test";
+            ResultBase<string> result = ResultBase<string>.Success(testData);
+
+            Assert.Equal(testData, result.Data);
+        }
+
+        [Fact]
+        public void ResultBaseT_SuccessWithData_ShouldSetIsSuccessTrue()
+        {
+            string testData = "test";
+            ResultBase<string> result = ResultBase<string>.Success(testData);
+
+            Assert.True(result.IsSuccess);
+        }
+
+        [Fact]
+        public void ResultBaseT_Failure_ShouldSetIsSuccessFalse()
+        {
+            ResultBase<int> result = ResultBase<int>.Failure();
+
+            Assert.False(result.IsSuccess);
+        }
+
+        [Fact]
+        public void ResultBaseT_Failure_ShouldContainNoErrors()
+        {
+            ResultBase<int> result = ResultBase<int>.Failure();
+
+            Assert.Empty(result.Errors);
+        }
+
+        [Fact]
+        public void ResultBaseT_ConstructorWithData_ShouldSetData()
+        {
+            int testData = 42;
+            ResultBase<int> result = new ResultBase<int>(testData);
+
+            Assert.Equal(testData, result.Data);
+        }
+
+        [Fact]
+        public void ResultBaseT_AddErrorAndSetFailure_ShouldPreserveData()
+        {
+            int testData = 42;
+            ResultBase<int> result = ResultBase<int>.Success(testData);
+
+            result.AddErrorAndSetFailure("Test error");
+
+            Assert.Equal(testData, result.Data);
+        }
+    }
 }
