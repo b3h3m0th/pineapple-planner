@@ -1,4 +1,4 @@
-﻿namespace PineapplePlanner.UI.Models.Auth
+﻿namespace PineapplePlanner.Domain.Models.Auth
 {
     public class SignInResult
     {
