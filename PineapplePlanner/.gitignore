@@ -365,3 +365,4 @@ FodyWeavers.xsd
 ## Custom
 firebase-adminsdk-key.json
 PineapplePlanner.Wpf/wwwroot/firebase-config.json
+appsettings.json

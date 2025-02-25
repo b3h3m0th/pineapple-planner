@@ -1,7 +1,95 @@
 ﻿@using Microsoft.AspNetCore.Authorization
+@using System.Globalization
+@using Microsoft.AspNetCore.Components.Authorization
+@using PineapplePlanner.Application.Interfaces
 
 @page "/calendar"
 
+@inject ITaskRepository _taskRepository
+@inject AuthenticationStateProvider _authStateProvider
+
 @attribute [Authorize]
 
-Calendar
+@if (_tasksResult.Data != null)
+{
+    <MudPaper Class="pa-4 ma-2" Elevation="25" Style="width: 100%;">
+        <div class="calendar-view">
+            <div class="time-column">
+                <div class="column-header"></div>
+                @for (int hour = 0; hour < 24; hour++)
+                {
+                    DateTime hours = new DateTime().AddHours(hour);
+                    string text = hours.ToString("HH:mm");
+
+                    <div class="time-cell">
+                        <MudText Typo=@Typo.caption>
+                            @text
+                        </MudText>
+                    </div>
+                }
+            </div>
+            <div class="calendar-grid">
+                @for (int day = 0; day < 7; day++)
+                {
+                    var dayName = _dayNames[day];
+                    DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo("en").DateTimeFormat.FirstDayOfWeek + 7) % 7);
+                    DateTime currentDate = firstDateWeek.AddDays(day).Date;
+
+                    <div class="day-column">
+                        <div class="column-header">
+                            <MudText Typo=@Typo.caption>
+                                @dayName, @currentDate.Day
+                            </MudText>
+                        </div>
+                        <div class="column-body">
+                            @for (int hour = 0; hour < 24; hour++)
+                            {
+                                DateTime hourDate = currentDate.AddHours(hour);
+
+                                <div class="day-cell" @onclick=@(() => HandleCreateTask(hourDate))>
+                                    @if (_tasksResult.Data?.Any() == true)
+                                    {
+                                        @if (_tasksResult.Data.Exists(t => t.StartDate != null && t.EndDate != null && TaskOverlapsHour(t, hourDate)))
+                                        {
+                                            <div class="day-cell-event-filler"></div>
+                                        }
+                                    }
+                                </div>
+                            }
+                            <div class="column-body__events">
+                                @if (_tasksResult.Data?.Any() == true)
+                                {
+                                    @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate != null && t.EndDate != null))
+                                    {
+                                        @if (TaskOverlapsDay(task, currentDate))
+                                        {
+                                            <div class="calendar-event" style="@GetTaskStyle(task, currentDate)"
+                                                 title=@task.Name
+                                                 @onclick:stopPropagation=@true
+                                                 @onclick=@(() => HandleEditTask(task))>
+                                                <MudText Typo=@Typo.caption>
+                                                    @task.Name
+                                                </MudText>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </MudPaper>
+}
+else if (_tasksResult.Errors.Any())
+{
+    @foreach (string error in _tasksResult.Errors)
+    {
+        <div>@error</div>
+    }
+}
+else
+{
+    <MudProgressLinear Color=@Color.Primary Indeterminate />
+}

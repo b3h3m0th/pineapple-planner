@@ -20,13 +20,51 @@ namespace PineapplePlanner.UI.Components
 
         public bool IsCompleted { get; set; }
 
+        public TimeSpan? DueTimeSpan
+        {
+            get => Task.DateDue?.TimeOfDay;
+            set
+            {
+                if (Task.DateDue.HasValue)
+                {
+                    Task.DateDue = Task.DateDue.Value.Date + value;
+                }
+            }
+        }
+
+        public TimeSpan? StartDateTimeSpan
+        {
+            get => Task.StartDate?.TimeOfDay;
+            set
+            {
+                if (Task.StartDate.HasValue)
+                {
+                    Task.StartDate = Task.StartDate.Value.Date + value;
+                }
+            }
+        }
+
+        public TimeSpan? EndDateTimeSpan
+        {
+            get => Task.EndDate?.TimeOfDay;
+            set
+            {
+                if (Task.EndDate.HasValue)
+                {
+                    Task.EndDate = Task.EndDate.Value.Date + value;
+                }
+            }
+        }
+
+        private int _activeTabIndex = 0;
+
         protected override async Task OnParametersSetAsync()
         {
             Task ??= new Domain.Entities.Task()
             {
                 Id = "",
                 Name = "",
-                DateDue = DateTime.UtcNow,
+                DateDue = DateTime.Now,
             };
 
             IsCompleted = Task.CompletedAt != null;
@@ -36,7 +74,7 @@ namespace PineapplePlanner.UI.Components
 
         private async Task HandleSave()
         {
-            Task.CompletedAt = IsCompleted ? DateTime.UtcNow : null;
+            Task.CompletedAt = IsCompleted ? DateTime.Now : null;
 
             if (!string.IsNullOrEmpty(Task.Id))
             {

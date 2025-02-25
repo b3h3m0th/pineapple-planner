@@ -1,6 +1,5 @@
 .task-detail {
     height: 100%;
-    width: 400px;
     flex: 1;
     padding: 20px !important;
 }
@@ -8,4 +7,19 @@
 .task-actions {
     display: flex;
     gap: 8px;
+}
+
+.datetime-row {
+    display: flex;
+    gap: 8px;
+    max-width: 320px;
+    justify-content: space-between;
+}
+
+    .datetime-row:first-child {
+        padding-top: 8px;
+    }
+
+.datetime-row-item {
+    flex: 1;
 }

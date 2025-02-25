@@ -21,6 +21,8 @@
             </div>
             <MudNavLink Match=@NavLinkMatch.All Href="/" Icon=@Icons.Material.Rounded.Task>Tasks</MudNavLink>
             <MudNavLink Match=@NavLinkMatch.All Href="/calendar" Icon=@Icons.Material.Rounded.CalendarMonth>Calendar</MudNavLink>
+            <MudNavLink Match=@NavLinkMatch.All Href="/ai-assistant" Icon=@Icons.Material.Rounded.AutoAwesome>AI Assistant</MudNavLink>
+            <MudDivider Class="my-2" Style="flex: 0;" />
             <MudNavLink Match=@NavLinkMatch.All Href="/settings" Icon=@Icons.Material.Rounded.Settings>Settings</MudNavLink>
             <MudDivider Class="my-2 invisible" />
             <div class="bottom">
@@ -30,7 +32,7 @@
                 </div>
                 @if (_authenticationState?.User.Identity?.IsAuthenticated == true)
                 {
-                    <MudNavGroup Icon=@Icons.Material.Rounded.AccountCircle Title=@_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value Expanded="true">
+                    <MudNavGroup Icon=@Icons.Material.Rounded.AccountCircle Title=@_authenticationState.User.FindFirst(ClaimTypes.Email)?.Value>
                         <MudNavLink Icon=@Icons.Material.Rounded.Logout @onclick=@HandleLogout>Logout</MudNavLink>
                     </MudNavGroup>
                 }
