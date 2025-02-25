@@ -10,8 +10,8 @@ namespace PineapplePlanner.UI.Pages
         private string _error = "";
         private string _message = "";
 
-        private string _email = "test@gmail.com";
-        private string _password = "test123";
+        private string _email = "";
+        private string _password = "";
 
         [JSInvokable]
         public async Task OnAuthStateChanged(string idToken)
