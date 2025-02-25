@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.AI", "PineapplePlanner.AI\PineapplePlanner.AI.csproj", "{F36F7A15-E6A6-47BD-9EE2-B4F2FB5CC047}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PineapplePlanner.Domain.UnitTests", "PineapplePlanner.Domain.UnitTests\PineapplePlanner.Domain.UnitTests.csproj", "{E1DC91A6-827F-4705-BB78-F51D1D2E623C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{F36F7A15-E6A6-47BD-9EE2-B4F2FB5CC047}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F36F7A15-E6A6-47BD-9EE2-B4F2FB5CC047}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F36F7A15-E6A6-47BD-9EE2-B4F2FB5CC047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1DC91A6-827F-4705-BB78-F51D1D2E623C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1DC91A6-827F-4705-BB78-F51D1D2E623C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1DC91A6-827F-4705-BB78-F51D1D2E623C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1DC91A6-827F-4705-BB78-F51D1D2E623C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{7F1792C6-9236-4EC4-B12C-CDE5F50A0696} = {F4CC2D00-F975-407B-9C23-E11349D9A190}
 		{BCC7F7DF-5441-4B31-B131-79CDE84C9ED7} = {D4883BE8-13C2-4E87-A642-85907C34CB70}
 		{F36F7A15-E6A6-47BD-9EE2-B4F2FB5CC047} = {F4CC2D00-F975-407B-9C23-E11349D9A190}
+		{E1DC91A6-827F-4705-BB78-F51D1D2E623C} = {D4883BE8-13C2-4E87-A642-85907C34CB70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {446EBA86-06E1-40F1-A6B8-638E462BFF4A}
