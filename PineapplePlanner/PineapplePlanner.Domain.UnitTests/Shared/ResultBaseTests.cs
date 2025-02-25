@@ -47,5 +47,23 @@ namespace PineapplePlanner.Domain.UnitTests.Shared
             Assert.NotEmpty(result.Errors);
             Assert.Contains(errorMessage, result.Errors);
         }
+
+        [Fact]
+        public void ResultBase_AddErrorAndSetFailure_ShouldSetIsSuccessFalse()
+        {
+            ResultBase result = ResultBase.Success();
+
+            result.AddErrorAndSetFailure("Test error");
+
+            Assert.False(result.IsSuccess);
+        }
+
+        [Fact]
+        public void ResultBase_DefaultConstructor_ShouldInitializeEmptyErrors()
+        {
+            ResultBase result = new ResultBase();
+
+            Assert.Empty(result.Errors);
+        }
     }
 }
