@@ -4,7 +4,7 @@ using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using PineapplePlanner.Domain.Shared;
-using PineapplePlanner.UI.Models.Auth;
+using PineapplePlanner.Domain.Models.Auth;
 using PineapplePlanner.UI.Providers;
 using System.Security.Claims;
 
