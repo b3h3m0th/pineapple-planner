@@ -11,20 +11,20 @@
 
 @attribute [Authorize]
 
-@* @layout MainLayout *@
-
 @inject ITaskRepository _taskRepository
 @inject AuthenticationStateProvider _authStateProvider
 
 <div class="home">
     <div class="tasks-list">
+        @**@
         @if (_tasksResult.Data != null)
         {
-            @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CreatedAt))
+            @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OrderByDescending(t => t.CompletedAt == null).ThenBy(t => t.CreatedAt))
             {
                 <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
             }
         }
+        @*Catch an error*@
         else if (_tasksResult.Errors.Any())
         {
             @foreach (string error in _tasksResult.Errors)
