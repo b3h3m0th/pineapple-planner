@@ -70,6 +70,7 @@ namespace PineapplePlanner.UI.Services
 
                 result.AddErrorAndSetFailure("Verification Email sent");
                 //await LoginAsync(email, password);
+                //secret comment by dkxd!
             }
             catch (Exception ex)
             {
