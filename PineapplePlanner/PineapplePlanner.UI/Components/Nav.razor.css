@@ -46,14 +46,11 @@ button {
     }
 
 
-img {
-    width: 75px;
-    height: 75px;
-    overflow: hidden;
-    border-radius: 10px;
+::deep img {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 .head {
@@ -61,6 +58,7 @@ img {
     align-items: center;
     justify-content: center;
     flex: 0;
+    margin-bottom: 24px;
 }
 
 .nav {

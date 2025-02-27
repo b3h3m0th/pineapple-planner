@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PineapplePlanner.UI.Extensions;
 using System.IO;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace PineapplePlanner.Wpf
 {
@@ -29,7 +30,10 @@ namespace PineapplePlanner.Wpf
             {
                 Height = 720,
                 Width = 1280,
-                Title = "Pineapple Planner"
+                Title = "Pineapple Planner",
+                Icon = new BitmapImage(
+                    new Uri(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/pineapple_planner_logo.png"),
+                    UriKind.RelativeOrAbsolute))
             };
             mainWindow.Show();
         }
