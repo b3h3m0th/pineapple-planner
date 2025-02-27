@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/b3h3m0th/pineapple-planner">
-    <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
+    <img src="PineapplePlanner/PineapplePlanner.Wpf/wwwroot/images/pineapple_planner_logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">PineapplePlanner</h3>
