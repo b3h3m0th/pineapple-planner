@@ -23,7 +23,7 @@ namespace PineapplePlanner.Domain.Dto.Gemini
                     Entities.Task? task = JsonSerializer.Deserialize<Entities.Task>(Parts[0].Text!, new JsonSerializerOptions()
                     {
                         PropertyNameCaseInsensitive = true,
-                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
                     });
 
                     result.Data = task;
