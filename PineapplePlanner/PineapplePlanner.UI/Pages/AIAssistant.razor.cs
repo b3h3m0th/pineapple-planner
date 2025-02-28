@@ -39,8 +39,7 @@ namespace PineapplePlanner.UI.Pages
             ResultBase<Domain.Entities.Task> taskResult = await _aiService.GenerateTaskFromPrompt(_prompt);
             if (!taskResult.IsSuccess || taskResult.Data == null)
             {
-                _promptResult.AddErrorAndSetFailure(taskResult.Errors.FirstOrDefault() ?? "aga");
-                _promptResult.AddErrorAndSetFailure("Something went wrong. Please try again with a more descriptive prompt.");
+                _promptResult.AddErrorAndSetFailure(string.Join(", ", taskResult.Errors) + "aga");
             }
 
             string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
@@ -51,19 +50,14 @@ namespace PineapplePlanner.UI.Pages
 
             if (_promptResult.IsSuccess && taskResult.Data != null && !string.IsNullOrEmpty(firebaseUid))
             {
-                _promptResult.AddErrorAndSetFailure("test");
                 Domain.Entities.Task createdTask = await CreateTask(taskResult.Data, firebaseUid);
                 _promptResult.Data = createdTask;
-            }
-            else
-            {
-                _promptResult.AddErrorAndSetFailure("77");
             }
 
             _isGeneratingTask = false;
 
             StateHasChanged();
-            await Task.Delay(3000);
+            await Task.Delay(30000);
             _promptResult = ResultBase<Domain.Entities.Task>.Success();
             StateHasChanged();
         }

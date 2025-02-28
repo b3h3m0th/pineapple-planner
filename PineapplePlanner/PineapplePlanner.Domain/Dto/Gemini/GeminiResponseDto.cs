@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using PineapplePlanner.Domain.Shared;
+using System.Text.Json.Serialization;
 
 namespace PineapplePlanner.Domain.Dto.Gemini
 {
@@ -13,14 +14,25 @@ namespace PineapplePlanner.Domain.Dto.Gemini
         [JsonPropertyName("modelVersion")]
         public string? ModelVersion { get; set; }
 
-        public Entities.Task? GetFirstTask()
+        public ResultBase<Entities.Task> GetFirstTask()
         {
-            if (Candidates != null && Candidates.Count > 0)
+            ResultBase<Entities.Task> result = ResultBase<Entities.Task>.Success();
+            ResultBase<Entities.Task>? taskResult = Candidates?[0]?.Content?.GetTask();
+
+            if (taskResult != null)
             {
-                return Candidates?[0]?.Content?.GetTask().Data;
+                result.Data = taskResult.Data;
+                foreach (string error in taskResult.Errors)
+                {
+                    result.AddErrorAndSetFailure(error);
+                }
+            }
+            else
+            {
+                result.AddErrorAndSetFailure("Something went wrong");
             }
 
-            return null;
+            return result;
         }
     }
 }

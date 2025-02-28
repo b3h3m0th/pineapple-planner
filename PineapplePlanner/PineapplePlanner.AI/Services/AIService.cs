@@ -9,7 +9,7 @@ namespace PineapplePlanner.AI.Services
     public class AIService
     {
         private readonly HttpClient _httpClient;
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public AIService(IConfiguration configuration)
         {
@@ -26,6 +26,8 @@ namespace PineapplePlanner.AI.Services
         {
             ResultBase<Domain.Entities.Task> result = ResultBase<Domain.Entities.Task>.Success();
 
+            DateTime now = DateTime.Now;
+
             try
             {
                 var requestBody = new
@@ -34,7 +36,12 @@ namespace PineapplePlanner.AI.Services
                     {
                         parts = new
                         {
-                            text = $"You are a task management assistant. Use this date-time as the reference point for calculating dates like tomorrow or next week: {DateTime.Now.ToString()}. Always keep the required structure of your response.",
+                            text = $"""
+                            You are a task management assistant.
+                            Use this date-time as the reference point for calculating dates like tomorrow or next week: {now.ToString()}.
+                            Use this date-time as CreatedAt date: {now.ToString()}.
+                            Always keep the required structure of your response.
+                            """,
                         }
                     },
                     contents = new[]
@@ -64,7 +71,7 @@ namespace PineapplePlanner.AI.Services
                                 Tags = new { type = "ARRAY", items = new { type = "STRING" } },
                                 UserUid = new { type = "STRING" }
                             },
-                            required = new[] { "Id", "Name", "Priority", "CreatedAt" }
+                            required = new[] { "Id", "Name", "Priority", "DateDue" }
                         }
                     }
                 };
@@ -77,10 +84,25 @@ namespace PineapplePlanner.AI.Services
 
                 GeminiResponseDto? geminiResponseDto = JsonSerializer.Deserialize<GeminiResponseDto>(responseString, new JsonSerializerOptions()
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
                 });
 
-                result.Data = geminiResponseDto?.GetFirstTask();
+                ResultBase<Domain.Entities.Task>? taskResult = geminiResponseDto?.GetFirstTask();
+
+                if (taskResult == null)
+                {
+                    result.AddErrorAndSetFailure("Something went wrong");
+                }
+                else
+                {
+                    result.Data = taskResult.Data;
+
+                    foreach (string error in taskResult.Errors)
+                    {
+                        result.AddErrorAndSetFailure(error);
+                    }
+                }
             }
             catch (Exception ex)
             {
