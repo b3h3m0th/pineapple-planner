@@ -26,7 +26,7 @@ namespace PineapplePlanner.AI.Services
         {
             ResultBase<Domain.Entities.Task> result = ResultBase<Domain.Entities.Task>.Success();
 
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.UtcNow;
 
             try
             {
@@ -38,8 +38,8 @@ namespace PineapplePlanner.AI.Services
                         {
                             text = $"""
                             You are a task management assistant.
-                            Use this date-time as the reference point for calculating dates like tomorrow or next week: {now.ToString()}.
-                            Use this date-time as CreatedAt date: {now.ToString()}.
+                            Use this date-time as the reference point for calculating dates like tomorrow or next week: {now.ToString("s")}.
+                            Use this date-time as CreatedAt date: {now.ToString("s")}.
                             Always keep the required structure of your response.
                             """,
                         }
