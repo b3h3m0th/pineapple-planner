@@ -39,7 +39,7 @@ namespace PineapplePlanner.UI.Pages
             ResultBase<Domain.Entities.Task> taskResult = await _aiService.GenerateTaskFromPrompt(_prompt);
             if (!taskResult.IsSuccess || taskResult.Data == null)
             {
-                _promptResult.AddErrorAndSetFailure(string.Join(", ", taskResult.Errors) + "aga");
+                _promptResult.AddErrorAndSetFailure("Something went wrong. Please try again with a more descriptive prompt.");
             }
 
             string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
