@@ -1,6 +1,6 @@
 @using PineapplePlanner.Domain.Entities
 
-<MudPaper Class="pa-4 ma-2 flex task-item" Elevation="25">
+<MudPaper Class="pa-4 ma-2 flex" Style=@($"opacity: {(IsCompleted ? ".5" : "1")}") Elevation="25">
     <div class="completed">
         <MudCheckBox Value=@(Task.CompletedAt != null) Color=@Color.Surface T=@bool @oninput=@HandleCompleteChange />
     </div>

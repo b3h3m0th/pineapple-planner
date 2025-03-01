@@ -1,11 +1,3 @@
-.task-item {
-    display: flex;
-    flex-direction: row;
-    padding: 8px;
-    border-radius: 8px;
-    background: #eaeaea;
-}
-
 .task-header {
     display: flex;
     justify-content: flex-end;
