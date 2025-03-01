@@ -7,7 +7,7 @@
     <div class="content" @onclick=@HandleOnClick>
         @if (Task.Priority != Domain.Enums.Priority.None && Task.Priority != null)
         {
-            <span>
+            <span class="priority">
                 <MudChip T=@string Color=@PriorityColor Size=@Size.Small Variant=@Variant.Text>
                     @Task.Priority
                 </MudChip>
