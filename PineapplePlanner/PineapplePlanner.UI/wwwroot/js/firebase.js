@@ -27,8 +27,6 @@ const initializeFirebase = async () => {
                     });
                 }
 
-                alert(JSON.stringify(userCredentials));
-
                 return ({
                     success: true,
                     user: {
