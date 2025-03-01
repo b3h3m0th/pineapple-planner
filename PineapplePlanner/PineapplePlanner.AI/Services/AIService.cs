@@ -108,7 +108,7 @@ namespace PineapplePlanner.AI.Services
                         Tags = taskDto.Tags.Select(t => new Domain.Entities.Tag()
                         {
                             Id = string.Empty,
-                            Name = t
+                            Name = t.ToLower()
                         }).ToList()
                     };
 
