@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using MudBlazor;
 using PineapplePlanner.UI.Layouts;
 using PineapplePlanner.UI.Providers;
 
@@ -19,6 +21,7 @@ namespace PineapplePlanner.UI.Components
         public Domain.Entities.Task Task { get; set; } = default!;
 
         public bool IsCompleted { get; set; }
+        private string _addATag { get; set; } = string.Empty;
 
         public TimeSpan? DueTimeSpan
         {
@@ -70,6 +73,36 @@ namespace PineapplePlanner.UI.Components
             IsCompleted = Task.CompletedAt != null;
 
             await base.OnParametersSetAsync();
+        }
+
+        private void HandleAddTag(string tag)
+        {
+            if (string.IsNullOrEmpty(tag)) return;
+
+            Task.Tags.Add(new Domain.Entities.Tag()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = tag
+            });
+
+            StateHasChanged();
+        }
+
+        private void HandleRemoveTag(MudChip<Domain.Entities.Tag> chip)
+        {
+            if (chip.Value == null) return;
+
+            Task.Tags.Remove(chip.Value);
+
+            StateHasChanged();
+        }
+
+        private void HandleAddATagKeyDown(KeyboardEventArgs args)
+        {
+            if (args.Key == "Enter")
+            {
+                HandleAddTag(_addATag);
+            }
         }
 
         private async Task HandleSave()
