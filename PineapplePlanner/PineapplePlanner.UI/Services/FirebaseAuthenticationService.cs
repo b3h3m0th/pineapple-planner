@@ -3,8 +3,8 @@ using FirebaseAdmin.Auth;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
+using PineapplePlanner.Domain.Dto.Authentication;
 using PineapplePlanner.Domain.Shared;
-using PineapplePlanner.Domain.Models.Auth;
 using PineapplePlanner.UI.Providers;
 using System.Security.Claims;
 
@@ -40,7 +40,7 @@ namespace PineapplePlanner.UI.Services
 
             try
             {
-                SignInResult? loginResult = await _jsRuntime.InvokeAsync<SignInResult>("firebaseAuth.login", email, password);
+                LoginResultDto? loginResult = await _jsRuntime.InvokeAsync<LoginResultDto>("firebaseAuth.login", email, password);
 
                 if (loginResult?.Success == true && !string.IsNullOrEmpty(loginResult.User?.Token))
                 {
@@ -66,7 +66,7 @@ namespace PineapplePlanner.UI.Services
 
             try
             {
-                var registerResult = await _jsRuntime.InvokeAsync<object>("firebaseAuth.register", email, password);
+                RegisterResultDto registerResult = await _jsRuntime.InvokeAsync<RegisterResultDto>("firebaseAuth.register", email, password);
 
                 result.AddErrorAndSetFailure("Verification Email sent");
                 //await LoginAsync(email, password);
@@ -86,7 +86,7 @@ namespace PineapplePlanner.UI.Services
 
             try
             {
-                SignInResult? signInResult = await _jsRuntime.InvokeAsync<SignInResult>("firebaseAuth.logout");
+                LogoutResultDto? signInResult = await _jsRuntime.InvokeAsync<LogoutResultDto>("firebaseAuth.logout");
 
                 if (signInResult?.Success == true && !string.IsNullOrEmpty(signInResult.User?.Token))
                 {
@@ -108,7 +108,7 @@ namespace PineapplePlanner.UI.Services
 
         private async Task<ResultBase> ProcessAuthStateAsync(string idToken)
         {
-            ResultBase<FirebaseUser> result = ResultBase<FirebaseUser>.Success();
+            ResultBase<FirebaseUserDto> result = ResultBase<FirebaseUserDto>.Success();
 
             FirebaseToken decodedToken = await VerifyIdTokenAsync(idToken);
 
