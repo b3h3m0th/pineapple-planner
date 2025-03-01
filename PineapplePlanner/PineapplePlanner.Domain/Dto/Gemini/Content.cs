@@ -12,21 +12,21 @@ namespace PineapplePlanner.Domain.Dto.Gemini
         [JsonPropertyName("role")]
         public string? Role { get; set; }
 
-        public ResultBase<Entities.Task> GetTask()
+        public ResultBase<TaskDto> GetTaskDto()
         {
-            ResultBase<Entities.Task> result = ResultBase<Entities.Task>.Success();
+            ResultBase<TaskDto> result = ResultBase<TaskDto>.Success();
 
             if (Parts != null && Parts.Count > 0 && !string.IsNullOrEmpty(Parts[0].Text))
             {
                 try
                 {
-                    Entities.Task? task = JsonSerializer.Deserialize<Entities.Task>(Parts[0].Text!, new JsonSerializerOptions()
+                    TaskDto? taskDto = JsonSerializer.Deserialize<TaskDto>(Parts[0].Text!, new JsonSerializerOptions()
                     {
                         PropertyNameCaseInsensitive = true,
                         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
                     });
 
-                    result.Data = task;
+                    result.Data = taskDto;
                 }
                 catch (JsonException ex)
                 {

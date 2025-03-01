@@ -29,3 +29,9 @@
     display: flex;
     gap: 4px;
 }
+
+.subinfos {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
