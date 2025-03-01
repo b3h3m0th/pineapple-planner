@@ -26,7 +26,7 @@ namespace PineapplePlanner.AI.Services
         {
             ResultBase<Domain.Entities.Task> result = ResultBase<Domain.Entities.Task>.Success();
 
-            DateTime now = DateTime.UtcNow;
+            DateTime now = DateTime.Now;
 
             try
             {
