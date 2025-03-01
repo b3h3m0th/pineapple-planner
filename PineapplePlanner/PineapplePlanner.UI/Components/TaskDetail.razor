@@ -24,7 +24,8 @@
                         <MudSelectItem T=@(Domain.Enums.Priority?) Value=@priority>@priority</MudSelectItem>
                     }
                 </MudSelect>
-                <MudTextField Label="Tags"
+                <MudTextField T=@string
+                              Label="Tags"
                               @bind-Value=@_addATag
                               Variant=@Variant.Outlined
                               Margin=@Margin.Dense
@@ -33,15 +34,17 @@
                               Adornment=@Adornment.End
                               AdornmentIcon=@Icons.Material.Rounded.Add
                               OnAdornmentClick=@(() => HandleAddTag(_addATag)) />
-                <MudChipSet T=@Domain.Entities.Tag
-                            AllClosable
-                            CheckMark=@true
-                            OnClose=@HandleRemoveTag>
-                    @foreach (Domain.Entities.Tag tag in Task.Tags)
-                    {
-                        <MudChip T=@Domain.Entities.Tag Value=@tag Color=@Color.Default Label=@true>@tag.Name</MudChip>
-                    }
-                </MudChipSet>
+                <div class="tags">
+                    <MudChipSet T=@Domain.Entities.Tag
+                                AllClosable
+                                CheckMark=@true
+                                OnClose=@HandleRemoveTag>
+                        @foreach (Domain.Entities.Tag tag in Task.Tags)
+                        {
+                            <MudChip T=@Domain.Entities.Tag Value=@tag Color=@Color.Default Label=@true>@tag.Name</MudChip>
+                        }
+                    </MudChipSet>
+                </div>
                 <MudTabs Centered Rounded Class="mt-4" @bind-ActivePanelIndex=@_activeTabIndex>
                     <MudTabPanel Text="Task" ID=@("task")>
                         <div class="datetime-row">

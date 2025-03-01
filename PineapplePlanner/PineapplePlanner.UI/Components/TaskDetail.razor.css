@@ -23,3 +23,7 @@
 .datetime-row-item {
     flex: 1;
 }
+
+.tags {
+    max-width: 320px;
+}

@@ -84,7 +84,6 @@ namespace PineapplePlanner.UI.Components
                 Id = Guid.NewGuid().ToString(),
                 Name = tag
             });
-            StateHasChanged();
             _addATag = string.Empty;
         }
 
@@ -107,8 +106,6 @@ namespace PineapplePlanner.UI.Components
             {
                 HandleAddTag(_addATag);
             }
-
-            StateHasChanged();
         }
 
         private async Task HandleSave()
