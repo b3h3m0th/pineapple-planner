@@ -5,6 +5,14 @@
         <MudCheckBox Value=@(Task.CompletedAt != null) Color=@Color.Surface T=@bool @oninput=@HandleCompleteChange />
     </div>
     <div class="content" @onclick=@HandleOnClick>
+        @if (Task.Priority != Domain.Enums.Priority.None && Task.Priority != null)
+        {
+            <span>
+                <MudChip T=@string Color=@PriorityColor Size=@Size.Small Variant=@Variant.Text>
+                    @Task.Priority
+                </MudChip>
+            </span>
+        }
         <MudText Typo="Typo.h6" Style=@($"text-decoration: {(IsCompleted ?"line-through" : "none")}")>
             @Task.Name
         </MudText>
@@ -13,14 +21,21 @@
         </MudText>
         <MudDivider Class="my-2"></MudDivider>
         <div class="subinfos">
-            @if (Task.Priority != Domain.Enums.Priority.None && Task.Priority != null)
-            {
-                <MudChip T=@string Color=@PriorityColor Size=@Size.Small>
-                    @Task.Priority
-                </MudChip>
-            }
+            <div class="date">
+                <MudIcon Icon=@Icons.Material.Rounded.CalendarToday Color=@Color.Surface Size=@Size.Small />
+                <span>
+                    <MudText Typo=@Typo.body2>
+                        @Task.DateDue?.ToString("ddd, dd.M.yyyy HH:mm")
+                    </MudText>
+                </span>
+            </div>
             <div class="tags">
-                @string.Join(", ", Task.Tags.Select(t => $"#{t.Name}"))
+                @foreach (Tag tag in Task.Tags)
+                {
+                    <MudChip T=@string Color=@Color.Default Size=@Size.Small Variant=@Variant.Text Label=@true>
+                        #@tag.Name
+                    </MudChip>
+                }
             </div>
         </div>
     </div>

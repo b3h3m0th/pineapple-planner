@@ -25,6 +25,10 @@
     cursor: pointer;
 }
 
+.content > span {
+    margin-left: -8px;
+}
+
 .tags {
     display: flex;
     gap: 4px;
@@ -34,4 +38,15 @@
     display: flex;
     gap: 8px;
     align-items: center;
+/*    justify-content: space-between;*/
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.date span {
+    margin-top: 2px;
 }
