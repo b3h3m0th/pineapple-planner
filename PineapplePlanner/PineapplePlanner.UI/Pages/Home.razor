@@ -23,7 +23,6 @@
                 <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
             }
         }
-        @*Catch an error*@
         else if (_tasksResult.Errors.Any())
         {
             @foreach (string error in _tasksResult.Errors)
