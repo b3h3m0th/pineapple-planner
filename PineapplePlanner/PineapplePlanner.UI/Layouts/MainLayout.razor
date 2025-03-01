@@ -1,6 +1,6 @@
 @inherits LayoutComponentBase
 
-<MudThemeProvider @ref=@_mudThemeProvider Theme=@_mudBlazorTheme @bind-IsDarkMode=@_isDarkMode />
+<MudThemeProvider @ref=@_mudThemeProvider Theme=@_mudBlazorTheme @bind-IsDarkMode=@IsDarkMode />
 <MudPopoverProvider />
 
 <CascadingValue Name="MainLayout" Value=@this>

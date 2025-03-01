@@ -22,5 +22,12 @@ namespace PineapplePlanner.UI.Pages
                 MainLayout?.SetDarkMode(value);
             }
         }
+
+        protected override void OnInitialized()
+        {
+            _isDarkMode = MainLayout?.IsDarkMode ?? false;
+
+            base.OnInitialized();
+        }
     }
 }

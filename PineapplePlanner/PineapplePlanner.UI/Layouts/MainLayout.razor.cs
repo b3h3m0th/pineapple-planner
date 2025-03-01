@@ -4,7 +4,7 @@ namespace PineapplePlanner.UI.Layouts
 {
     public partial class MainLayout
     {
-        private bool _isDarkMode;
+        public bool IsDarkMode { get; private set; }
         private MudThemeProvider _mudThemeProvider;
         private readonly MudTheme _mudBlazorTheme = new()
         {
@@ -25,14 +25,14 @@ namespace PineapplePlanner.UI.Layouts
 
         private Task OnSystemPreferenceChanged(bool newValue)
         {
-            _isDarkMode = newValue;
+            IsDarkMode = newValue;
             StateHasChanged();
             return Task.CompletedTask;
         }
 
         public void SetDarkMode(bool value)
         {
-            _isDarkMode = value;
+            IsDarkMode = value;
             StateHasChanged();
         }
     }
