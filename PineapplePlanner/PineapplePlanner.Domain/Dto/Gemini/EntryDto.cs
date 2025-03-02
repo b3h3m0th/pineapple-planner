@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PineapplePlanner.Domain.Dto.Gemini
 {
-    public class TaskDto
+    public class EntryDto
     {
         public required string Id { get; set; }
         public required string Name { get; set; }
@@ -13,8 +13,6 @@ namespace PineapplePlanner.Domain.Dto.Gemini
         [JsonConverter(typeof(PriorityEnumConverter))]
         public Priority? Priority { get; set; }
         public DateTime? DateDue { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
 
         //[JsonConverter(typeof(TagListConverter))]
         public List<string> Tags { get; set; } = new List<string>();

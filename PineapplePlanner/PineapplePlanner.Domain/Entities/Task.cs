@@ -1,69 +1,20 @@
 ﻿using Google.Cloud.Firestore;
-using PineapplePlanner.Domain.Enums;
 using PineapplePlanner.Domain.Interfaces;
-using PineapplePlanner.Domain.JsonConverter;
-using System.Text.Json.Serialization;
 
 namespace PineapplePlanner.Domain.Entities
 {
     [FirestoreData]
-    public class Task : IBaseFirestoreData
+    public class Task : Entry, IBaseFirestoreData
     {
         [FirestoreProperty]
-        public required string Id { get; set; }
+        public DateTime? CompletedAt { get; set; }
 
-        [FirestoreProperty]
-        public required string Name { get; set; }
-
-        [FirestoreProperty]
-        public string? Description { get; set; }
-
-        [FirestoreProperty("Priority")]
-        public string? PriorityString
-        {
-            private get => Priority?.ToString();
-            set
-            {
-                if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out var parsedPriority))
-                {
-                    Priority = parsedPriority;
-                }
-                else
-                {
-                    Priority = null;
-                }
-            }
-        }
-
-        [JsonConverter(typeof(PriorityEnumConverter))]
-        public Priority? Priority { get; set; }
+        public bool IsCompleted { get => CompletedAt != null; }
 
         [FirestoreProperty]
         public DateTime? DateDue { get; set; }
 
-        [FirestoreProperty]
-        public DateTime? CompletedAt { get; set; }
-
-        [FirestoreProperty]
-        public DateTime CreatedAt { get; set; }
-
-        [FirestoreProperty]
-        public DateTime? DeletedAt { get; set; }
-
-        [FirestoreProperty]
-        public DateTime? Reminder { get; set; }
-
-        [FirestoreProperty]
-        public DateTime? StartDate { get; set; }
-
-        [FirestoreProperty]
-        public DateTime? EndDate { get; set; }
-
-        [FirestoreProperty]
-        public List<Tag> Tags { get; set; } = new List<Tag>();
-
-        [FirestoreProperty]
-        public string? UserUid { get; set; }
+        public Task() : base(nameof(Task)) { }
     }
 }
 

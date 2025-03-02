@@ -9,7 +9,7 @@ namespace PineapplePlanner.UI.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddInfrastructureServices();
-            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IEntryRepository, EntryRepository>();
 
             return services;
         }

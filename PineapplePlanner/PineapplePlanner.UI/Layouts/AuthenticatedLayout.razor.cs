@@ -3,9 +3,9 @@
     public partial class AuthenticatedLayout
     {
         private bool _isTaskDetailOpen = false;
-        private Domain.Entities.Task? _detailTask;
+        private Domain.Entities.Entry? _detailTask;
 
-        public void OpenTaskDetail(Domain.Entities.Task? task = null)
+        public void OpenTaskDetail(Domain.Entities.Entry? task = null)
         {
             _detailTask = task;
             _isTaskDetailOpen = true;

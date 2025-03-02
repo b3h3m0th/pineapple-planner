@@ -8,3 +8,11 @@
     flex: 1;
     overflow: auto;
 }
+
+.no-entries {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

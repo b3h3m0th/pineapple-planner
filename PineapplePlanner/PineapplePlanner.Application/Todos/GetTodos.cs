@@ -12,7 +12,7 @@ namespace PineapplePlanner.Application
 
         public class Result
         {
-            public List<Domain.Entities.Task>? Todos { get; set; }
+            public List<Domain.Entities.Entry>? Todos { get; set; }
         }
 
         public class QueryHandler : IRequestHandler<Query, Result>
@@ -25,14 +25,14 @@ namespace PineapplePlanner.Application
                 {
                     await System.Threading.Tasks.Task.Delay(500);
 
-                    result.Todos = new List<Domain.Entities.Task>()
+                    result.Todos = new List<Domain.Entities.Entry>()
                     {
-                        new Domain.Entities.Task()
+                        new Domain.Entities.Entry()
                         {
                             Id = "1",
                             Name = "Todo1"
                         },
-                        new Domain.Entities.Task()
+                        new Domain.Entities.Entry()
                         {
                             Id = "2",
                             Name = "Todo2"
