@@ -19,7 +19,7 @@
                 <MudTextField Label="Name" @bind-Value=@Task.Name Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
                 <MudTextField T="string" Label="Description" @bind-Value=@Task.Description Variant="@Variant.Outlined" FullWidth="true" Lines="4" Margin=@Margin.Dense />
                 <MudSelect T=@(Domain.Enums.Priority?) @bind-Value=@Task.Priority Label="Priority" Variant=@Variant.Outlined FullWidth="true" Margin=@Margin.Dense>
-                    @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>())
+                    @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>().Where(p => p != Domain.Enums.Priority.None))
                     {
                         <MudSelectItem T=@(Domain.Enums.Priority?) Value=@priority>@priority</MudSelectItem>
                     }
@@ -37,7 +37,6 @@
                 <div class="tags">
                     <MudChipSet T=@Domain.Entities.Tag
                                 AllClosable
-                                CheckMark=@true
                                 OnClose=@HandleRemoveTag>
                         @foreach (Domain.Entities.Tag tag in Task.Tags)
                         {
