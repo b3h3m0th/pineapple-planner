@@ -2,7 +2,7 @@
 {
     public enum TaskDetailTab
     {
-        Task = 1,
+        Task,
         Event
     }
 }

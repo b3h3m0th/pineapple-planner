@@ -2,7 +2,7 @@
 {
     public enum SettingsTab
     {
-        Profile = 1,
+        Profile,
         Appearance
     }
 }
