@@ -10,6 +10,7 @@ namespace PineapplePlanner.UI.Extensions
         {
             services.AddInfrastructureServices();
             services.AddScoped<IEntryRepository, EntryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

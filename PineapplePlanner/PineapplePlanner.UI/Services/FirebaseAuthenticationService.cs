@@ -14,7 +14,7 @@ namespace PineapplePlanner.UI.Services
     {
         private readonly FirebaseAuth _auth;
         private readonly IJSRuntime _jsRuntime;
-        private DotNetObjectReference<FirebaseAuthenticationService>? _objRef;
+        private readonly DotNetObjectReference<FirebaseAuthenticationService>? _objRef;
         private readonly AuthenticationStateProvider _authProvider;
 
         public FirebaseAuthenticationService(IJSRuntime jsRuntime, AuthenticationStateProvider firebaseAuthStateProvider)
@@ -123,7 +123,7 @@ namespace PineapplePlanner.UI.Services
                     claims.Add(new Claim(ClaimTypes.Email, emailClaim));
                 }
 
-                ClaimsPrincipal user = new ClaimsPrincipal(new ClaimsIdentity(claims, "firebase"));
+                ClaimsPrincipal user = new(new ClaimsIdentity(claims, "firebase"));
 
                 ((FirebaseAuthStateProvider)_authProvider)?.MarkUserAsAuthenticated(user);
             }
@@ -150,6 +150,7 @@ namespace PineapplePlanner.UI.Services
         public void Dispose()
         {
             _objRef?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

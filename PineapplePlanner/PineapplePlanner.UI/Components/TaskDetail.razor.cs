@@ -66,7 +66,7 @@ namespace PineapplePlanner.UI.Components
         }
 
         private string _addATag = string.Empty;
-        private int _activeTabIndex = 0;
+        private int _activeTabIndex = (int)TaskDetailTab.Task;
         private bool _isCompleted;
 
         protected override async Task OnParametersSetAsync()
@@ -78,7 +78,7 @@ namespace PineapplePlanner.UI.Components
                 DateDue = DateTime.Now
             };
 
-            _activeTabIndex = Entry is Domain.Entities.Task ? 0 : 1;
+            _activeTabIndex = Entry is Domain.Entities.Task ? (int)TaskDetailTab.Task : (int)TaskDetailTab.Event;
             _isCompleted = (Entry as Domain.Entities.Task)?.IsCompleted ?? false;
 
             await base.OnParametersSetAsync();
@@ -119,7 +119,7 @@ namespace PineapplePlanner.UI.Components
 
         private void HandleTabChange()
         {
-            if (_activeTabIndex == 0 && Entry is Domain.Entities.Event eventEntry)
+            if (_activeTabIndex == (int)TaskDetailTab.Task && Entry is Domain.Entities.Event eventEntry)
             {
                 Entry = new Domain.Entities.Task()
                 {
@@ -132,7 +132,7 @@ namespace PineapplePlanner.UI.Components
                     DateDue = eventEntry.StartDate
                 };
             }
-            else if (_activeTabIndex == 1 && Entry is Domain.Entities.Task task)
+            else if (_activeTabIndex == (int)TaskDetailTab.Event && Entry is Domain.Entities.Task task)
             {
                 Entry = new Domain.Entities.Event()
                 {

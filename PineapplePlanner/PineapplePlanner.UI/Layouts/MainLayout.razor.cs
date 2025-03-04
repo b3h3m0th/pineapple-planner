@@ -5,10 +5,14 @@ namespace PineapplePlanner.UI.Layouts
     public partial class MainLayout
     {
         public bool IsDarkMode { get; private set; }
-        private MudThemeProvider _mudThemeProvider;
+        private MudThemeProvider? _mudThemeProvider;
         private readonly MudTheme _mudBlazorTheme = new()
         {
             PaletteLight = new PaletteLight()
+            {
+                Primary = Colors.LightGreen.Default,
+            },
+            PaletteDark = new PaletteDark()
             {
                 Primary = Colors.LightGreen.Default,
             },
@@ -16,7 +20,7 @@ namespace PineapplePlanner.UI.Layouts
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender)
+            if (firstRender && _mudThemeProvider != null)
             {
                 await _mudThemeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
                 StateHasChanged();
