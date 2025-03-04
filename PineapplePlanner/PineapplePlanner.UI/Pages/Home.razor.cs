@@ -25,20 +25,25 @@ namespace PineapplePlanner.UI.Pages
 
             if (!string.IsNullOrEmpty(firebaseUid))
             {
-                _tasksResult = await _taskRepository.GetAllAsync(firebaseUid);
+                _tasksResult = await _taskRepository.GetAllAsync<Domain.Entities.Task>(firebaseUid);
             }
         }
 
-        private void HandleEditTask(Domain.Entities.Task task)
+        private void HandleCreateTask()
         {
-            AuthenticatedLayout?.OpenTaskDetail(task);
+            AuthenticatedLayout?.OpenTaskDetail();
         }
 
-        private async Task HandleTaskCompleteChange(Domain.Entities.Task task)
+        private void HandleEditTask(Domain.Entities.Entry entry)
         {
-            await _taskRepository.UpdateAsync(task);
+            AuthenticatedLayout?.OpenTaskDetail(entry);
+        }
 
-            AuthenticatedLayout?.OpenTaskDetail(task);
+        private async Task HandleTaskCompleteChange(Domain.Entities.Entry entry)
+        {
+            await _taskRepository.UpdateAsync(entry);
+
+            AuthenticatedLayout?.OpenTaskDetail(entry);
         }
     }
 }

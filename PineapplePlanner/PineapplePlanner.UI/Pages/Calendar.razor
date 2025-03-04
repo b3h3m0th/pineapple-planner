@@ -5,12 +5,12 @@
 
 @page "/calendar"
 
-@inject ITaskRepository _taskRepository
+@inject IEntryRepository _taskRepository
 @inject AuthenticationStateProvider _authStateProvider
 
 @attribute [Authorize]
 
-@if (_tasksResult.Data != null)
+@if (_eventsResult.Data != null)
 {
     <MudPaper Class="pa-4 ma-2" Elevation="25" Style="width: 100%;">
         <div class="calendar-view">
@@ -47,9 +47,9 @@
                                 DateTime hourDate = currentDate.AddHours(hour);
 
                                 <div class="day-cell" @onclick=@(() => HandleCreateTask(hourDate))>
-                                    @if (_tasksResult.Data?.Any() == true)
+                                    @if (_eventsResult.Data?.Any() == true)
                                     {
-                                        @if (_tasksResult.Data.Exists(t => t.StartDate != null && t.EndDate != null && TaskOverlapsHour(t, hourDate)))
+                                        @if (_eventsResult.Data.Any(t => t.StartDate != null && t.EndDate != null && TaskOverlapsHour(t, hourDate)))
                                         {
                                             <div class="day-cell-event-filler"></div>
                                         }
@@ -57,18 +57,18 @@
                                 </div>
                             }
                             <div class="column-body__events">
-                                @if (_tasksResult.Data?.Any() == true)
+                                @if (_eventsResult.Data?.Any() == true)
                                 {
-                                    @foreach (Domain.Entities.Task task in _tasksResult.Data.Where(t => t.StartDate != null && t.EndDate != null))
+                                    @foreach (Domain.Entities.Event eventEntry in _eventsResult.Data.Where(t => t.StartDate != null && t.EndDate != null))
                                     {
-                                        @if (TaskOverlapsDay(task, currentDate))
+                                        @if (TaskOverlapsDay(eventEntry, currentDate))
                                         {
-                                            <div class="calendar-event" style="@GetTaskStyle(task, currentDate)"
-                                                 title=@task.Name
+                                            <div class="calendar-event" style="@GetTaskStyle(eventEntry, currentDate)"
+                                                 title=@eventEntry.Name
                                                  @onclick:stopPropagation=@true
-                                                 @onclick=@(() => HandleEditTask(task))>
+                                                 @onclick=@(() => HandleEditTask(eventEntry))>
                                                 <MudText Typo=@Typo.caption>
-                                                    @task.Name
+                                                    @eventEntry.Name
                                                 </MudText>
                                             </div>
                                         }
@@ -82,9 +82,9 @@
         </div>
     </MudPaper>
 }
-else if (_tasksResult.Errors.Any())
+else if (_eventsResult.Errors.Any())
 {
-    @foreach (string error in _tasksResult.Errors)
+    @foreach (string error in _eventsResult.Errors)
     {
         <div>@error</div>
     }

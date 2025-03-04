@@ -14,7 +14,7 @@ namespace PineapplePlanner.UI.Pages
         [Parameter]
         public DateTime FirstDate { get; set; } = DateTime.Today;
 
-        private ResultBase<List<Domain.Entities.Task>> _tasksResult = new();
+        private ResultBase<List<Domain.Entities.Event>> _eventsResult = new();
 
         private readonly string[] _dayNames = new CultureInfo("en").DateTimeFormat.AbbreviatedDayNames;
 
@@ -31,48 +31,48 @@ namespace PineapplePlanner.UI.Pages
 
             if (!string.IsNullOrEmpty(firebaseUid))
             {
-                _tasksResult = await _taskRepository.GetAllAsync(firebaseUid);
+                _eventsResult = await _taskRepository.GetAllAsync<Domain.Entities.Event>(firebaseUid);
             }
         }
 
-        private void HandleCreateTask(DateTime? day = null)
+        private void HandleCreateTask(DateTime? date = null)
         {
-            AuthenticatedLayout?.OpenTaskDetail(new Domain.Entities.Task()
+            AuthenticatedLayout?.OpenTaskDetail(new Domain.Entities.Event()
             {
                 Id = "",
                 Name = "",
-                DateDue = day,
-                StartDate = day
+                StartDate = date,
+                EndDate = date?.AddMinutes(30)
             });
         }
 
-        private void HandleEditTask(Domain.Entities.Task task)
+        private void HandleEditTask(Domain.Entities.Event eventEntry)
         {
-            AuthenticatedLayout?.OpenTaskDetail(task);
+            AuthenticatedLayout?.OpenTaskDetail(eventEntry);
         }
 
-        private bool TaskOverlapsDay(Domain.Entities.Task task, DateTime day)
+        private bool TaskOverlapsDay(Domain.Entities.Event eventEntry, DateTime day)
         {
-            DateTime taskStart = task.StartDate ?? DateTime.MinValue;
-            DateTime taskEnd = task.EndDate ?? DateTime.MaxValue;
+            DateTime taskStart = eventEntry.StartDate ?? DateTime.MinValue;
+            DateTime taskEnd = eventEntry.EndDate ?? DateTime.MaxValue;
             DateTime dayEnd = day.AddDays(1);
 
             return taskStart < dayEnd && taskEnd > day;
         }
 
-        private bool TaskOverlapsHour(Domain.Entities.Task task, DateTime hour)
+        private bool TaskOverlapsHour(Domain.Entities.Event eventEntry, DateTime hour)
         {
-            DateTime taskStart = task.StartDate ?? DateTime.MinValue;
-            DateTime taskEnd = task.EndDate ?? DateTime.MaxValue;
+            DateTime taskStart = eventEntry.StartDate ?? DateTime.MinValue;
+            DateTime taskEnd = eventEntry.EndDate ?? DateTime.MaxValue;
             DateTime dayEnd = hour.AddHours(1);
 
             return taskStart < dayEnd && taskEnd > hour;
         }
 
-        private string GetTaskStyle(Domain.Entities.Task task, DateTime currentDate)
+        private string GetTaskStyle(Domain.Entities.Event eventEntry, DateTime currentDate)
         {
-            DateTime taskStart = task.StartDate ?? DateTime.MinValue;
-            DateTime taskEnd = task.EndDate ?? DateTime.MaxValue;
+            DateTime taskStart = eventEntry.StartDate ?? DateTime.MinValue;
+            DateTime taskEnd = eventEntry.EndDate ?? DateTime.MaxValue;
 
             DateTime dayStart = currentDate;
             DateTime dayEnd = currentDate.AddDays(1);

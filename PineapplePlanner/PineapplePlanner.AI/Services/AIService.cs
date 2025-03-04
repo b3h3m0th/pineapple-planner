@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using PineapplePlanner.Domain.Dto.Gemini;
+using PineapplePlanner.Domain.Enums;
 using PineapplePlanner.Domain.Shared;
 using System.Text;
 using System.Text.Json;
@@ -22,9 +23,9 @@ namespace PineapplePlanner.AI.Services
             };
         }
 
-        public async Task<ResultBase<Domain.Entities.Task>> GenerateTaskFromPrompt(string prompt)
+        public async Task<ResultBase<Domain.Entities.Entry>> GenerateTaskFromPrompt(string prompt)
         {
-            ResultBase<Domain.Entities.Task> result = ResultBase<Domain.Entities.Task>.Success();
+            ResultBase<Domain.Entities.Entry> result = ResultBase<Domain.Entities.Entry>.Success();
 
             DateTime now = DateTime.Now;
 
@@ -38,8 +39,8 @@ namespace PineapplePlanner.AI.Services
                         {
                             text = $"""
                             You are a task management assistant.
-                            Use this date-time as the reference point for calculating dates like tomorrow or next week: {now.ToString("s")}.
-                            Use this date-time as CreatedAt date: {now.ToString("s")}.
+                            Use this date-time as the reference point for calculating dates like tomorrow or next week: {now:s}.
+                            Use this date-time as CreatedAt date: {now:s}.
                             Always keep the required structure of your response.
                             """,
                         }
@@ -65,13 +66,11 @@ namespace PineapplePlanner.AI.Services
                                 Id = new { type = "STRING" },
                                 Name = new { type = "STRING" },
                                 Description = new { type = "STRING" },
-                                Priority = new { type = "STRING", @enum = new[] { "Low", "Medium", "High" } },
+                                Priority = new { type = "STRING", @enum = new[] { nameof(Priority.Low), nameof(Priority.Medium), nameof(Priority.High) } },
                                 DateDue = new { type = "STRING", format = "date-time" },
-                                CreatedAt = new { type = "STRING", format = "date-time" },
                                 Tags = new { type = "ARRAY", items = new { type = "STRING" } },
-                                UserUid = new { type = "STRING" }
                             },
-                            required = new[] { "Id", "Name", "Priority", "DateDue" }
+                            required = new[] { "Id", "Name", "Priority", "DateDue", "Tags" }
                         }
                     }
                 };
@@ -88,17 +87,31 @@ namespace PineapplePlanner.AI.Services
                     DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
                 });
 
-                ResultBase<Domain.Entities.Task>? taskResult = geminiResponseDto?.GetFirstTask();
+                ResultBase<EntryDto>? taskDtoResult = geminiResponseDto?.GetFirstTaskDto();
 
-                if (taskResult == null)
+                if (taskDtoResult?.Data == null)
                 {
                     result.AddErrorAndSetFailure("Something went wrong");
                 }
                 else
                 {
-                    result.Data = taskResult.Data;
+                    EntryDto taskDto = taskDtoResult.Data;
+                    result.Data = new Domain.Entities.Task()
+                    {
+                        Id = taskDto.Id,
+                        Name = taskDto.Name,
+                        Description = taskDto.Description,
+                        Priority = taskDto.Priority,
+                        DateDue = taskDto.DateDue,
+                        CreatedAt = DateTime.Now,
+                        Tags = taskDto.Tags.Select(t => new Domain.Entities.Tag()
+                        {
+                            Id = string.Empty,
+                            Name = t.ToLower()
+                        }).ToList()
+                    };
 
-                    foreach (string error in taskResult.Errors)
+                    foreach (string error in taskDtoResult.Errors)
                     {
                         result.AddErrorAndSetFailure(error);
                     }

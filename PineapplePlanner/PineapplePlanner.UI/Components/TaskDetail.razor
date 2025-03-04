@@ -4,7 +4,7 @@
 @using PineapplePlanner.UI.Providers
 @using PineapplePlanner.UI.Services
 
-@inject ITaskRepository _taskRepository
+@inject IEntryRepository _taskRepository
 @inject FirebaseAuthenticationService _authenticationService
 @inject AuthenticationStateProvider _authStateProvider
 
@@ -16,61 +16,91 @@
                 <MudIconButton Icon=@Icons.Material.Rounded.Close OnClick=@HandleClose Color=@Color.Surface />
             </div>
             <MudForm Class="p-4">
-                <MudTextField Label="Name" @bind-Value="Task.Name" Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
-                <MudTextField T="string" Label="Description" @bind-Value="Task.Description" Variant="@Variant.Outlined" FullWidth="true" Lines="4" Margin=@Margin.Dense />
-                <MudSelect T=@(Domain.Enums.Priority?) @bind-Value="Task.Priority" Label="Priority" Variant=@Variant.Outlined FullWidth="true" Margin=@Margin.Dense>
-                    @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>())
+                <MudTextField Label="Name" @bind-Value=@Entry.Name Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
+                <MudTextField T="string" Label="Description" @bind-Value=@Entry.Description Variant="@Variant.Outlined" FullWidth Lines="4" Margin=@Margin.Dense />
+                <MudSelect T=@(Domain.Enums.Priority?) @bind-Value=@Entry.Priority Label="Priority" Variant=@Variant.Outlined FullWidth Margin=@Margin.Dense>
+                    @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>().Where(p => p != Domain.Enums.Priority.None))
                     {
                         <MudSelectItem T=@(Domain.Enums.Priority?) Value=@priority>@priority</MudSelectItem>
                     }
                 </MudSelect>
-                <MudTabs Centered Rounded Class="mt-4" @bind-ActivePanelIndex=@_activeTabIndex>
+                <MudTextField T=@string
+                              Label="Tags"
+                              @bind-Value=@_addATag
+                              Variant=@Variant.Outlined
+                              Margin=@Margin.Dense
+                              Immediate
+                              OnKeyDown=@HandleAddATagKeyDown
+                              Adornment=@Adornment.End
+                              AdornmentIcon=@Icons.Material.Rounded.Add
+                              OnAdornmentClick=@(() => HandleAddTag(_addATag)) />
+                <div class="tags">
+                    <MudChipSet T=@Domain.Entities.Tag
+                                AllClosable
+                                OnClose=@HandleRemoveTag>
+                        @foreach (Domain.Entities.Tag tag in Entry.Tags)
+                        {
+                            <MudChip T=@Domain.Entities.Tag Value=@tag Color=@Color.Default Label=@true>@tag.Name</MudChip>
+                        }
+                    </MudChipSet>
+                </div>
+                <MudTabs Centered Rounded Class="mt-4" @bind-ActivePanelIndex=@_activeTabIndex @bind-ActivePanelIndex:after=@HandleTabChange>
                     <MudTabPanel Text="Task" ID=@("task")>
-                        <div class="datetime-row">
-                            <div class="datetime-row-item">
-                                <MudDatePicker Label="Due Date" @bind-Date=@Task.DateDue Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                        @if (Entry is Domain.Entities.Task task)
+                        {
+                            <div class="datetime-row">
+                                <div class="datetime-row-item">
+                                    <MudDatePicker Label="Due Date" @bind-Date=@task.DateDue Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                                </div>
+                                <div class="datetime-row-item">
+                                    @if (task.DateDue != null)
+                                    {
+                                        <MudTimePicker Label="Time" @bind-Time=@DueTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
+                                    }
+                                </div>
                             </div>
-                            <div class="datetime-row-item">
-                                @if (Task.DateDue != null)
-                                {
-                                    <MudTimePicker Label="Time" @bind-Time=@DueTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
-                                }
-                            </div>
-                        </div>
-                        <MudCheckBox @bind-Value="IsCompleted" Label="Completed" Color=@Color.Surface T="bool" Class="mt-1" />
+                        }
+                        <MudCheckBox @bind-Value=@_isCompleted Label="Completed" Color=@Color.Surface T="bool" Class="mt-1" />
                     </MudTabPanel>
                     <MudTabPanel Text="Event" ID=@("event")>
-                        <div class="datetime-row">
-                            <div class="datetime-row-item">
-                                <MudDatePicker Label="Start" @bind-Date=@Task.StartDate Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                        @if (Entry is Domain.Entities.Event eventEntry)
+                        {
+                            <div class="datetime-row">
+                                <div class="datetime-row-item">
+                                    <MudDatePicker Label="Start" @bind-Date=@eventEntry.StartDate Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                                </div>
+                                <div class="datetime-row-item">
+                                    @if (eventEntry.StartDate != null)
+                                    {
+                                        <MudTimePicker Label="Time" @bind-Time=@StartDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
+                                    }
+                                </div>
                             </div>
-                            <div class="datetime-row-item">
-                                @if (Task.StartDate != null)
-                                {
-                                    <MudTimePicker Label="Time" @bind-Time=@StartDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
-                                }
+                            <div class="datetime-row">
+                                <div class="datetime-row-item">
+                                    <MudDatePicker Label="End" @bind-Date=@eventEntry.EndDate Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                                </div>
+                                <div class="datetime-row-item">
+                                    @if (eventEntry.EndDate != null)
+                                    {
+                                        <MudTimePicker Label="Time" @bind-Time=@EndDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
+                                    }
+                                </div>
                             </div>
-                        </div>
-                        <div class="datetime-row">
-                            <div class="datetime-row-item">
-                                <MudDatePicker Label="End" @bind-Date=@Task.EndDate Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
-                            </div>
-                            <div class="datetime-row-item">
-                                @if (Task.EndDate != null)
-                                {
-                                    <MudTimePicker Label="Time" @bind-Time=@EndDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
-                                }
-                            </div>
-                        </div>
+                        }
                     </MudTabPanel>
                 </MudTabs>
                 <MudDivider Class="my-4" />
                 <div class="task-actions">
-                    <MudButton OnClick=@HandleSave Color=@Color.Surface Variant=@Variant.Outlined>Save</MudButton>
+                    <MudButton OnClick=@HandleSave
+                               Color=@Color.Surface
+                               Variant=@Variant.Outlined>Save</MudButton>
 
-                    @if (!string.IsNullOrEmpty(Task.Id))
+                    @if (!string.IsNullOrEmpty(Entry.Id))
                     {
-                        <MudButton OnClick=@HandleDelete Color=@Color.Error Variant=@Variant.Outlined>Delete</MudButton>
+                        <MudButton OnClick=@HandleDelete
+                                   Color=@Color.Error
+                                   Variant=@Variant.Outlined>Delete</MudButton>
                     }
                 </div>
             </MudForm>

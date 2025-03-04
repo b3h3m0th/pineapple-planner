@@ -14,10 +14,10 @@ namespace PineapplePlanner.Domain.Dto.Gemini
         [JsonPropertyName("modelVersion")]
         public string? ModelVersion { get; set; }
 
-        public ResultBase<Entities.Task> GetFirstTask()
+        public ResultBase<EntryDto> GetFirstTaskDto()
         {
-            ResultBase<Entities.Task> result = ResultBase<Entities.Task>.Success();
-            ResultBase<Entities.Task>? taskResult = Candidates?[0]?.Content?.GetTask();
+            ResultBase<EntryDto> result = ResultBase<EntryDto>.Success();
+            ResultBase<EntryDto>? taskResult = Candidates?[0]?.Content?.GetTaskDto();
 
             if (taskResult != null)
             {

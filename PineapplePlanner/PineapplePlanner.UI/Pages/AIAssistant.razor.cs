@@ -21,7 +21,7 @@ namespace PineapplePlanner.UI.Pages
             "Compile potential investors by Monday at noon."
         };
         private readonly Random random = new Random();
-        private ResultBase<Domain.Entities.Task> _promptResult = ResultBase<Domain.Entities.Task>.Success();
+        private ResultBase<Domain.Entities.Entry> _promptResult = ResultBase<Domain.Entities.Entry>.Success();
         private bool _isGeneratingTask;
 
         protected override async Task OnParametersSetAsync()
@@ -31,12 +31,12 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleSubmitPrompt()
         {
-            _promptResult = ResultBase<Domain.Entities.Task>.Success();
+            _promptResult = ResultBase<Domain.Entities.Entry>.Success();
             if (string.IsNullOrEmpty(_prompt?.Trim())) return;
 
             _isGeneratingTask = true;
 
-            ResultBase<Domain.Entities.Task> taskResult = await _aiService.GenerateTaskFromPrompt(_prompt);
+            ResultBase<Domain.Entities.Entry> taskResult = await _aiService.GenerateTaskFromPrompt(_prompt);
             if (!taskResult.IsSuccess || taskResult.Data == null)
             {
                 _promptResult.AddErrorAndSetFailure("Something went wrong. Please try again with a more descriptive prompt.");
@@ -50,7 +50,7 @@ namespace PineapplePlanner.UI.Pages
 
             if (_promptResult.IsSuccess && taskResult.Data != null && !string.IsNullOrEmpty(firebaseUid))
             {
-                Domain.Entities.Task createdTask = await CreateTask(taskResult.Data, firebaseUid);
+                Domain.Entities.Entry createdTask = await CreateTask(taskResult.Data, firebaseUid);
                 _promptResult.Data = createdTask;
             }
 
@@ -58,7 +58,7 @@ namespace PineapplePlanner.UI.Pages
 
             StateHasChanged();
             await Task.Delay(30000);
-            _promptResult = ResultBase<Domain.Entities.Task>.Success();
+            _promptResult = ResultBase<Domain.Entities.Entry>.Success();
             StateHasChanged();
         }
 
@@ -72,13 +72,13 @@ namespace PineapplePlanner.UI.Pages
             StateHasChanged();
         }
 
-        private async Task<Domain.Entities.Task> CreateTask(Domain.Entities.Task task, string userUid)
+        private async Task<Domain.Entities.Entry> CreateTask(Domain.Entities.Entry entry, string userUid)
         {
-            task.Id = Guid.NewGuid().ToString();
-            task.UserUid = userUid;
-            await _taskRepository.AddAsync(task);
+            entry.Id = Guid.NewGuid().ToString();
+            entry.UserUid = userUid;
+            await _taskRepository.AddAsync(entry);
 
-            return task;
+            return entry;
         }
 
         private string GetRandomPromptPlaceholderString()

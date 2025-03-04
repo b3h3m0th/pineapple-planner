@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using MudBlazor;
 using PineapplePlanner.UI.Layouts;
 using PineapplePlanner.UI.Providers;
 
@@ -16,69 +18,146 @@ namespace PineapplePlanner.UI.Components
         public EventCallback<bool> IsOpenChanged { get; set; }
 
         [Parameter]
-        public Domain.Entities.Task Task { get; set; } = default!;
-
-        public bool IsCompleted { get; set; }
+        public Domain.Entities.Entry Entry { get; set; } = default!;
 
         public TimeSpan? DueTimeSpan
         {
-            get => Task.DateDue?.TimeOfDay;
+            get => (Entry as Domain.Entities.Task)?.DateDue?.TimeOfDay;
             set
             {
-                if (Task.DateDue.HasValue)
+                if (Entry is Domain.Entities.Task task)
                 {
-                    Task.DateDue = Task.DateDue.Value.Date + value;
+                    if (task.DateDue.HasValue)
+                    {
+                        task.DateDue = task.DateDue.Value.Date + value;
+                    }
                 }
             }
         }
 
         public TimeSpan? StartDateTimeSpan
         {
-            get => Task.StartDate?.TimeOfDay;
+            get => (Entry as Domain.Entities.Event)?.StartDate?.TimeOfDay;
             set
             {
-                if (Task.StartDate.HasValue)
+                if (Entry is Domain.Entities.Event entryEvent)
                 {
-                    Task.StartDate = Task.StartDate.Value.Date + value;
+                    if (entryEvent.StartDate.HasValue)
+                    {
+                        entryEvent.StartDate = entryEvent.StartDate.Value.Date + value;
+                    }
                 }
             }
         }
 
         public TimeSpan? EndDateTimeSpan
         {
-            get => Task.EndDate?.TimeOfDay;
+            get => (Entry as Domain.Entities.Event)?.EndDate?.TimeOfDay;
             set
             {
-                if (Task.EndDate.HasValue)
+                if (Entry is Domain.Entities.Event entryEvent)
                 {
-                    Task.EndDate = Task.EndDate.Value.Date + value;
+                    if (entryEvent.EndDate.HasValue)
+                    {
+                        entryEvent.EndDate = entryEvent.EndDate.Value.Date + value;
+                    }
                 }
             }
         }
 
-        private int _activeTabIndex = 0;
+        private string _addATag = string.Empty;
+        private int _activeTabIndex = (int)TaskDetailTab.Task;
+        private bool _isCompleted;
 
         protected override async Task OnParametersSetAsync()
         {
-            Task ??= new Domain.Entities.Task()
+            Entry ??= new Domain.Entities.Task()
             {
                 Id = "",
                 Name = "",
-                DateDue = DateTime.Now,
+                DateDue = DateTime.Now
             };
 
-            IsCompleted = Task.CompletedAt != null;
+            _activeTabIndex = Entry is Domain.Entities.Task ? (int)TaskDetailTab.Task : (int)TaskDetailTab.Event;
+            _isCompleted = (Entry as Domain.Entities.Task)?.IsCompleted ?? false;
 
             await base.OnParametersSetAsync();
         }
 
+        private void HandleAddTag(string tag)
+        {
+            if (string.IsNullOrEmpty(tag.Trim())) return;
+
+            Entry.Tags.Add(new Domain.Entities.Tag()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = tag
+            });
+            _addATag = string.Empty;
+        }
+
+        private void HandleRemoveTag(MudChip<Domain.Entities.Tag> chip)
+        {
+            if (chip.Value == null) return;
+
+            Domain.Entities.Tag? toRemove = Entry.Tags.Find(t => t.Id == chip.Value.Id);
+            if (toRemove != null)
+            {
+                Entry.Tags.Remove(toRemove);
+            }
+
+            StateHasChanged();
+        }
+
+        private void HandleAddATagKeyDown(KeyboardEventArgs args)
+        {
+            if (args.Key == "Enter")
+            {
+                HandleAddTag(_addATag);
+            }
+        }
+
+        private void HandleTabChange()
+        {
+            if (_activeTabIndex == (int)TaskDetailTab.Task && Entry is Domain.Entities.Event eventEntry)
+            {
+                Entry = new Domain.Entities.Task()
+                {
+                    Id = eventEntry.Id,
+                    Name = eventEntry.Name,
+                    Description = eventEntry.Description,
+                    Priority = eventEntry.Priority,
+                    Tags = eventEntry.Tags,
+                    UserUid = eventEntry.UserUid,
+                    DateDue = eventEntry.StartDate
+                };
+            }
+            else if (_activeTabIndex == (int)TaskDetailTab.Event && Entry is Domain.Entities.Task task)
+            {
+                Entry = new Domain.Entities.Event()
+                {
+                    Id = task.Id,
+                    Name = task.Name,
+                    Description = task.Description,
+                    Priority = task.Priority,
+                    Tags = task.Tags,
+                    UserUid = task.UserUid,
+                    StartDate = task.DateDue,
+                    EndDate = task.DateDue?.AddMinutes(30)
+                };
+            }
+        }
+
         private async Task HandleSave()
         {
-            Task.CompletedAt = IsCompleted ? DateTime.Now : null;
-
-            if (!string.IsNullOrEmpty(Task.Id))
+            if (Entry is Domain.Entities.Task task)
             {
-                await _taskRepository.UpdateAsync(Task);
+                task.CompletedAt = _isCompleted ? DateTime.Now : null;
+            }
+
+            if (!string.IsNullOrEmpty(Entry.Id))
+            {
+                await _taskRepository.UpdateAsync(Entry);
             }
             else
             {
@@ -86,8 +165,8 @@ namespace PineapplePlanner.UI.Components
 
                 if (!string.IsNullOrEmpty(firebaseUid))
                 {
-                    Task.UserUid = firebaseUid;
-                    await _taskRepository.AddAsync(Task);
+                    Entry.UserUid = firebaseUid;
+                    await _taskRepository.AddAsync(Entry);
                 }
             }
 
@@ -96,7 +175,7 @@ namespace PineapplePlanner.UI.Components
 
         private async Task HandleDelete()
         {
-            await _taskRepository.DeleteAsync(Task.Id);
+            await _taskRepository.DeleteAsync(Entry.Id);
 
             AuthenticatedLayout?.StateHasChanged();
             HandleClose();

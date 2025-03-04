@@ -2,7 +2,7 @@
 
 namespace PineapplePlanner.Domain.UnitTests.Entities
 {
-    public class TaskTests
+    public class EntryTests
     {
         [Theory]
         [InlineData("High", Priority.High)]
@@ -16,16 +16,16 @@ namespace PineapplePlanner.Domain.UnitTests.Entities
         [InlineData(null, null)]
         public void PriorityString_ConvertsToPriorityCorrectly(string input, Priority? expectedPriority)
         {
-            Domain.Entities.Task task = new Domain.Entities.Task()
+            Domain.Entities.Entry entry = new Domain.Entities.Entry()
             {
                 Id = Guid.NewGuid().ToString(),
-                Name = "Test Task",
+                Name = "Test Entry",
                 Priority = Priority.Medium
             };
 
-            task.PriorityString = input;
+            entry.PriorityString = input;
 
-            Assert.Equal(expectedPriority, task.Priority);
+            Assert.Equal(expectedPriority, entry.Priority);
         }
     }
 }

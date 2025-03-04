@@ -10,10 +10,10 @@ namespace PineapplePlanner.UI.Components
         public Domain.Entities.Task Task { get; set; } = default!;
 
         [Parameter]
-        public EventCallback<Domain.Entities.Task> OnClick { get; set; }
+        public EventCallback<Domain.Entities.Entry> OnClick { get; set; }
 
         [Parameter]
-        public EventCallback<Domain.Entities.Task> OnCompleteChange { get; set; }
+        public EventCallback<Domain.Entities.Entry> OnCompleteChange { get; set; }
 
         public bool IsCompleted { get => Task.CompletedAt != null; }
         public Color PriorityColor
