@@ -17,17 +17,16 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         _collectionName = typeof(T).Name + "s";
     }
 
-    public async Task<ResultBase<List<T>>> GetAllAsync(string userId)
+    public async Task<ResultBase<List<T>>> GetAllAsync()
     {
-        var result = ResultBase<List<T>>.Success();
+        ResultBase<List<T>> result = ResultBase<List<T>>.Success();
 
         try
         {
             QuerySnapshot snapshot = await _firestoreService.FirestoreDb
                 .Collection(_collectionName)
-                .WhereEqualTo("UserUid", userId)
                 .GetSnapshotAsync();
-            var documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
+            List<T> documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
 
             return new ResultBase<List<T>>(documents);
         }
@@ -39,13 +38,13 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
         return result;
     }
 
-    public async Task<ResultBase<T?>> GetByIdAsync(string userId, string id)
+    public async Task<ResultBase<T?>> GetByIdAsync(string id)
     {
         try
         {
             DocumentReference docRef = _firestoreService.FirestoreDb.Collection(_collectionName).Document(id);
             DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
-            var document = snapshot.Exists ? snapshot.ConvertTo<T>() : default;
+            T? document = snapshot.Exists ? snapshot.ConvertTo<T>() : default;
 
             return ResultBase<T?>.Success(document);
         }

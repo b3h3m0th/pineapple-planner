@@ -1,6 +1,6 @@
-﻿namespace PineapplePlanner.Domain.Models.Auth
+﻿namespace PineapplePlanner.Domain.Dto.Authentication
 {
-    public class FirebaseUser
+    public class FirebaseUserDto
     {
         public string? Email { get; set; }
         public string? Uid { get; set; }

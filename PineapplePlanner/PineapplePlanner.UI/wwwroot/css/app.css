@@ -39,8 +39,20 @@ html, body {
         top: 0.5rem;
     }
 
-    a {
-        text-decoration: none;
-        color: initial;
-    }
+a {
+    text-decoration: none;
+    color: initial;
+}
 
+.splash {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .splash .img {
+        width: 64px;
+        aspect-ratio: 1/1;
+    }

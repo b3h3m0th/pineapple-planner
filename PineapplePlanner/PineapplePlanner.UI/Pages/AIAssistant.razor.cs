@@ -21,7 +21,8 @@ namespace PineapplePlanner.UI.Pages
             "Compile potential investors by Monday at noon."
         };
         private readonly Random random = new Random();
-        private string _message = string.Empty;
+        private ResultBase<Domain.Entities.Entry> _promptResult = ResultBase<Domain.Entities.Entry>.Success();
+        private bool _isGeneratingTask;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -30,29 +31,35 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleSubmitPrompt()
         {
-            if (string.IsNullOrEmpty(_prompt)) return;
+            _promptResult = ResultBase<Domain.Entities.Entry>.Success();
+            if (string.IsNullOrEmpty(_prompt?.Trim())) return;
 
-            ResultBase<Domain.Entities.Task> taskResult = await _aiService.GenerateTaskFromPrompt(_prompt);
+            _isGeneratingTask = true;
 
-            if (taskResult.Data != null)
+            ResultBase<Domain.Entities.Entry> taskResult = await _aiService.GenerateTaskFromPrompt(_prompt);
+            if (!taskResult.IsSuccess || taskResult.Data == null)
             {
-                Domain.Entities.Task task = taskResult.Data;
-
-                string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
-
-                if (!string.IsNullOrEmpty(firebaseUid))
-                {
-                    task.Id = Guid.NewGuid().ToString();
-                    task.UserUid = firebaseUid;
-                    await _taskRepository.AddAsync(task);
-
-                    _prompt = string.Empty;
-                    _message = "Done!";
-                    return;
-                }
+                _promptResult.AddErrorAndSetFailure("Something went wrong. Please try again with a more descriptive prompt.");
             }
 
-            _message = "Something went wrong";
+            string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
+            if (string.IsNullOrEmpty(firebaseUid))
+            {
+                _promptResult.AddErrorAndSetFailure("Authentication required");
+            }
+
+            if (_promptResult.IsSuccess && taskResult.Data != null && !string.IsNullOrEmpty(firebaseUid))
+            {
+                Domain.Entities.Entry createdTask = await CreateTask(taskResult.Data, firebaseUid);
+                _promptResult.Data = createdTask;
+            }
+
+            _isGeneratingTask = false;
+
+            StateHasChanged();
+            await Task.Delay(30000);
+            _promptResult = ResultBase<Domain.Entities.Entry>.Success();
+            StateHasChanged();
         }
 
         private async Task HandlePromptKeyDown(KeyboardEventArgs args)
@@ -63,6 +70,15 @@ namespace PineapplePlanner.UI.Pages
             }
 
             StateHasChanged();
+        }
+
+        private async Task<Domain.Entities.Entry> CreateTask(Domain.Entities.Entry entry, string userUid)
+        {
+            entry.Id = Guid.NewGuid().ToString();
+            entry.UserUid = userUid;
+            await _taskRepository.AddAsync(entry);
+
+            return entry;
         }
 
         private string GetRandomPromptPlaceholderString()
