@@ -51,6 +51,11 @@ namespace PineapplePlanner.UI.Pages
             AuthenticatedLayout?.OpenTaskDetail(eventEntry);
         }
 
+        private void HandleNavigateToWeek(DateTime firstDate)
+        {
+            FirstDate = firstDate;
+        }
+
         private bool TaskOverlapsDay(Domain.Entities.Event eventEntry, DateTime day)
         {
             DateTime taskStart = eventEntry.StartDate ?? DateTime.MinValue;
