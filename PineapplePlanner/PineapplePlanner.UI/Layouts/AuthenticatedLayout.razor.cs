@@ -35,9 +35,9 @@ namespace PineapplePlanner.UI.Layouts
             }
         }
 
-        public void OpenTaskDetail(Domain.Entities.Entry? task = null)
+        public void OpenTaskDetail(Domain.Entities.Entry? entry = null)
         {
-            _detailTask = task;
+            _detailTask = entry;
             _isTaskDetailOpen = true;
 
             StateHasChanged();
