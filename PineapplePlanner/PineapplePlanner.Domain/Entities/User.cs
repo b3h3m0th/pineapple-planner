@@ -13,6 +13,9 @@ namespace PineapplePlanner.Domain.Entities
         public required string Username { get; set; }
 
         [FirestoreProperty]
+        public required string Language { get; set; }
+
+        [FirestoreProperty]
         public bool IsDarkMode { get; set; }
 
         [FirestoreProperty]

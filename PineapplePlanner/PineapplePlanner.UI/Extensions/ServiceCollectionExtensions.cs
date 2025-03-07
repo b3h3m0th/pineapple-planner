@@ -6,6 +6,7 @@ using PineapplePlanner.AI.Extensions;
 using PineapplePlanner.Application;
 using PineapplePlanner.UI.Providers;
 using PineapplePlanner.UI.Services;
+using System.Globalization;
 
 namespace PineapplePlanner.UI.Extensions
 {
@@ -18,6 +19,14 @@ namespace PineapplePlanner.UI.Extensions
             services.AddScoped<AuthenticationStateProvider, FirebaseAuthStateProvider>();
             services.AddScoped<FirebaseAuthenticationService>();
             services.AddAuthorizationCore();
+
+            string[] supportedCultures = ["en-US", "sv"];
+
+            CultureInfo culture = new CultureInfo(supportedCultures[0]);
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            services.AddLocalization(options => options.ResourcesPath = "Localization/Resources");
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTodos).Assembly));
 
             services.AddMudServices();

@@ -24,6 +24,7 @@ namespace PineapplePlanner.UI.Pages
         {
             Id = string.Empty,
             Username = string.Empty,
+            Language = "English",
             UserUid = string.Empty
         };
 
@@ -59,7 +60,8 @@ namespace PineapplePlanner.UI.Pages
                 {
                     Id = string.Empty,
                     UserUid = string.Empty,
-                    Username = string.Empty
+                    Username = string.Empty,
+                    Language = "English"
                 };
             }
         }
@@ -87,6 +89,11 @@ namespace PineapplePlanner.UI.Pages
             {
                 AuthenticatedLayout?.LoadTheme();
             }
+        }
+
+        private async Task HandleCancel()
+        {
+
         }
     }
 }
