@@ -1,0 +1,155 @@
+\documentclass{article}
+\title{
+    \LARGE Pineapple Planner\\[0.2em]
+    \Large Agile Development Project Report
+}
+\author{Max Sellick, Varvara Aladyina, Deinoras Krasauskas,\\ Azhaf Kahn, Simon Ostini}
+\date{March 2025}
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+\usepackage{booktabs}
+
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{references/references.bib}
+\usepackage{csquotes}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+\usepackage{listings}
+\usepackage{multirow, makecell}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{caption}
+\usepackage{calculator}
+\usepackage{calculus}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=30mm,
+    right=30mm,
+    top=25mm,
+    bottom=30mm,
+    headheight={90pt},
+}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\addto\captionsenglish{\renewcommand{\listfigurename}{Plots}}
+\addto\captionsenglish{\renewcommand{\listtablename}{Tables}}
+
+\begin{document}
+\begin{figure}[ht!]
+  \minipage{0.76\textwidth}
+  \includegraphics[width=7cm]{images/hkr.png}
+  \label{title}
+  \endminipage
+  \minipage{0.32\textwidth}
+  \endminipage
+\end{figure}
+
+\vspace{0.8cm}
+\large
+
+\textbf{{\let\newpage\relax\maketitle}}
+
+\begin{center}
+  \vfill
+  \small{Kristianstad University | SE-291 88 Kristianstad | +46 44 250 30 00 | www.hkr.se}
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+
+\makeatletter
+\renewcommand{\abstractname}{\vspace{-\baselineskip}}
+\begin{abstract}
+  \large
+  \noindent\textbf{Title}\\
+  Pineapple Planner\\[1em]
+  \noindent\textbf{Subtitle}\\
+  Agile Development Project Report\\[1em]
+  \textbf{Programme}\\
+  Software Development\\[1em]
+  \textbf{Authors}\\
+  Max Sellick, Varvara Aladyina, Deinoras Krasauskas, Azhaf Khan, Simon Ostini\\[1em]
+  % Abstract\\[1em]
+  \textbf{Keywords}\\
+  Agile, Scrum, Project idea\\[1em]
+\end{abstract}
+\makeatother
+
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+
+\section{Introduction}
+<Instructions: Write an introduction to your application and its purpose. Also include screenshot>
+
+\subsection{Restrictions}
+< Instructions: List any restrictions that you think is worth mentioning.>
+
+\subsection{Enhancements}
+< Instructions: Explain possible extra features that you plan to implement into your application. If you have no extra features, you can remove this 1.2 section.>
+
+\section{Requirements}
+\section{Design and Implementation}
+< Instructions: Describe your design in this chapter. List one class per sub chapter and add some simple class diagrams to illustrate relations (inheritance and/or associations) between the main classes.>
+
+\subsection{Class1}
+<Description of this class. >
+
+\subsection{Class2}
+\section{Test Results}
+Table 2 below contains the current status of implemented and tested requirements.
+<Instructions: This table shall map 1-1 to the table in Chapter 2. The test result for each requirement shall be one of the following: NOT IMPLEMENTED, PASSED or FAILED.>
+
+\section{Summary and Conclusion}
+This chapter contains a summary and conclusion of the work that was carried out in this project as well as reflections and thoughts about working methods and challenges.
+
+\subsection{Weekly Progress}
+Below is a short summary of what was done each week.
+
+\subsubsection{Week 1}
+<Instructions: Describe what you did this week. You can see it as a developer’s weekly diary. Try to answer the following questions: What did you do this week? Did you meet any challenges? What was difficult? Did you get stuck with something? What went well and what went bad? How were your time estimates? Did you overestimate or underestimate the time of some features? Did your priorities seem OK? What have you learned during this week? Get help of individual reflections on Canvas.>
+
+\subsubsection{Week 2}
+\subsubsection{Week 3}
+\subsubsection{Week 4}
+\subsection{Difficulties and challenges}
+Below is a list of notable challenges that came up during this project and that took a long time to solve.
+
+\subsubsection{Name of Challenge/Difficulty 1}
+<Instructions: List the most difficult tasks in this project and describe why they were difficult. Did you learn something, e.g. how to handle very difficult programming problems?>
+
+\subsection{Correctness of time estimates}
+<Instructions: Look back on your time estimates and discuss your results. How accurate were they? What have you learned about time estimates and how can you get better in next project?>
+
+\subsection{Priority decisions}
+<Instructions: Look back on your feature priority settings. Did you prioritize the right features? Did you succeed to deliver the highest prioritized features? Did you disagree with the examiner on some features? Have you learned anything about setting priorities?>
+
+\subsection{Conclusion}
+<Instructions: Look back on the whole project. Here you can write a bit more freely about your thoughts on this project. What was your overall experience? How was the teamwork? What did you learn? Can you list some points that you will do better in next project? Other thoughts. >
+
+\clearpage
+
+\section{References}
+\printbibliography[heading=none]
+
+\end{document}
