@@ -6,6 +6,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Integration\IEntryPoint.en.resx" />
+    <EmbeddedResource Include="Resources\Integration\IEntryPoint.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>IEntryPoint.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Integration\IEntryPoint.sv.resx" />
+  </ItemGroup>
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
@@ -15,6 +27,8 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.13" />
     <PackageReference Include="MudBlazor" Version="8.2.0" />
   </ItemGroup>
 
@@ -25,12 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Layouts\UnauthenticatedLayout.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-    <Content Update="Pages\Register.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
+    <Compile Update="Resources\Integration\IEntryPoint.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IEntryPoint.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

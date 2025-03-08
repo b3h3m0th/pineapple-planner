@@ -15,11 +15,11 @@ namespace PineapplePlanner.UI.Layouts
 
         protected override async Task OnInitializedAsync()
         {
-            await LoadTheme();
+            await LoadUser();
             await base.OnInitializedAsync();
         }
 
-        public async Task LoadTheme()
+        public async Task LoadUser()
         {
             string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
 
@@ -28,9 +28,10 @@ namespace PineapplePlanner.UI.Layouts
                 ResultBase<Domain.Entities.User?> userResult = await _userRepository.GetByUIdAsync(firebaseUid);
                 _isDarkMode = userResult.Data?.IsDarkMode ?? false;
 
-                if (MainLayout?.IsDarkMode != _isDarkMode)
+                if (userResult.IsSuccess && userResult.Data != null)
                 {
                     MainLayout?.SetDarkMode(_isDarkMode);
+                    MainLayout?.SetCulture(userResult.Data.Culture);
                 }
             }
         }
