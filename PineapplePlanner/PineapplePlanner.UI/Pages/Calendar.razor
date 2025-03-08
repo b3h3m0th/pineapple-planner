@@ -12,72 +12,83 @@
 
 @if (_eventsResult.Data != null)
 {
-    <MudPaper Class="pa-4 ma-2" Elevation="25" Style="width: 100%;">
-        <div class="calendar-view">
-            <div class="time-column">
-                <div class="column-header"></div>
-                @for (int hour = 0; hour < 24; hour++)
-                {
-                    DateTime hours = new DateTime().AddHours(hour);
-                    string text = hours.ToString("HH:mm");
-
-                    <div class="time-cell">
-                        <MudText Typo=@Typo.caption>
-                            @text
-                        </MudText>
-                    </div>
-                }
+    <MudPaper Class="ma-2" Elevation="25" Style="width: 100%;">
+        <div class="calendar">
+            <div class="header">
+                <div class="navigation">
+                    <MudIconButton Icon=@Icons.Material.Rounded.ArrowBackIos OnClick=@(() => HandleNavigateToWeek(FirstDate.AddDays(-7))) Color=@Color.Surface Size=@Size.Small />
+                    <MudIconButton Icon=@Icons.Material.Rounded.ArrowForwardIos OnClick=@(() => HandleNavigateToWeek(FirstDate.AddDays(7))) Color=@Color.Surface Size=@Size.Small />
+                </div>
+                <MudText Typo=@Typo.h6>
+                    Week @ISOWeek.GetWeekOfYear(FirstDate)
+                </MudText>
             </div>
-            <div class="calendar-grid">
-                @for (int day = 0; day < 7; day++)
-                {
-                    var dayName = _dayNames[day];
-                    DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo("en").DateTimeFormat.FirstDayOfWeek + 7) % 7);
-                    DateTime currentDate = firstDateWeek.AddDays(day).Date;
+            <div class="calendar-view">
+                <div class="time-column">
+                    <div class="column-header"></div>
+                    @for (int hour = 0; hour < 24; hour++)
+                    {
+                        DateTime hours = new DateTime().AddHours(hour);
+                        string text = hours.ToString("HH:mm");
 
-                    <div class="day-column">
-                        <div class="column-header">
+                        <div class="time-cell">
                             <MudText Typo=@Typo.caption>
-                                @dayName, @currentDate.Day
+                                @text
                             </MudText>
                         </div>
-                        <div class="column-body">
-                            @for (int hour = 0; hour < 24; hour++)
-                            {
-                                DateTime hourDate = currentDate.AddHours(hour);
+                    }
+                </div>
+                <div class="calendar-grid">
+                    @for (int day = 0; day < 7; day++)
+                    {
+                        var dayName = _dayNames[day];
+                        DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo("en").DateTimeFormat.FirstDayOfWeek + 7) % 7);
+                        DateTime currentDate = firstDateWeek.AddDays(day).Date;
 
-                                <div class="day-cell" @onclick=@(() => HandleCreateTask(hourDate))>
+                        <div class="day-column">
+                            <div class="column-header">
+                                <MudText Typo=@Typo.caption>
+                                    @dayName, @currentDate.Day
+                                </MudText>
+                            </div>
+                            <div class="column-body">
+                                @for (int hour = 0; hour < 24; hour++)
+                                {
+                                    DateTime hourDate = currentDate.AddHours(hour);
+
+                                    <div class="day-cell" @onclick=@(() => HandleCreateTask(hourDate))>
+                                        @if (_eventsResult.Data?.Any() == true)
+                                        {
+                                            @if (_eventsResult.Data.Any(t => t.StartDate != null && t.EndDate != null && TaskOverlapsHour(t, hourDate)))
+                                            {
+                                                <div class="day-cell-event-filler"></div>
+                                            }
+                                        }
+                                    </div>
+                                }
+                                <div class="column-body__events">
                                     @if (_eventsResult.Data?.Any() == true)
                                     {
-                                        @if (_eventsResult.Data.Any(t => t.StartDate != null && t.EndDate != null && TaskOverlapsHour(t, hourDate)))
+                                        @foreach (Domain.Entities.Event eventEntry in _eventsResult.Data.Where(t => t.StartDate != null && t.EndDate != null))
                                         {
-                                            <div class="day-cell-event-filler"></div>
+                                            @if (TaskOverlapsDay(eventEntry, currentDate))
+                                            {
+                                                <div class="calendar-event" style="@GetTaskStyle(eventEntry, currentDate)"
+                                                     title=@eventEntry.Name
+                                                     @onclick:stopPropagation=@true
+                                                     @onclick=@(() => HandleEditTask(eventEntry))>
+                                                    <MudText Typo=@Typo.caption>
+                                                        @eventEntry.Name
+                                                    </MudText>
+                                                </div>
+                                            }
                                         }
                                     }
                                 </div>
-                            }
-                            <div class="column-body__events">
-                                @if (_eventsResult.Data?.Any() == true)
-                                {
-                                    @foreach (Domain.Entities.Event eventEntry in _eventsResult.Data.Where(t => t.StartDate != null && t.EndDate != null))
-                                    {
-                                        @if (TaskOverlapsDay(eventEntry, currentDate))
-                                        {
-                                            <div class="calendar-event" style="@GetTaskStyle(eventEntry, currentDate)"
-                                                 title=@eventEntry.Name
-                                                 @onclick:stopPropagation=@true
-                                                 @onclick=@(() => HandleEditTask(eventEntry))>
-                                                <MudText Typo=@Typo.caption>
-                                                    @eventEntry.Name
-                                                </MudText>
-                                            </div>
-                                        }
-                                    }
-                                }
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
     </MudPaper>

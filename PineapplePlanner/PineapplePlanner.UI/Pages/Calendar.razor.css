@@ -1,8 +1,27 @@
-﻿.calendar-view {
+﻿.calendar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+}
+
+.navigation {
+    display: flex;
+}
+
+.calendar-view {
     display: flex;
     width: 100%;
     height: 100%;
+    flex: 1;
     overflow: auto;
+    padding: 12px;
 }
 
 .calendar-grid {
