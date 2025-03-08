@@ -1,4 +1,5 @@
 ﻿using MudBlazor;
+using System.Globalization;
 
 namespace PineapplePlanner.UI.Layouts
 {
@@ -37,6 +38,17 @@ namespace PineapplePlanner.UI.Layouts
         public void SetDarkMode(bool value)
         {
             IsDarkMode = value;
+            StateHasChanged();
+        }
+
+        public void SetCulture(string name)
+        {
+            CultureInfo culture = new(name);
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
             StateHasChanged();
         }
     }

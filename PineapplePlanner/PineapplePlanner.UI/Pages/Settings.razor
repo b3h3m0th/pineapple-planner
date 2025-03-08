@@ -24,14 +24,14 @@
                     </MudTabPanel>
                     <MudTabPanel Text="Appearance" ID=@("appearance") Icon=@Icons.Material.Rounded.Laptop>
                         <div class="appearance">
-                            <MudSelect @bind-Value=@_user.Language Label="Language" Variant=@Variant.Outlined Margin=@Margin.Dense>
-                                <MudSelectItem Value=@("Austria")>
+                            <MudSelect @bind-Value=@_user.Culture Label="Language" Variant=@Variant.Outlined Margin=@Margin.Dense>
+                                <MudSelectItem Value=@("en-US")>
                                     <div class="language-item">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/English_language.svg" class="mr-1" />
                                         <span>English</span>
                                     </div>
                                 </MudSelectItem>
-                                <MudSelectItem Value=@("Sweden")>
+                                <MudSelectItem Value=@("sv")>
                                     <div class="language-item">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Sweden_fixed.svg" height="14" class="mr-1" />
                                         <span>Swedish</span>
@@ -45,12 +45,12 @@
             </div>
             <MudDivider />
             <div class="actions">
-                <MudButton OnClick=@HandleSave
-                           Color=@Color.Surface
-                           Variant=@Variant.Outlined>Save Changes</MudButton>
                 <MudButton OnClick=@HandleCancel
                            Color=@Color.Surface
                            Variant=@Variant.Outlined>Cancel</MudButton>
+                <MudButton OnClick=@HandleSave
+                           Color=@Color.Surface
+                           Variant=@Variant.Outlined>Save Changes</MudButton>
             </div>
         </MudPaper>
     }

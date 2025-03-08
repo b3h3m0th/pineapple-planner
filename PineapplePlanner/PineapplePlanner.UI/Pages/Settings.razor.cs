@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Layouts;
+using PineapplePlanner.UI.Localization;
 using PineapplePlanner.UI.Providers;
 
 namespace PineapplePlanner.UI.Pages
@@ -24,7 +25,7 @@ namespace PineapplePlanner.UI.Pages
         {
             Id = string.Empty,
             Username = string.Empty,
-            Language = "English",
+            Culture = Culture.English,
             UserUid = string.Empty
         };
 
@@ -61,7 +62,7 @@ namespace PineapplePlanner.UI.Pages
                     Id = string.Empty,
                     UserUid = string.Empty,
                     Username = string.Empty,
-                    Language = "English"
+                    Culture = Culture.English
                 };
             }
         }
@@ -85,9 +86,9 @@ namespace PineapplePlanner.UI.Pages
                 }
             }
 
-            if (user.IsSuccess && user.Data != null)
+            if (user.IsSuccess && user.Data != null && AuthenticatedLayout != null)
             {
-                AuthenticatedLayout?.LoadTheme();
+                MainLayout?.SetCulture(user.Data.Culture);
             }
         }
 
