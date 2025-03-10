@@ -27,7 +27,7 @@ namespace PineapplePlanner.Domain.Entities
             protected get => Priority?.ToString();
             set
             {
-                if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out var parsedPriority))
+                if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out Priority parsedPriority))
                 {
                     Priority = parsedPriority;
                 }

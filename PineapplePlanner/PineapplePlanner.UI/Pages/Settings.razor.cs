@@ -88,7 +88,8 @@ namespace PineapplePlanner.UI.Pages
 
             if (user.IsSuccess && user.Data != null && AuthenticatedLayout != null)
             {
-                MainLayout?.SetCulture(user.Data.Culture);
+                AuthenticatedLayout?.SetCulture(user.Data.Culture);
+                MainLayout?.SetDarkMode(user.Data.IsDarkMode);
             }
         }
 

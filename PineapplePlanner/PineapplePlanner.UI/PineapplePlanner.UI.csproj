@@ -11,15 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Integration\IEntryPoint.en.resx" />
-    <EmbeddedResource Include="Resources\Integration\IEntryPoint.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>IEntryPoint.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Integration\IEntryPoint.sv.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
@@ -30,20 +21,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.13" />
     <PackageReference Include="MudBlazor" Version="8.2.0" />
+    <PackageReference Include="MudBlazor.Translations" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PineapplePlanner.AI\PineapplePlanner.AI.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Application\PineapplePlanner.Application.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Domain\PineapplePlanner.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources\Integration\IEntryPoint.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>IEntryPoint.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>
