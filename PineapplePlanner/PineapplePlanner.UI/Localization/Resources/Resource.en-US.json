@@ -34,5 +34,7 @@
   "End":  "End",
   "Save":  "Save",
   "Delete":  "Delete",
-  "Language": "Language"
+  "Language": "Language",
+  "Cancel": "Cancel",
+  "Save changes": "Save changes"
 }
