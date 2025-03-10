@@ -26,7 +26,7 @@
                     </MudTabPanel>
                     <MudTabPanel Text=@_localize["Apperance"] ID=@("appearance") Icon=@Icons.Material.Rounded.Laptop>
                         <div class="appearance">
-                            <MudSelect @bind-Value=@_user.Culture Label="Language" Variant=@Variant.Outlined Margin=@Margin.Dense>
+                            <MudSelect @bind-Value=@_user.Culture Label=@_localize["Language"] Variant=@Variant.Outlined Margin=@Margin.Dense>
                                 <MudSelectItem Value=@Culture.English>
                                     <div class="language-item">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/English_language.svg" class="mr-1" />
