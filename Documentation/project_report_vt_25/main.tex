@@ -112,6 +112,9 @@
 \section{Design and Implementation}
 < Instructions: Describe your design in this chapter. List one class per sub chapter and add some simple class diagrams to illustrate relations (inheritance and/or associations) between the main classes.>
 
+The application implementation is far to large to list and explain every single class.
+As the application is built with the object oriented language C\verb|#| almost everything is a class.
+
 \subsection{Class1}
 <Description of this class. >
 
@@ -135,7 +138,12 @@ Below is a short summary of what was done each week.
 \subsection{Difficulties and challenges}
 Below is a list of notable challenges that came up during this project and that took a long time to solve.
 
-\subsubsection{Name of Challenge/Difficulty 1}
+\subsubsection{Blazor WPF wrapper}
+One significant challenge we faced several times was the fact that we decided to implement our Blazor SSR web application within a WPF wrapper to be ran as a desktop application.
+Having a web based application is very comfortable for development, especially when it comes to building user interfaces. Also you can always fallback to use JavaScript as the app runs in the browser.
+On the other hand, having a WPF wrapper limited us when implementing certain features.\\
+For instance, redirects that were necessary for the authentication with Firebase turned out to be rather difficult.
+
 <Instructions: List the most difficult tasks in this project and describe why they were difficult. Did you learn something, e.g. how to handle very difficult programming problems?>
 
 \subsection{Correctness of time estimates}
