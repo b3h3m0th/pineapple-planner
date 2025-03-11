@@ -144,7 +144,17 @@ Having a web based application is very comfortable for development, especially w
 On the other hand, having a WPF wrapper limited us when implementing certain features.\\
 For instance, redirects that were necessary for the authentication with Firebase turned out to be rather difficult.
 
-<Instructions: List the most difficult tasks in this project and describe why they were difficult. Did you learn something, e.g. how to handle very difficult programming problems?>
+\subsubsection{Dependency Injection issues}
+Blazor and WPF both have their own dependency injection frameworks and ensuring proper integration between the two required some trial and error.
+Some services that worked seamlessly within Blazor did not behave as expected when instantiated inside the WPF wrapper.
+For example, singleton services shared between Blazor and WPF sometimes led to unintended issues.
+The whole services setup took quite some time.
+
+\subsubsection{Lack of console outputs for debugging}
+Another major difficulty we encountered was the lack of direct console output when running the Blazor application within the WPF wrapper.
+Usually, web applications benefit from browser developer tools, in particular the console outputs.
+However, within the WPF environment, there was neither a .NET console nor a browser console available making debugging significantly harder.
+We often ended up rendering output to the user interface for testing.
 
 \subsection{Correctness of time estimates}
 <Instructions: Look back on your time estimates and discuss your results. How accurate were they? What have you learned about time estimates and how can you get better in next project?>
