@@ -156,6 +156,12 @@ Usually, web applications benefit from browser developer tools, in particular th
 However, within the WPF environment, there was neither a .NET console nor a browser console available making debugging significantly harder.
 We often ended up rendering output to the user interface for testing.
 
+\subsubsection{Firebase API Quota Exceeded}
+During development and testing, we occasionally exceeded Firebase's API quota.
+This typically happened when we testing extensively in a short period or when our application accidentally fell into an endless request loop.
+We had to be extremely careful not to get stuck in infinite render loops.
+Otherwise we had to wait one day for the firebase cooldown to continue development.
+
 \subsection{Correctness of time estimates}
 <Instructions: Look back on your time estimates and discuss your results. How accurate were they? What have you learned about time estimates and how can you get better in next project?>
 
