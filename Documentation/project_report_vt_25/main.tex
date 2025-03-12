@@ -172,13 +172,13 @@ The \verb|BaseRepository| accepts a generic argument which decides what Firestor
 \lstinputlisting[label=PineapplePlanner.Application.Repositories.BaseRepository, caption=PineapplePlanner.Application.Repositories.BaseRepository]{snippets/BaseRepository.cs}
 \bigbreak
 
-\subsection{PineapplePlanner.Domain.UnitTests}
+\subsection{PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests}
 
 The \verb|BaseRepository| is a generic class that implements the \verb|IBaseRepositor| according to the common Repository pattern.
 All other Repository are derived from the \verb|BaseRepository| which has shared CRUD implementations.
 The \verb|BaseRepository| accepts a generic argument which decides what Firestore collection should taken into account.
 
-\lstinputlisting[label=PineapplePlanner.Application.Repositories.BaseRepository, caption=PineapplePlanner.Application.Repositories.BaseRepository]{snippets/BaseRepository.cs}
+\lstinputlisting[label=PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests, caption=PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests]{snippets/ResultBaseTests.cs}
 \bigbreak
 
 \section{Test Results}
