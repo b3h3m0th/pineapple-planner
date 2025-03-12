@@ -41,9 +41,11 @@ namespace PineapplePlanner.UI.Services
             get => GetString(key);
         }
 
-        public string GetString(string key, string? culture = null)
+        public string GetString(string? key, string? culture = null)
         {
             culture ??= CurrentCulture;
+
+            if (key == null) return string.Empty;
 
             return _translations.GetValueOrDefault(culture)?.GetValueOrDefault(key) ?? key;
         }
