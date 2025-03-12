@@ -153,6 +153,13 @@ This solution is divided into different projects for organization purposes.
 For instance, we have a class library project for all user interface related code, a class library for communication with the database and a class library for all entity classes and enums.
 
 \subsection{PineapplePlanner.Domain.Entities.Entry}
+
+The \verb|Entry| class is our base entity class for user entries.
+There are two child classes \verb|Task| and \verb|Event| that are derived from \verb|Entry|.
+
+The class itself has a \verb|[FirestoreData]| attribute which enables instances to be stored in the Firebase Firestore database.
+All properties with a \verb|[FirestoreProperty]| are marked to be stored in the Firestore.
+
 \lstinputlisting[label="PineapplePlanner.Domain.Entities.Entry", caption=PineapplePlanner.Domain.Entities.Entry]{snippets/Entry.cs}
 \bigbreak
 

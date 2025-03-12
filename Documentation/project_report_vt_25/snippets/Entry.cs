@@ -61,4 +61,3 @@ namespace PineapplePlanner.Domain.Entities
     }
   }
 }
-
