@@ -35,7 +35,7 @@ public class UserRepository(FirestoreService firestoreService) : BaseRepository<
                 .Collection(_collectionName)
                 .WhereEqualTo("UserUid", userUid)
                 .GetSnapshotAsync();
-            DocumentSnapshot? documentSnapshot = querySnapshot.FirstOrDefault();
+            DocumentSnapshot? documentSnapshot = querySnapshot.ElementAtOrDefault(0);
 
             Domain.Entities.User? document = documentSnapshot?.Exists == true ? documentSnapshot.ConvertTo<Domain.Entities.User>() : default;
 
@@ -58,7 +58,7 @@ public class UserRepository(FirestoreService firestoreService) : BaseRepository<
                 .WhereEqualTo("UserUid", userUid)
                 .GetSnapshotAsync();
 
-            DocumentSnapshot? documentSnapshot = querySnapshot.FirstOrDefault();
+            DocumentSnapshot? documentSnapshot = querySnapshot.ElementAtOrDefault(0);
 
             if (documentSnapshot != null)
             {
