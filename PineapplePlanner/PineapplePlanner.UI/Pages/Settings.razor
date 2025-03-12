@@ -10,13 +10,14 @@
 
 @inject IUserRepository _userRepository
 @inject IEntryRepository _entryRepository
+@inject IDialogService _dialogService
 @inject FirebaseAuthenticationService _authService
 @inject AuthenticationStateProvider _authStateProvider
 @inject LocalizationService _localize
 @inject NavigationManager _navigationManager
 
 <div class="settings">
-    @if (_userResult.Data != null)
+    @if (_user != null)
     {
         <MudPaper Elevation="25" Style="width: 100%; height: 100%; display: flex; flex-direction: column;">
             <div class="settings__content">

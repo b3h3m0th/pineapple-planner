@@ -21,14 +21,7 @@ namespace PineapplePlanner.UI.Pages
         public MainLayout? MainLayout { get; set; }
 
         private ResultBase<Domain.Entities.User?> _userResult = new();
-        private Domain.Entities.User _user = new()
-        {
-            Id = string.Empty,
-            Username = string.Empty,
-            Culture = Culture.English,
-            UserUid = string.Empty
-        };
-
+        private Domain.Entities.User? _user;
         private int _activeTabIndex = (int)SettingsTab.Profile;
 
         protected override void OnInitialized()
@@ -51,34 +44,21 @@ namespace PineapplePlanner.UI.Pages
                 _userResult = await _userRepository.GetByUIdAsync(firebaseUid);
             }
 
-            if (_userResult.IsSuccess && _userResult.Data != null)
+            _user = new()
             {
-                _user = new()
-                {
-                    Id = _userResult.Data.Id,
-                    Username = _userResult.Data.Username,
-                    Culture = _userResult.Data.Culture,
-                    IsDarkMode = _userResult.Data.IsDarkMode,
-                    UserUid = _userResult.Data.UserUid,
-                };
-            }
-            else
-            {
-                _user = new()
-                {
-                    Id = string.Empty,
-                    UserUid = string.Empty,
-                    Username = string.Empty,
-                    Culture = Culture.English
-                };
-            }
+                Id = _userResult.Data?.Id ?? string.Empty,
+                Username = _userResult.Data?.Username ?? string.Empty,
+                Culture = _userResult.Data?.Culture ?? Culture.English,
+                IsDarkMode = _userResult.Data?.IsDarkMode ?? false,
+                UserUid = _userResult.Data?.UserUid ?? string.Empty,
+            };
         }
 
         private async Task HandleSave()
         {
             ResultBase<Domain.Entities.User> user = new();
 
-            if (!string.IsNullOrEmpty(_user.Id))
+            if (!string.IsNullOrEmpty(_user?.Id))
             {
                 user = await _userRepository.UpdateAsync(_user);
             }
@@ -86,7 +66,7 @@ namespace PineapplePlanner.UI.Pages
             {
                 string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
 
-                if (!string.IsNullOrEmpty(firebaseUid))
+                if (!string.IsNullOrEmpty(firebaseUid) && _user != null)
                 {
                     _user.UserUid = firebaseUid;
                     user = await _userRepository.CreateAsync(_user);
@@ -123,9 +103,9 @@ namespace PineapplePlanner.UI.Pages
                 Domain.Entities.User? loaded = _userResult.Data;
                 if (loaded == null) return false;
 
-                Domain.Entities.User changed = _user;
+                Domain.Entities.User? changed = _user;
 
-                return loaded.Username != changed.Username || loaded.Culture != changed.Culture || loaded.IsDarkMode != changed.IsDarkMode;
+                return loaded.Username != changed?.Username || loaded.Culture != changed.Culture || loaded.IsDarkMode != changed.IsDarkMode;
             }
         }
     }
