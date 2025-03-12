@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PineapplePlanner.Application.Interfaces;
 using PineapplePlanner.Application.Repositories;
+using PineapplePlanner.Application.Services;
 
 namespace PineapplePlanner.UI.Extensions
 {
@@ -11,6 +12,7 @@ namespace PineapplePlanner.UI.Extensions
             services.AddInfrastructureServices();
             services.AddScoped<IEntryRepository, EntryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddSingleton<SecureStorageService>();
 
             return services;
         }
