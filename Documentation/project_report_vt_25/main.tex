@@ -120,7 +120,7 @@
 \newpage
 
 \section{Introduction}
-<Instructions: Write an introduction to your application and its purpose. Also include screenshot>
+%<Instructions: Write an introduction to your application and its purpose. Also include screenshot>
 
 PineapplePlanner is a Windows application designed to serve as an intuitive to-do list integrated within a calendar.
 PineapplePlanner enables users to create and manage tasks efficiently by specifying a start and finish date, selecting a priority level (high, medium, low, or no priority), and providing a descriptive task name before submitting it to the calendar.
@@ -130,18 +130,61 @@ This makes the process even more seamless for individuals who feel overwhelmed b
 By visually mapping out tasks within a calendar, users can prioritize effectively, track deadlines, and stay on top of their commitments with greater ease and clarity.
 Whether users need to focus on urgent tasks or simply keep track of general activities, PineapplePlanner provides the flexibility to accommodate different levels of importance.
 
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.80\textwidth]{images/home-page.png}
+  \label{Infrastructure proposal}
+  \caption{Home page of Pineapple Planner}
+\end{figure}
 \subsection{Restrictions}
-< Instructions: List any restrictions that you think is worth mentioning.>
+
+\subsection{Restrictions}
+%< Instructions: List any restrictions that you think is worth mentioning.>
 
 \subsection{Enhancements}
-< Instructions: Explain possible extra features that you plan to implement into your application. If you have no extra features, you can remove this 1.2 section.>
+%< Instructions: Explain possible extra features that you plan to implement into your application. If you have no extra features, you can remove this 1.2 section.>
 
 The possible extra features we planned to implement or that has been implemented was custom usernames for users which was already implemented, dark-mode option in settings which transforms the application to dark-mode for users who would prefer to have it that way. AI was another feature that got implemented to help users create tasks faster. Not yet implemented features were Notification features in settings that would allow users to enable/disable notifications, Language option in settings for users whom do not understand english or would rather prefer have it in another language.
 
 \section{Requirements}
+
+%<Instructions: In the table below, add a list of all requirements for your application. They shall be numbered from 1..N. Each requirement has a short name and a longer description. Estimate how many hours it will take to complete the task for 1 person working with the task (man hours). At the start of a new iteration, you shall fill in estimated man hours to complete a task (EMH). This is your initial estimate – do NOT change it later. At the end of a weekly iteration, you shall fill in the actual man hours spent (AMH). In this way, you will establish a record that shows how good you are at estimating tasks, and you will hopefully learn from it and become better at next week’s estimate. Then prioritize the feature: How important is it? 1 for most important. 10 for least important. >
+%Table 1 below lists all the requirements for this project. The time estimated (EMH) and time spent on a task (AMH) is measured in man hours. The prio column lists feature priorities where Prio 1 is highest priority and Prio 10 is lowest priority
+
+\begin{table}[h]
+  \centering
+  \begin{tabularx}{\textwidth}{|c|c|X|c|c|c|}
+    \toprule
+    \textbf{Nr}   & \textbf{Req. Name}        & \textbf{Req. Description}  & \textbf{EMH} & \textbf{AMH}    & \textbf{Prio} \\
+    \hline
+    1             & Log in                    & User is able to log in to see their personal tasks.             &5            &-               & 10    \\    \hline
+    2             & Log out                   & User is able to log out to secure their information              &1            &-               & 10    \\    \hline
+    3             & Task creation             &  The project should create a task with a name, description and a deadline               &7            &-              & 10    \\
+    \hline
+    4             & Edit task                 &  The task should be editable and could be marked as completed.               &2            &-               & 8    \\
+    \hline
+    5             & Task prioritization       &  Task should have priorities: low, medium and high.               &3            &-               & 6    \\
+    \hline
+    6             & View tasks in the calendar&  Task should be visible in calendar view.               &10            &-               & 10    \\
+    \hline
+    7             & Add tasks in the calendar &  There should be a representation of creating a task in the calendar                &5            &-               & 6    \\
+    \hline
+    8             & Tags                      &  Tasks should have tags for easier management.               &4            &-               & 5    \\
+    \hline
+    
+    9             & Dark theme               & There is an ability to set dark theme in the settings &5            &-               & 3    \\    \hline
+    10            & Tags                    &  Task can have tags for easier search               &8          &-               & 4    \\\hline
+    11            & AI               & There is an ability to ask Gemini to create a task or event &10            &-               & 3    \\
+    
+    \bottomrule
+  \end{tabularx}
+  \caption{Requirements}
+  \label{Requirement items}
+\end{table}
+
 \section{Design and Implementation}
-< Instructions: Describe your design in this chapter.
-List one class per sub chapter and add some simple class diagrams to illustrate relations (inheritance and/or associations) between the main classes.>
+%< Instructions: Describe your design in this chapter.
+%List one class per sub chapter and add some simple class diagrams to illustrate relations (inheritance and/or associations) between the main classes.>
 
 The application implementation is far to large to list and explain every single class.
 As the application is built with the object oriented language C\verb|#| almost everything is a class.
@@ -183,7 +226,30 @@ Each unit test is declared with a \verb|Fact| attribute.
 
 \section{Test Results}
 Table 2 below contains the current status of implemented and tested requirements.
-<Instructions: This table shall map 1-1 to the table in Chapter 2. The test result for each requirement shall be one of the following: NOT IMPLEMENTED, PASSED or FAILED.>
+%<Instructions: This table shall map 1-1 to the table in Chapter 2. The test result for each requirement shall be one of the following: NOT IMPLEMENTED, PASSED or FAILED.>
+\begin{table}[h]
+  \centering
+  \begin{tabularx}{\textwidth}{|c|X|c|}
+    \toprule
+    \textbf{Nr}   & \textbf{Req. Name}        & \textbf{Test result} \\
+    \hline
+    1             & Log in                    & Not Implemented/Passed/Failed    \\    \hline
+    2             & Log out                   & Not Implemented/Passed/Failed    \\    \hline
+    3             & Task creation             & Not Implemented/Passed/Failed    \\ \hline
+    4             & Edit task                 & Not Implemented/Passed/Failed    \\    \hline
+    5             & Task prioritization       & Not Implemented/Passed/Failed    \\    \hline
+    6             & View tasks in the calendar& Not Implemented/Passed/Failed    \\    \hline
+    7             & Add tasks in the calendar & Not Implemented/Passed/Failed    \\    \hline
+    8             & Tags                      & Not Implemented/Passed/Failed    \\ \hline    
+    9             & Dark theme                & Not Implemented/Passed/Failed    \\    \hline
+    10            & Tags                      & Not Implemented/Passed/Failed    \\\hline
+    11            & AI                        & Not Implemented/Passed/Failed    \\
+    
+    \bottomrule
+  \end{tabularx}
+  \caption{Requirements}
+  \label{results}
+\end{table}
 
 \section{Summary and Conclusion}
 This chapter contains a summary and conclusion of the work that was carried out in this project as well as reflections and thoughts about working methods and challenges.
@@ -240,13 +306,14 @@ We had to be extremely careful not to get stuck in infinite render loops.
 Otherwise we had to wait one day for the firebase cooldown to continue development.
 
 \subsection{Correctness of time estimates}
-<Instructions: Look back on your time estimates and discuss your results. How accurate were they? What have you learned about time estimates and how can you get better in next project?>
+%<Instructions: Look back on your time estimates and discuss your results. How accurate were they? What have you learned about time estimates and how can you get better in next project?>
 
 \subsection{Priority decisions}
-<Instructions: Look back on your feature priority settings. Did you prioritize the right features? Did you succeed to deliver the highest prioritized features? Did you disagree with the examiner on some features? Have you learned anything about setting priorities?>
+%<Instructions: Look back on your feature priority settings. Did you prioritize the right features? Did you succeed to deliver the highest prioritized features? Did you disagree with the examiner on some features? Have you learned anything about setting priorities?>
+
 
 \subsection{Conclusion}
-<Instructions: Look back on the whole project. Here you can write a bit more freely about your thoughts on this project. What was your overall experience? How was the teamwork? What did you learn? Can you list some points that you will do better in next project? Other thoughts. >
+%<Instructions: Look back on the whole project. Here you can write a bit more freely about your thoughts on this project. What was your overall experience? How was the teamwork? What did you learn? Can you list some points that you will do better in next project? Other thoughts. >
 
 \clearpage
 
