@@ -4,5 +4,6 @@
     {
         public const string English = "en-US";
         public const string Swedish = "sv-SE";
+        public const string German = "de-DE";
     }
 }
