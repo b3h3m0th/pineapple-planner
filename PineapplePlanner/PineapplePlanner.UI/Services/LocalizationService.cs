@@ -6,7 +6,7 @@ namespace PineapplePlanner.UI.Services
     public class LocalizationService
     {
         public readonly Dictionary<string, Dictionary<string, string>> _translations = new();
-        private string[] _supportedCultures = [Culture.English, Culture.Swedish];
+        private string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German];
 
         public string[] SupportedCultures { get => _supportedCultures; }
         public string CurrentCulture { get; private set; } = Culture.English;

@@ -42,6 +42,12 @@
                                         <span>@_localize["Swedish"]</span>
                                     </div>
                                 </MudSelectItem>
+                                    <MudSelectItem Value=@Culture.German>
+                                        <div class="language-item">
+                                                <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" height="14" class="mr-1" />
+                                            <span>@_localize["German"]</span>
+                                        </div>
+                                    </MudSelectItem>
                             </MudSelect>
                             <MudSwitch @bind-Value=@_user.IsDarkMode T=@bool Label=@_localize["Dark Mode"] />
                         </div>
