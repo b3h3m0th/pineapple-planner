@@ -50,5 +50,34 @@ public class UserRepository : BaseRepository<Domain.Entities.User>, IUserReposit
             return ResultBase<Domain.Entities.User?>.Failure();
         }
     }
+
+    public async Task<ResultBase<Domain.Entities.User>> DeleteAsync(string userUid)
+    {
+        ResultBase<Domain.Entities.User> result = ResultBase<Domain.Entities.User>.Success();
+
+        try
+        {
+            QuerySnapshot querySnapshot = await _firestoreService.FirestoreDb
+                .Collection(_collectionName)
+                .WhereEqualTo("UserUid", userUid)
+                .GetSnapshotAsync();
+
+            DocumentSnapshot? documentSnapshot = querySnapshot.FirstOrDefault();
+
+            if (documentSnapshot != null)
+            {
+                Domain.Entities.User? document = documentSnapshot.Exists == true ? documentSnapshot.ConvertTo<Domain.Entities.User>() : default;
+
+                await documentSnapshot.Reference.DeleteAsync();
+                result.Data = document;
+            }
+        }
+        catch (Exception)
+        {
+            return ResultBase<Domain.Entities.User>.Failure();
+        }
+
+        return result;
+    }
 }
 

@@ -73,5 +73,30 @@ public class EntryRepository : BaseRepository<Domain.Entities.Entry>, IEntryRepo
 
         return result;
     }
+
+    public async Task<ResultBase<List<Domain.Entities.Entry>>> DeleteAllAsync(string userId)
+    {
+        ResultBase<List<Domain.Entities.Entry>> result = ResultBase<List<Domain.Entities.Entry>>.Success();
+
+        try
+        {
+            QuerySnapshot snapshot = await _firestoreService.FirestoreDb
+                .Collection(_collectionName)
+                .WhereEqualTo("UserUid", userId)
+                .GetSnapshotAsync();
+
+            List<Domain.Entities.Entry> documents = snapshot.Documents.Select(doc => doc.ConvertTo<Domain.Entities.Entry>()).ToList();
+
+            await Task.WhenAll(snapshot.Documents.Select(d => d.Reference.DeleteAsync()));
+
+            result.Data = documents;
+        }
+        catch (Exception ex)
+        {
+            result.AddErrorAndSetFailure(ex.Message + ex.StackTrace);
+        }
+
+        return result;
+    }
 }
 

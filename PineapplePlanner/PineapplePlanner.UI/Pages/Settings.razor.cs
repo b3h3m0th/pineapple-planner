@@ -53,7 +53,14 @@ namespace PineapplePlanner.UI.Pages
 
             if (_userResult.IsSuccess && _userResult.Data != null)
             {
-                _user = _userResult.Data;
+                _user = new()
+                {
+                    Id = _userResult.Data.Id,
+                    Username = _userResult.Data.Username,
+                    Culture = _userResult.Data.Culture,
+                    IsDarkMode = _userResult.Data.IsDarkMode,
+                    UserUid = _userResult.Data.UserUid,
+                };
             }
             else
             {
@@ -95,7 +102,31 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleCancel()
         {
+            await LoadUser();
+        }
 
+        private async Task HandleDeleteAccount()
+        {
+            string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
+            if (string.IsNullOrEmpty(firebaseUid)) return;
+
+            await _entryRepository.DeleteAllAsync(firebaseUid);
+            await _userRepository.DeleteAsync(firebaseUid);
+            await _authService.DeleteAsync();
+            _navigationManager.NavigateTo("/");
+        }
+
+        private bool HasChanges
+        {
+            get
+            {
+                Domain.Entities.User? loaded = _userResult.Data;
+                if (loaded == null) return false;
+
+                Domain.Entities.User changed = _user;
+
+                return loaded.Username != changed.Username || loaded.Culture != changed.Culture || loaded.IsDarkMode != changed.IsDarkMode;
+            }
         }
     }
 }
