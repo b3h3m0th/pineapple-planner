@@ -174,9 +174,9 @@ The \verb|BaseRepository| accepts a generic argument which decides what Firestor
 
 \subsection{PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests}
 
-The \verb|ResultBaseTests| is a generic class that implements the \verb|IBaseRepositor| according to the common Repository pattern.
-All other Repository are derived from the \verb|BaseRepository| which has shared CRUD implementations.
-The \verb|BaseRepository| accepts a generic argument which decides what Firestore collection should taken into account.
+The \verb|ResultBaseTests| class contains unit tests for our custom \verb|ResultBase| class that is used for error handling throughout the entire project.
+The unit tests are implemented using the .NET testing library XUnit.
+Each unit test is declared with a \verb|Fact| attribute.
 
 \lstinputlisting[label=PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests, caption=PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests]{snippets/ResultBaseTests.cs}
 \bigbreak
