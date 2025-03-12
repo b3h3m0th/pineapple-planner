@@ -48,7 +48,7 @@ namespace PineapplePlanner.Domain.Entities
         public DateTime? DeletedAt { get; set; }
 
         [FirestoreProperty]
-        public List<Tag> Tags { get; set; } = new List<Tag>();
+        public List<Tag> Tags { get; set; } = [];
 
         [FirestoreProperty]
         public string? UserUid { get; set; }

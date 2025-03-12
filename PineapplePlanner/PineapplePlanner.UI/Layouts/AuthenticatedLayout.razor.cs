@@ -11,7 +11,7 @@ namespace PineapplePlanner.UI.Layouts
 
         private bool _isTaskDetailOpen;
         private Domain.Entities.Entry? _detailTask;
-        private Domain.Entities.User _user;
+        public Domain.Entities.User? User { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -29,7 +29,7 @@ namespace PineapplePlanner.UI.Layouts
 
                 if (userResult.IsSuccess && userResult.Data != null)
                 {
-                    _user = userResult.Data;
+                    User = userResult.Data;
                     MainLayout?.SetDarkMode(userResult.Data.IsDarkMode);
                     SetCulture(userResult.Data.Culture);
                 }

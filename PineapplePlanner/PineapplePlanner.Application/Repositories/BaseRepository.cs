@@ -6,16 +6,10 @@ using PineapplePlanner.Infrastructure;
 
 namespace PineapplePlanner.Application.Repositories;
 
-public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreData
+public class BaseRepository<T>(FirestoreService firestoreService) : IBaseRespository<T> where T : IBaseFirestoreData
 {
-    protected readonly string _collectionName;
-    protected readonly FirestoreService _firestoreService;
-
-    public BaseRepository(FirestoreService firestoreService)
-    {
-        _firestoreService = firestoreService;
-        _collectionName = typeof(T).Name + "s";
-    }
+    protected readonly string _collectionName = typeof(T).Name + "s";
+    protected readonly FirestoreService _firestoreService = firestoreService;
 
     public async Task<ResultBase<List<T>>> GetAllAsync()
     {
@@ -26,7 +20,7 @@ public class BaseRepository<T> : IBaseRespository<T> where T : IBaseFirestoreDat
             QuerySnapshot snapshot = await _firestoreService.FirestoreDb
                 .Collection(_collectionName)
                 .GetSnapshotAsync();
-            List<T> documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
+            List<T> documents = [.. snapshot.Documents.Select(doc => doc.ConvertTo<T>())];
 
             return new ResultBase<List<T>>(documents);
         }

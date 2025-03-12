@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using PineapplePlanner.Domain.Enums;
+using PineapplePlanner.UI.Layouts;
 
 namespace PineapplePlanner.UI.Components
 {
     public partial class TaskItem
     {
+        [CascadingParameter(Name = "AuthenticatedLayout")]
+        public AuthenticatedLayout? AuthenticatedLayout { get; set; }
+
         [Parameter]
         public Domain.Entities.Task Task { get; set; } = default!;
 
