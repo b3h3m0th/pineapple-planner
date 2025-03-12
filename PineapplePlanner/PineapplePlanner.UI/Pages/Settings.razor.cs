@@ -85,7 +85,7 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleDeleteAccount()
         {
-            IDialogReference dialogReference = await _dialogService.ShowAsync<DeleteDialog>("Delete account", new DialogParameters<DeleteDialog>()
+            IDialogReference dialogReference = await _dialogService.ShowAsync<DeleteDialog>(_localize["Delete account"], new DialogParameters<DeleteDialog>()
             {
                 { x => x.SubmitText, _localize["Delete"] },
                 { x => x.CancelText, _localize["Cancel"] },
