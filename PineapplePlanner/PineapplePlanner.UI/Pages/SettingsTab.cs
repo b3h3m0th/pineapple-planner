@@ -3,6 +3,7 @@
     public enum SettingsTab
     {
         Profile,
-        Appearance
+        Appearance,
+        DangerZone
     }
 }
