@@ -5,12 +5,8 @@ using PineapplePlanner.Infrastructure;
 
 namespace PineapplePlanner.Application.Repositories;
 
-public class EntryRepository : BaseRepository<Domain.Entities.Entry>, IEntryRepository
+public class EntryRepository(FirestoreService firestoreService) : BaseRepository<Domain.Entities.Entry>(firestoreService), IEntryRepository
 {
-    public EntryRepository(FirestoreService firestoreService) : base(firestoreService)
-    {
-    }
-
     public override Task<ResultBase<Domain.Entities.Entry>> AddAsync(Domain.Entities.Entry entry)
     {
         entry.CreatedAt = DateTime.Now.ToUniversalTime();
@@ -62,7 +58,7 @@ public class EntryRepository : BaseRepository<Domain.Entities.Entry>, IEntryRepo
                 .WhereEqualTo("UserUid", userId)
                 .WhereEqualTo("Type", typeof(T).Name)
                 .GetSnapshotAsync();
-            List<T> documents = snapshot.Documents.Select(doc => doc.ConvertTo<T>()).ToList();
+            List<T> documents = [.. snapshot.Documents.Select(doc => doc.ConvertTo<T>())];
 
             return new ResultBase<List<T>>(documents);
         }
@@ -85,7 +81,7 @@ public class EntryRepository : BaseRepository<Domain.Entities.Entry>, IEntryRepo
                 .WhereEqualTo("UserUid", userId)
                 .GetSnapshotAsync();
 
-            List<Domain.Entities.Entry> documents = snapshot.Documents.Select(doc => doc.ConvertTo<Domain.Entities.Entry>()).ToList();
+            List<Domain.Entities.Entry> documents = [.. snapshot.Documents.Select(doc => doc.ConvertTo<Domain.Entities.Entry>())];
 
             await Task.WhenAll(snapshot.Documents.Select(d => d.Reference.DeleteAsync()));
 

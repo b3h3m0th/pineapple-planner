@@ -21,7 +21,7 @@ namespace PineapplePlanner.UI.Pages
         public MainLayout? MainLayout { get; set; }
 
         private ResultBase<Domain.Entities.User?> _userResult = new();
-        private Domain.Entities.User _user = new Domain.Entities.User()
+        private Domain.Entities.User _user = new()
         {
             Id = string.Empty,
             Username = string.Empty,

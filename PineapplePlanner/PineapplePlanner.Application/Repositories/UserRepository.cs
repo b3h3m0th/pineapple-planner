@@ -5,12 +5,8 @@ using PineapplePlanner.Infrastructure;
 
 namespace PineapplePlanner.Application.Repositories;
 
-public class UserRepository : BaseRepository<Domain.Entities.User>, IUserRepository
+public class UserRepository(FirestoreService firestoreService) : BaseRepository<Domain.Entities.User>(firestoreService), IUserRepository
 {
-    public UserRepository(FirestoreService firestoreService) : base(firestoreService)
-    {
-    }
-
     public async Task<ResultBase<Domain.Entities.User>> CreateAsync(Domain.Entities.User user)
     {
         ResultBase<Domain.Entities.User> result = ResultBase<Domain.Entities.User>.Success();
@@ -51,7 +47,7 @@ public class UserRepository : BaseRepository<Domain.Entities.User>, IUserReposit
         }
     }
 
-    public async Task<ResultBase<Domain.Entities.User>> DeleteAsync(string userUid)
+    new public async Task<ResultBase<Domain.Entities.User>> DeleteAsync(string userUid)
     {
         ResultBase<Domain.Entities.User> result = ResultBase<Domain.Entities.User>.Success();
 
