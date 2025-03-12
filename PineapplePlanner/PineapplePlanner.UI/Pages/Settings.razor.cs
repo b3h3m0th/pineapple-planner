@@ -58,11 +58,9 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleSave()
         {
-            ResultBase<Domain.Entities.User> user = new();
-
             if (!string.IsNullOrEmpty(_user?.Id))
             {
-                user = await _userRepository.UpdateAsync(_user);
+                await _userRepository.UpdateAsync(_user);
             }
             else
             {
@@ -71,7 +69,7 @@ namespace PineapplePlanner.UI.Pages
                 if (!string.IsNullOrEmpty(firebaseUid) && _user != null)
                 {
                     _user.UserUid = firebaseUid;
-                    user = await _userRepository.CreateAsync(_user);
+                    await _userRepository.CreateAsync(_user);
                 }
             }
 

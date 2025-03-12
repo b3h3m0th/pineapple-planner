@@ -5,8 +5,8 @@ namespace PineapplePlanner.UI.Services
 {
     public class LocalizationService
     {
-        public readonly Dictionary<string, Dictionary<string, string>> _translations = new();
-        private string[] _supportedCultures = [Culture.English, Culture.Swedish];
+        public readonly Dictionary<string, Dictionary<string, string>> _translations = [];
+        private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish];
 
         public string[] SupportedCultures { get => _supportedCultures; }
         public string CurrentCulture { get; private set; } = Culture.English;
@@ -17,7 +17,7 @@ namespace PineapplePlanner.UI.Services
             foreach (string file in files)
             {
                 string[] filenameParts = Path.GetFileName(file).Split(".");
-                string culture = filenameParts[filenameParts.Length - 2];
+                string culture = filenameParts[^2];
                 string json = File.ReadAllText(file);
                 Dictionary<string, string>? deserialized = JsonSerializer.Deserialize<Dictionary<string, string>>(json, new JsonSerializerOptions()
                 {

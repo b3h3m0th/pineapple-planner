@@ -2,8 +2,9 @@
 using PineapplePlanner.Application.Interfaces;
 using PineapplePlanner.Application.Repositories;
 using PineapplePlanner.Application.Services;
+using PineapplePlanner.Infrastructure.Extensions;
 
-namespace PineapplePlanner.UI.Extensions
+namespace PineapplePlanner.Application.Extensions
 {
     public static class ServiceCollectionExtensions
     {
