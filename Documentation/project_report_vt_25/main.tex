@@ -165,7 +165,8 @@ All properties with a \verb|[FirestoreProperty]| are marked to be stored in the 
 
 \subsection{PineapplePlanner.Application.Repositories.BaseRepository}
 
-The \verb|BaseRepository| is a generic class that implements the \verb|IBaseRepositor| according to the common Repo
+The \verb|BaseRepository| is a generic class that implements the \verb|IBaseRepositor| according to the common Repository pattern.
+All other Repository are derived from the \verb|BaseRepository| which has 
 
 \lstinputlisting[label=PineapplePlanner.Application.Repositories.BaseRepository, caption=PineapplePlanner.Application.Repositories.BaseRepository]{snippets/BaseRepository.cs}
 \bigbreak
