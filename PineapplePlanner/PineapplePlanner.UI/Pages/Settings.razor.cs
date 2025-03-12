@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Layouts;
+using PineapplePlanner.UI.Localization;
 using PineapplePlanner.UI.Providers;
 
 namespace PineapplePlanner.UI.Pages
@@ -20,13 +21,7 @@ namespace PineapplePlanner.UI.Pages
         public MainLayout? MainLayout { get; set; }
 
         private ResultBase<Domain.Entities.User?> _userResult = new();
-        private Domain.Entities.User _user = new Domain.Entities.User()
-        {
-            Id = string.Empty,
-            Username = string.Empty,
-            UserUid = string.Empty
-        };
-
+        private Domain.Entities.User? _user;
         private int _activeTabIndex = (int)SettingsTab.Profile;
 
         protected override void OnInitialized()
@@ -49,26 +44,21 @@ namespace PineapplePlanner.UI.Pages
                 _userResult = await _userRepository.GetByUIdAsync(firebaseUid);
             }
 
-            if (_userResult.IsSuccess && _userResult.Data != null)
+            _user = new()
             {
-                _user = _userResult.Data;
-            }
-            else
-            {
-                _user = new()
-                {
-                    Id = string.Empty,
-                    UserUid = string.Empty,
-                    Username = string.Empty
-                };
-            }
+                Id = _userResult.Data?.Id ?? string.Empty,
+                Username = _userResult.Data?.Username ?? string.Empty,
+                Culture = _userResult.Data?.Culture ?? Culture.English,
+                IsDarkMode = _userResult.Data?.IsDarkMode ?? false,
+                UserUid = _userResult.Data?.UserUid ?? string.Empty,
+            };
         }
 
         private async Task HandleSave()
         {
             ResultBase<Domain.Entities.User> user = new();
 
-            if (!string.IsNullOrEmpty(_user.Id))
+            if (!string.IsNullOrEmpty(_user?.Id))
             {
                 user = await _userRepository.UpdateAsync(_user);
             }
@@ -76,16 +66,42 @@ namespace PineapplePlanner.UI.Pages
             {
                 string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
 
-                if (!string.IsNullOrEmpty(firebaseUid))
+                if (!string.IsNullOrEmpty(firebaseUid) && _user != null)
                 {
                     _user.UserUid = firebaseUid;
                     user = await _userRepository.CreateAsync(_user);
                 }
             }
 
-            if (user.IsSuccess && user.Data != null)
+            AuthenticatedLayout?.LoadUser();
+        }
+
+        private async Task HandleCancel()
+        {
+            await LoadUser();
+        }
+
+        private async Task HandleDeleteAccount()
+        {
+            string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
+            if (string.IsNullOrEmpty(firebaseUid)) return;
+
+            await _entryRepository.DeleteAllAsync(firebaseUid);
+            await _userRepository.DeleteAsync(firebaseUid);
+            await _authService.DeleteAsync();
+            _navigationManager.NavigateTo("/");
+        }
+
+        private bool HasChanges
+        {
+            get
             {
-                AuthenticatedLayout?.LoadTheme();
+                Domain.Entities.User? loaded = _userResult.Data;
+                if (loaded == null) return false;
+
+                Domain.Entities.User? changed = _user;
+
+                return loaded.Username != changed?.Username || loaded.Culture != changed.Culture || loaded.IsDarkMode != changed.IsDarkMode;
             }
         }
     }
