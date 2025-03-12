@@ -26,6 +26,21 @@
     urlcolor=blue,
 }
 \usepackage{listings}
+
+\lstset{
+    language=[Sharp]C,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+
 \usepackage{multirow, makecell}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
@@ -98,6 +113,11 @@
 \thispagestyle{empty}
 
 \newpage
+\listoffigures
+\lstlistoflistings
+\listoftables
+
+\newpage
 
 \section{Introduction}
 <Instructions: Write an introduction to your application and its purpose. Also include screenshot>
@@ -121,6 +141,15 @@ List one class per sub chapter and add some simple class diagrams to illustrate 
 The application implementation is far to large to list and explain every single class.
 As the application is built with the object oriented language C\verb|#| almost everything is a class.
 Thus, an explanation class-per-class does not really add any value.
+Some crucial classes with different use cases are explained in the following sections.
+\\
+The entire project is contained in one .NET solution.
+This solution is divided into different projects for organization purposes.
+For instance, we have a class library project for all user interface related code, a class library for communication with the database and a class library for all entity classes and enums.
+
+\subsection{PineapplePlanner.Domain.Entities.Entry}
+\lstinputlisting[label="PineapplePlanner.Domain.Entities.Entry", caption=PineapplePlanner.Domain.Entities.Entry]{snippets/Entry.cs}
+\bigbreak
 
 \section{Test Results}
 Table 2 below contains the current status of implemented and tested requirements.
