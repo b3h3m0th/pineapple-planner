@@ -1,6 +1,7 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.UI.Components
+@using PineapplePlanner.UI.Services
 
 @inherits LayoutComponentBase
 
@@ -8,6 +9,7 @@
 
 @inject AuthenticationStateProvider _authStateProvider
 @inject IUserRepository _userRepository
+@inject LocalizationService _localizationService
 
 <CascadingValue Name="AuthenticatedLayout" Value=@this>
     <div class="authenticated-layout">

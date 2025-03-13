@@ -2,11 +2,13 @@
 @using System.Globalization
 @using Microsoft.AspNetCore.Components.Authorization
 @using PineapplePlanner.Application.Interfaces
+@using PineapplePlanner.UI.Services
 
 @page "/calendar"
 
 @inject IEntryRepository _taskRepository
 @inject AuthenticationStateProvider _authStateProvider
+@inject LocalizationService _localize
 
 @attribute [Authorize]
 
@@ -41,8 +43,8 @@
                 <div class="calendar-grid">
                     @for (int day = 0; day < 7; day++)
                     {
-                        var dayName = _dayNames[day];
-                        DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo("en").DateTimeFormat.FirstDayOfWeek + 7) % 7);
+                        string dayName = _dayNames[day];
+                        DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo(_localize.CurrentCulture).DateTimeFormat.FirstDayOfWeek + 7) % 7);
                         DateTime currentDate = firstDateWeek.AddDays(day).Date;
 
                         <div class="day-column">
