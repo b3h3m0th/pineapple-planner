@@ -18,8 +18,8 @@ namespace PineapplePlanner.UI.Extensions
             services.AddScoped<AuthenticationStateProvider, FirebaseAuthStateProvider>();
             services.AddScoped<FirebaseAuthenticationService>();
             services.AddAuthorizationCore();
+            services.AddSingleton<LocalizationService>();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTodos).Assembly));
-
             services.AddMudServices();
 
             return services;

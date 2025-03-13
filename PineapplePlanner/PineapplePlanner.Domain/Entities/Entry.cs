@@ -27,7 +27,7 @@ namespace PineapplePlanner.Domain.Entities
             protected get => Priority?.ToString();
             set
             {
-                if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out var parsedPriority))
+                if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out Priority parsedPriority))
                 {
                     Priority = parsedPriority;
                 }
@@ -48,7 +48,7 @@ namespace PineapplePlanner.Domain.Entities
         public DateTime? DeletedAt { get; set; }
 
         [FirestoreProperty]
-        public List<Tag> Tags { get; set; } = new List<Tag>();
+        public List<Tag> Tags { get; set; } = [];
 
         [FirestoreProperty]
         public string? UserUid { get; set; }

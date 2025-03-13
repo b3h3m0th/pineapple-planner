@@ -10,7 +10,7 @@
 \graphicspath{{images/}}
 
 \usepackage{booktabs}
-
+\usepackage{ulem}
 \usepackage{float}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -120,7 +120,7 @@
 \newpage
 
 \section{Introduction}
-%<Instructions: Write an introduction to your application and its purpose. Also include screenshot>
+%✅<Instructions: Write an introduction to your application and its purpose. Also include screenshot>
 
 PineapplePlanner is a Windows application designed to serve as an intuitive to-do list integrated within a calendar.
 PineapplePlanner enables users to create and manage tasks efficiently by specifying a start and finish date, selecting a priority level (high, medium, low, or no priority), and providing a descriptive task name before submitting it to the calendar.
@@ -138,12 +138,20 @@ Whether users need to focus on urgent tasks or simply keep track of general acti
 \end{figure}
 
 \subsection{Restrictions}
-%< Instructions: List any restrictions that you think is worth mentioning.>
-
+%< ✅Instructions: List any restrictions that you think is worth mentioning.>
+The only notable restriction is that users must have a Google account to sign up for Pineapple Planner. However, since most people already have one, this limitation is minimal.
 \subsection{Enhancements}
 %< Instructions: Explain possible extra features that you plan to implement into your application. If you have no extra features, you can remove this 1.2 section.>
 
-The possible extra features we planned to implement or that has been implemented was custom usernames for users which was already implemented, dark-mode option in settings which transforms the application to dark-mode for users who would prefer to have it that way. AI was another feature that got implemented to help users create tasks faster. Not yet implemented features were Notification features in settings that would allow users to enable/disable notifications, Language option in settings for users whom do not understand english or would rather prefer have it in another language.
+%The possible extra features we planned to implement or that has been implemented was custom usernames for users which was already implemented, dark-mode option in settings which transforms the application to dark-mode for users who would prefer to have it that way. AI was another feature that got implemented to help users create tasks faster. Not yet implemented features were Notification features in settings that would allow users to enable/disable notifications, Language option in settings for users whom do not understand english or would rather prefer have it in another language.
+
+The possible extra features we plan to implement are:
+\begin{enumerate}
+  \item Notification Settings: Users will be able to enable or disable notifications based on their preferences;
+  \item Recurring Tasks: A feature that allows users to set tasks to repeat at specified intervals;
+  \item Users who do not understand English or prefer another language will have the ability to change the application's language in the settings.
+\end{enumerate}
+
 
 \section{Requirements}
 
@@ -178,7 +186,7 @@ The possible extra features we planned to implement or that has been implemented
     \bottomrule
   \end{tabularx}
   \caption{Requirements}
-  \label{Requirement items}
+  \label{Requirements with EMH, AMH, and priority}
 \end{table}
 
 \section{Design and Implementation}
@@ -223,11 +231,12 @@ Each unit test is declared with a \verb|Fact| attribute.
 \lstinputlisting[label=PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests, caption=PineapplePlanner.Domain.UnitTests.Shared.ResultBaseTests]{snippets/ResultBaseTests.cs}
 \bigbreak
 
+\clearpage
 \section{Test Results}
 Table 2 below contains the current status of implemented and tested requirements.
 %<Instructions: This table shall map 1-1 to the table in Chapter 2. The test result for each requirement shall be one of the following: NOT IMPLEMENTED, PASSED or FAILED.>
 
-\begin{table}[h]
+\begin{table}[H]
   \centering
   \begin{tabularx}{\textwidth}{|c|X|c|}
     \toprule
@@ -307,17 +316,48 @@ Otherwise we had to wait one day for the firebase cooldown to continue developme
 
 \subsection{Correctness of time estimates}
 %<Instructions: Look back on your time estimates and discuss your results. How accurate were they? What have you learned about time estimates and how can you get better in next project?>
+When estimating the time required for each task, we aimed to provide realistic approximations based on complexity and priority. After reviewing our actual development process, we found that most predictions were reasonably accurate. However, certain tasks took longer or shorter than expected due to unforeseen implementation challenges.\\
+One key takeaway from this process is that simpler tasks, such as logging in and out, closely matched their estimated time, while more complex features, like task prioritization and calendar integration, occasionally required more time than anticipated. These deviations were primarily due to unexpected technical difficulties and the need for adjustments during development.\\
+Time estimates are helpful in developing, since it's crucial to have approximate measurement of time that tasks will take. However, the more complex a task is, the less precise predictions are made. For future projects, we plan to track time more precisely by tracking AMH and breaking down complex tasks into smaller, more manageable subtasks. This approach will help improve the accuracy of our time predictions and optimize workflow efficiency.
 
 \subsection{Priority decisions}
 %<Instructions: Look back on your feature priority settings. Did you prioritize the right features? Did you succeed to deliver the highest prioritized features? Did you disagree with the examiner on some features? Have you learned anything about setting priorities?>
 
+Looking back at the feature priorities we set a month ago for our first 6 requirements, we can see that we successfully delivered 4 out of 6. However, we did not complete the last two requirements, which were ranked as medium and low priority. Instead, we've created other features such as AI, tags, languages, dark theme, change of the username, etc. during 2 sprints that we had.\\
+At the first PM, the examiner recommended starting with the 3rd requirement (log in/out user), and we followed that advice. As a result, the remaining features were easier to implement.\\
+We learned that setting priorities at the start of the project is important for a quick start in agile development. While focusing on high-priority features, it's also important to keep in mind that lower-priority features may change significantly during subsequent sprints.\\
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{|l|X|l|}
+    \toprule
+    \textbf{Nr} & \textbf{Requirement item}                                 & \textbf{Priority (High/Medium/Low)} \\
+    \hline
+    R1          & The user shall be able to inspect their tasks.            & High                                \\
+    \hline
+    R2          & The user shall be able to manage their tasks.             & High                                \\
+    \hline
+    R3          & The user shall link their task data to their account.     & High                                \\
+    \hline
+    R4          & The user shall be able to prioritize tasks.               & Medium                              \\
+    \hline
+    R5          & \sout{The user shall be able to set recurring tasks.}     & Medium                              \\
+    \hline
+    R6          & \sout{The user shall be able to set reminders for tasks.} & Low                                 \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Requirement items from previous report}
+  \label{Requirement items from previous report}
+\end{table}
 
 \subsection{Conclusion}
 %<Instructions: Look back on the whole project. Here you can write a bit more freely about your thoughts on this project. What was your overall experience? How was the teamwork? What did you learn? Can you list some points that you will do better in next project? Other thoughts. >
+Overall, it was a nice experience to do project with the team. Working with experienced programmers with relatively newbies was slightly challenging because the gap in knowledge was too huge and it was hard to keep up, but at the same time it gave a rewarding experience to work with completely new frameworks, new programming language, and new development environment.
+For the next project it would be nice to have more frequent discussions in the team, because the more we talk, the fewer misunderstandings and conflicts we’ll have regarding the work. Clearer objectives would be created and members wouldn't be awkward to asking for help in the case of problems.
 
-\clearpage
 
-\section{References}
-\printbibliography[heading=none]
+%\clearpage
+%\section{References}
+%\printbibliography[heading=none]
 
 \end{document}

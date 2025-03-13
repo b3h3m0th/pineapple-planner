@@ -9,7 +9,7 @@ namespace PineapplePlanner.AI.JsonConverter
         public override Priority? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             string? value = reader.GetString();
-            if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out var parsedPriority))
+            if (!string.IsNullOrEmpty(value) && Enum.TryParse<Priority>(value, true, out Priority parsedPriority))
             {
                 return parsedPriority;
             }

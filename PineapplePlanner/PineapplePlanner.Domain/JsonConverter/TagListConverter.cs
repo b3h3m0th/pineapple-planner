@@ -47,7 +47,7 @@ namespace PineapplePlanner.Domain.JsonConverter
 
             if (value != null)
             {
-                foreach (var tag in value)
+                foreach (Tag tag in value)
                 {
                     writer.WriteStringValue(tag.Name);
                 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.JSInterop;
+﻿using FirebaseAdmin.Auth;
+using Microsoft.JSInterop;
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Providers;
 using System.Security.Claims;
@@ -18,7 +19,7 @@ namespace PineapplePlanner.UI.Pages
         {
             if (!string.IsNullOrEmpty(idToken))
             {
-                var decodedToken = await _authenticationService.VerifyIdTokenAsync(idToken);
+                FirebaseToken decodedToken = await _authenticationService.VerifyIdTokenAsync(idToken);
                 var user = new ClaimsPrincipal(new ClaimsIdentity([
                     new Claim(ClaimTypes.Name, decodedToken.Claims["name"].ToString() ?? ""),
                     new Claim(ClaimTypes.Email, decodedToken.Claims["email"].ToString() ?? ""),
