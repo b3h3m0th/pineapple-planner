@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PineapplePlanner.Infrastructure;
 
-namespace PineapplePlanner.UI.Extensions
+namespace PineapplePlanner.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {
