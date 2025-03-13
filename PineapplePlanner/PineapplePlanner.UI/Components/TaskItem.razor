@@ -32,7 +32,19 @@
                 <MudIcon Icon=@Icons.Material.Rounded.CalendarToday Color=@Color.Surface Size=@Size.Small />
                 <span>
                     <MudText Typo=@Typo.body2>
-                        @Task.DateDue?.ToString("ddd, dd.M.yyyy HH:mm", new CultureInfo(AuthenticatedLayout?.User?.Culture ?? Culture.English))
+                        @{
+                            var culture = new CultureInfo(AuthenticatedLayout?.User?.Culture ?? Culture.English);
+                            string dateStr = "";
+                            if (Task.DateDue.HasValue)
+                            {
+                                string dayName = culture.DateTimeFormat.GetAbbreviatedDayName(Task.DateDue.Value.DayOfWeek);
+                                string datePart = Task.DateDue.Value.ToString(culture.DateTimeFormat.ShortDatePattern, culture);
+                                datePart = datePart.Replace('/', '.').Replace('-', '.').Replace(' ', '.');
+                                string timePart = Task.DateDue.Value.ToString(culture.DateTimeFormat.ShortTimePattern, culture);
+                                dateStr = $"{dayName}, {datePart} {timePart}";
+                            }
+                        }
+                        @dateStr
                     </MudText>
                 </span>
             </div>

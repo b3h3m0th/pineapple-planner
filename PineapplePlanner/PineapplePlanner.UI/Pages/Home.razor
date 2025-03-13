@@ -14,26 +14,44 @@
 @inject IEntryRepository _taskRepository
 @inject AuthenticationStateProvider _authStateProvider
 
-<div class="home">
-    <div class="tasks-list">
+<div class="home-container">
+    <MudTabs Elevation="0" Color="Color.Primary" 
+             @bind-ActivePanelIndex="@_activeTabIndex"
+             @bind-ActivePanelIndex:after="@UpdateFilterFromTab"
+             Class="task-filter">
+        <MudTabPanel Text="All" />
+        <MudTabPanel Text="Active" />
+        <MudTabPanel Text="Completed" />
+    </MudTabs>
+
+    <div class="tasks-list" style="margin-top: 16px;">
         @if (_tasksResult.Data != null)
         {
-            @if (_tasksResult.Data.Any())
+            @if (_filteredTasks.Any())
             {
-                @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OfType<Domain.Entities.Task>().OrderByDescending(t => t.CompletedAt == null).ThenBy(t => t.CreatedAt))
+                @foreach (Domain.Entities.Task task in _filteredTasks)
                 {
                     <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
                 }
             }
             else
             {
-                <div class="no-entries">
-                    <MudButton Variant=@Variant.Outlined
-                               Color=@Color.Primary
-                               StartIcon=@Icons.Material.Rounded.Add
-                               OnClick=@HandleCreateTask>
-                        Create your first task!
-                    </MudButton>
+                <div class="no-entries py-4">
+                    @if (_tasksResult.Data.Any())
+                    {
+                        <MudText Typo="Typo.body2" Class="text-center">No tasks matching the selected filter.</MudText>
+                    }
+                    else
+                    {
+                        <div class="d-flex justify-center">
+                            <MudButton Variant=@Variant.Outlined
+                                    Color=@Color.Primary
+                                    StartIcon=@Icons.Material.Rounded.Add
+                                    OnClick=@HandleCreateTask>
+                                Create task
+                            </MudButton>
+                        </div>
+                    }
                 </div>
             }
         }
@@ -41,7 +59,7 @@
         {
             @foreach (string error in _tasksResult.Errors)
             {
-                <div>@error</div>
+                <MudAlert Severity="Severity.Error" Class="my-2">@error</MudAlert>
             }
         }
         else
