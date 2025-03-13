@@ -5,12 +5,8 @@ using PineapplePlanner.Infrastructure;
 
 namespace PineapplePlanner.Application.Repositories;
 
-public class UserRepository : BaseRepository<Domain.Entities.User>, IUserRepository
+public class UserRepository(FirestoreService firestoreService) : BaseRepository<Domain.Entities.User>(firestoreService), IUserRepository
 {
-    public UserRepository(FirestoreService firestoreService) : base(firestoreService)
-    {
-    }
-
     public async Task<ResultBase<Domain.Entities.User>> CreateAsync(Domain.Entities.User user)
     {
         ResultBase<Domain.Entities.User> result = ResultBase<Domain.Entities.User>.Success();
@@ -39,7 +35,7 @@ public class UserRepository : BaseRepository<Domain.Entities.User>, IUserReposit
                 .Collection(_collectionName)
                 .WhereEqualTo("UserUid", userUid)
                 .GetSnapshotAsync();
-            DocumentSnapshot? documentSnapshot = querySnapshot.FirstOrDefault();
+            DocumentSnapshot? documentSnapshot = querySnapshot.ElementAtOrDefault(0);
 
             Domain.Entities.User? document = documentSnapshot?.Exists == true ? documentSnapshot.ConvertTo<Domain.Entities.User>() : default;
 
@@ -49,6 +45,35 @@ public class UserRepository : BaseRepository<Domain.Entities.User>, IUserReposit
         {
             return ResultBase<Domain.Entities.User?>.Failure();
         }
+    }
+
+    new public async Task<ResultBase<Domain.Entities.User>> DeleteAsync(string userUid)
+    {
+        ResultBase<Domain.Entities.User> result = ResultBase<Domain.Entities.User>.Success();
+
+        try
+        {
+            QuerySnapshot querySnapshot = await _firestoreService.FirestoreDb
+                .Collection(_collectionName)
+                .WhereEqualTo("UserUid", userUid)
+                .GetSnapshotAsync();
+
+            DocumentSnapshot? documentSnapshot = querySnapshot.ElementAtOrDefault(0);
+
+            if (documentSnapshot != null)
+            {
+                Domain.Entities.User? document = documentSnapshot.Exists == true ? documentSnapshot.ConvertTo<Domain.Entities.User>() : default;
+
+                await documentSnapshot.Reference.DeleteAsync();
+                result.Data = document;
+            }
+        }
+        catch (Exception)
+        {
+            return ResultBase<Domain.Entities.User>.Failure();
+        }
+
+        return result;
     }
 }
 
