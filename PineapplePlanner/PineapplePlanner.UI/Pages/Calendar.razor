@@ -22,7 +22,7 @@
                     <MudIconButton Icon=@Icons.Material.Rounded.ArrowForwardIos OnClick=@(() => HandleNavigateToWeek(FirstDate.AddDays(7))) Color=@Color.Surface Size=@Size.Small />
                 </div>
                 <MudText Typo=@Typo.h6>
-                    Week @ISOWeek.GetWeekOfYear(FirstDate)
+                    @_localize["Week"] @ISOWeek.GetWeekOfYear(FirstDate)
                 </MudText>
             </div>
             <div class="calendar-view">
@@ -43,7 +43,11 @@
                 <div class="calendar-grid">
                     @for (int day = 0; day < 7; day++)
                     {
+<<<<<<< HEAD
                         string dayName = _dayNames[day];
+=======
+                        string dayName = CultureInfo.GetCultureInfo(_localize.CurrentCulture).DateTimeFormat.GetDayName((DayOfWeek)day);
+>>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
                         DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo(_localize.CurrentCulture).DateTimeFormat.FirstDayOfWeek + 7) % 7);
                         DateTime currentDate = firstDateWeek.AddDays(day).Date;
 
@@ -80,7 +84,7 @@
                                                      @onclick:stopPropagation=@true
                                                      @onclick=@(() => HandleEditTask(eventEntry))>
                                                     <MudText Typo=@Typo.caption>
-                                                        @eventEntry.Name
+                                                        @_localize[eventEntry.Name]
                                                     </MudText>
                                                 </div>
                                             }
@@ -99,7 +103,7 @@ else if (_eventsResult.Errors.Any())
 {
     @foreach (string error in _eventsResult.Errors)
     {
-        <div>@error</div>
+        <div>@_localize[error]</div>
     }
 }
 else

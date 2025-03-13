@@ -60,11 +60,14 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleSave()
         {
+<<<<<<< HEAD
             ResultBase<Domain.Entities.User> user = new();
 
+=======
+>>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
             if (!string.IsNullOrEmpty(_user?.Id))
             {
-                user = await _userRepository.UpdateAsync(_user);
+                await _userRepository.UpdateAsync(_user);
             }
             else
             {
@@ -73,7 +76,7 @@ namespace PineapplePlanner.UI.Pages
                 if (!string.IsNullOrEmpty(firebaseUid) && _user != null)
                 {
                     _user.UserUid = firebaseUid;
-                    user = await _userRepository.CreateAsync(_user);
+                    await _userRepository.CreateAsync(_user);
                 }
             }
 
@@ -87,7 +90,11 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandleDeleteAccount()
         {
+<<<<<<< HEAD
             IDialogReference dialogReference = await _dialogService.ShowAsync<DeleteDialog>("Delete account", new DialogParameters<DeleteDialog>()
+=======
+            IDialogReference dialogReference = await _dialogService.ShowAsync<DeleteDialog>(_localize["Delete account"], new DialogParameters<DeleteDialog>()
+>>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
             {
                 { x => x.SubmitText, _localize["Delete"] },
                 { x => x.CancelText, _localize["Cancel"] },

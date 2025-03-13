@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using PineapplePlanner.AI.Extensions;
 using PineapplePlanner.Application;
+using PineapplePlanner.Application.Extensions;
 using PineapplePlanner.UI.Providers;
 using PineapplePlanner.UI.Services;
 
