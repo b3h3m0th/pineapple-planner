@@ -1,6 +1,7 @@
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.JSInterop
+@using PineapplePlanner.Application.Services
 @using PineapplePlanner.UI.Layouts
 @using PineapplePlanner.UI.Services
 
@@ -12,6 +13,7 @@
 @inject FirebaseAuthenticationService _authService
 @inject AuthenticationStateProvider _authProvider
 @inject NavigationManager _navigationManager
+@inject CredentialsService _credentialsService
 
 <div class="login-container">
     <h1>Login</h1>

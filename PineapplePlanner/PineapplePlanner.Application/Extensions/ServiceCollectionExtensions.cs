@@ -13,7 +13,7 @@ namespace PineapplePlanner.Application.Extensions
             services.AddInfrastructureServices();
             services.AddScoped<IEntryRepository, EntryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddSingleton<SecureStorageService>();
+            services.AddSingleton<CredentialsService>();
 
             return services;
         }
