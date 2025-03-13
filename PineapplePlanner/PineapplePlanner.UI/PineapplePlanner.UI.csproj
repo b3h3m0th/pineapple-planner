@@ -6,6 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
@@ -15,22 +18,16 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.13" />
     <PackageReference Include="MudBlazor" Version="8.2.0" />
+    <PackageReference Include="MudBlazor.Translations" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PineapplePlanner.AI\PineapplePlanner.AI.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Application\PineapplePlanner.Application.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Domain\PineapplePlanner.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Layouts\UnauthenticatedLayout.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-    <Content Update="Pages\Register.razor">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
   </ItemGroup>
 
 </Project>

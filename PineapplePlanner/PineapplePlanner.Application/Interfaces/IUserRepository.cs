@@ -6,5 +6,6 @@ namespace PineapplePlanner.Application.Interfaces
     {
         Task<ResultBase<Domain.Entities.User?>> GetByUIdAsync(string uid);
         Task<ResultBase<Domain.Entities.User>> CreateAsync(Domain.Entities.User user);
+        new Task<ResultBase<Domain.Entities.User>> DeleteAsync(string userUid);
     }
 }
