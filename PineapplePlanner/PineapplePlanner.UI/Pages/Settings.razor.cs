@@ -10,12 +10,6 @@ namespace PineapplePlanner.UI.Pages
 {
     public partial class Settings
     {
-        private enum SettingsTab
-        {
-            Profile = 1,
-            Appearance
-        }
-
         [CascadingParameter(Name = "AuthenticatedLayout")]
         public AuthenticatedLayout? AuthenticatedLayout { get; set; }
 
@@ -24,6 +18,14 @@ namespace PineapplePlanner.UI.Pages
 
         private ResultBase<Domain.Entities.User?> _userResult = new();
         private Domain.Entities.User? _user;
+        private readonly Domain.Entities.User _defaultUser = new()
+        {
+            Id = string.Empty,
+            Username = string.Empty,
+            Culture = Culture.English,
+            IsDarkMode = false,
+            UserUid = string.Empty,
+        };
         private int _activeTabIndex = (int)SettingsTab.Profile;
 
         protected override void OnInitialized()
@@ -48,11 +50,11 @@ namespace PineapplePlanner.UI.Pages
 
             _user = new()
             {
-                Id = _userResult.Data?.Id ?? string.Empty,
-                Username = _userResult.Data?.Username ?? string.Empty,
-                Culture = _userResult.Data?.Culture ?? Culture.English,
-                IsDarkMode = _userResult.Data?.IsDarkMode ?? false,
-                UserUid = _userResult.Data?.UserUid ?? string.Empty,
+                Id = _userResult.Data?.Id ?? _defaultUser.Id,
+                Username = _userResult.Data?.Username ?? _defaultUser.Username,
+                Culture = _userResult.Data?.Culture ?? _defaultUser.Culture,
+                IsDarkMode = _userResult.Data?.IsDarkMode ?? _defaultUser.IsDarkMode,
+                UserUid = _userResult.Data?.UserUid ?? _defaultUser.UserUid,
             };
         }
 
@@ -107,11 +109,14 @@ namespace PineapplePlanner.UI.Pages
             get
             {
                 Domain.Entities.User? loaded = _userResult.Data;
-                if (loaded == null) return false;
-
                 Domain.Entities.User? changed = _user;
 
-                return loaded.Username != changed?.Username || loaded.Culture != changed.Culture || loaded.IsDarkMode != changed.IsDarkMode;
+                if (loaded == null)
+                {
+                    return changed != null && (changed.Username != _defaultUser.Username || changed.Culture != _defaultUser.Culture || changed.IsDarkMode != _defaultUser.IsDarkMode);
+                }
+
+                return loaded?.Username != changed?.Username || loaded?.Culture != changed?.Culture || loaded?.IsDarkMode != changed?.IsDarkMode;
             }
         }
     }
