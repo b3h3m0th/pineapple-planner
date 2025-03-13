@@ -9,29 +9,38 @@ namespace PineapplePlanner.UI.Pages
 
         private string _email = "";
         private string _password = "";
+        private bool _isLoading = true;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (!firstRender) return;
-
-            ResultBase<(string email, string password)?> credentialsResult = _credentialsService.Get();
-
-            if (credentialsResult.IsSuccess && credentialsResult.Data != null)
+            if (firstRender)
             {
-                _email = credentialsResult.Data?.email ?? string.Empty;
-                _password = credentialsResult.Data?.password ?? string.Empty;
+                ResultBase<(string email, string password)?> credentialsResult = _credentialsService.Get();
+
+                if (credentialsResult.IsSuccess && credentialsResult.Data != null)
+                {
+                    _email = credentialsResult.Data?.email ?? string.Empty;
+                    _password = credentialsResult.Data?.password ?? string.Empty;
+                }
+
+                if (!string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
+                {
+                    await HandleLogin();
+                }
+                else
+                {
+                    _isLoading = false;
+                    StateHasChanged();
+                }
             }
 
-            if (!string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
-            {
-                await HandleLogin();
-            }
 
             await base.OnAfterRenderAsync(firstRender);
         }
 
         private async Task HandleLogin()
         {
+            _isLoading = true;
             ResultBase result = await _authService.LoginAsync(_email, _password);
 
             if (result.IsSuccess)
@@ -44,6 +53,7 @@ namespace PineapplePlanner.UI.Pages
                 _credentialsService.Remove();
                 _error = string.Join(", ", result.Errors);
             }
+            _isLoading = false;
         }
     }
 }
