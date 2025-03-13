@@ -14,39 +14,71 @@
 @inject IEntryRepository _taskRepository
 @inject AuthenticationStateProvider _authStateProvider
 
-<div class="home">
-    <div class="tasks-list">
-        @if (_tasksResult.Data != null)
-        {
-            @if (_tasksResult.Data.Any())
+<MudContainer MaxWidth="MaxWidth.False" Class="pa-0">
+    <div style="display: flex; justify-content: flex-end; width: 100%;">
+        <div style="width: auto;">
+            <MudSelect T="TaskFilterOption" 
+                      Value="@_selectedFilterOption" 
+                      ValueChanged="@HandleFilterChange" 
+                      Label="Filter Tasks" 
+                      Dense="true"
+                      Style="width: 145px; display: inline-block;" 
+                      AnchorOrigin="Origin.BottomCenter"
+                      Margin="Margin.Dense"
+                      Variant="Variant.Outlined">
+                <MudSelectItem Value="@TaskFilterOption.All">All</MudSelectItem>
+                <MudSelectItem Value="@TaskFilterOption.Active">Active</MudSelectItem>
+                <MudSelectItem Value="@TaskFilterOption.Completed">Completed</MudSelectItem>
+            </MudSelect>
+        </div>
+    </div>
+
+    <MudGrid Class="mt-4">
+        <MudItem xs="12">
+            @if (_tasksResult.Data != null)
             {
-                @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OfType<Domain.Entities.Task>().OrderByDescending(t => t.CompletedAt == null).ThenBy(t => t.CreatedAt))
+                @if (_filteredTasks.Any())
                 {
-                    <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
+                    @foreach (Domain.Entities.Task task in _filteredTasks)
+                    {
+                        <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
+                    }
+                }
+                else
+                {
+                    <div class="d-flex justify-center">
+                        <MudPaper Class="pa-6" Elevation="0">
+                            @if (_tasksResult.Data.Any())
+                            {
+                                <MudText Typo="Typo.body1" Align="Align.Center">No tasks matching the selected filter.</MudText>
+                            }
+                            else
+                            {
+                                <MudText Typo="Typo.body1" Align="Align.Center" Class="mb-4">You don't have any tasks yet.</MudText>
+                                <div class="d-flex justify-center">
+                                    <MudButton Variant=@Variant.Filled
+                                            Color=@Color.Primary
+                                            StartIcon=@Icons.Material.Rounded.Add
+                                            OnClick=@HandleCreateTask>
+                                        Create your first task
+                                    </MudButton>
+                                </div>
+                            }
+                        </MudPaper>
+                    </div>
+                }
+            }
+            else if (_tasksResult.Errors.Any())
+            {
+                @foreach (string error in _tasksResult.Errors)
+                {
+                    <MudAlert Severity="Severity.Error" Class="my-2">@error</MudAlert>
                 }
             }
             else
             {
-                <div class="no-entries">
-                    <MudButton Variant=@Variant.Outlined
-                               Color=@Color.Primary
-                               StartIcon=@Icons.Material.Rounded.Add
-                               OnClick=@HandleCreateTask>
-                        Create your first task!
-                    </MudButton>
-                </div>
+                <MudProgressLinear Color=@Color.Primary Indeterminate />
             }
-        }
-        else if (_tasksResult.Errors.Any())
-        {
-            @foreach (string error in _tasksResult.Errors)
-            {
-                <div>@error</div>
-            }
-        }
-        else
-        {
-            <MudProgressLinear Color=@Color.Primary Indeterminate />
-        }
-    </div>
-</div>
+        </MudItem>
+    </MudGrid>
+</MudContainer>
