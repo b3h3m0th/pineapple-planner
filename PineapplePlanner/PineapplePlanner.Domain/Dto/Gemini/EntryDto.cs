@@ -13,8 +13,6 @@ namespace PineapplePlanner.Domain.Dto.Gemini
         [JsonConverter(typeof(PriorityEnumConverter))]
         public Priority? Priority { get; set; }
         public DateTime? DateDue { get; set; }
-
-        //[JsonConverter(typeof(TagListConverter))]
-        public List<string> Tags { get; set; } = new List<string>();
+        public List<string> Tags { get; set; } = [];
     }
 }
