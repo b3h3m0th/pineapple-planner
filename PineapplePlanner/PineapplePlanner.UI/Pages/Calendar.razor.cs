@@ -85,7 +85,7 @@ namespace PineapplePlanner.UI.Pages
             double offsetY = (displayStart - dayStart).TotalMinutes;
             double height = (displayEnd - displayStart).TotalMinutes;
 
-            return $"margin-top: {offsetY.ToString("0")}px !important; height: {height.ToString("0")}px;";
+            return $"margin-top: {offsetY:0}px !important; height: {height:0}px;";
         }
     }
 }

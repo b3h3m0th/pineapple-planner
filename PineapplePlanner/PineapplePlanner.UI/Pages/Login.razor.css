@@ -1,10 +1,14 @@
-
+.login {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+}
 
 .login-container {
     background-color: #faebd7;
     width: 80%;
     max-width: 500px;
-    max-height:250px;
+    max-height: 250px;
     height: 60%;
     margin: 50px auto;
     padding-top: 40%;
@@ -36,9 +40,9 @@ button {
     height: 40px;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
+    button:hover {
+        background-color: #0056b3;
+    }
 
 a {
     color: #5F9EA0;
