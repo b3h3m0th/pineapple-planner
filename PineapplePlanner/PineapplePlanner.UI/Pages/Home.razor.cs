@@ -2,16 +2,21 @@
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Layouts;
 using PineapplePlanner.UI.Providers;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace PineapplePlanner.UI.Pages
 {
-    public enum TaskFilterOption
+    public enum TasksListFilterOption
     {
-        All,
-        Active,
-        Completed
+        Completed,
+        Uncompleted
+    }
+
+    public enum TasksListSortOption
+    {
+        CreationDateAscending,
+        CreationDateDescending,
+        CompletionDateAscending,
+        CompletionDateDescending
     }
 
     public partial class Home
@@ -20,8 +25,10 @@ namespace PineapplePlanner.UI.Pages
         public AuthenticatedLayout? AuthenticatedLayout { get; set; }
 
         private ResultBase<List<Domain.Entities.Task>> _tasksResult = new();
-        private List<Domain.Entities.Task> _filteredTasks = new();
-        private TaskFilterOption _selectedFilterOption = TaskFilterOption.All;
+        private List<Domain.Entities.Task> _filteredTasks = [];
+        private string _searchQuery = string.Empty;
+        private List<TasksListFilterOption> _selectedFilterOptions = [TasksListFilterOption.Completed, TasksListFilterOption.Uncompleted];
+        private TasksListSortOption _selectedSortOption = TasksListSortOption.CreationDateDescending;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -37,47 +44,58 @@ namespace PineapplePlanner.UI.Pages
             if (!string.IsNullOrEmpty(firebaseUid))
             {
                 _tasksResult = await _taskRepository.GetAllAsync<Domain.Entities.Task>(firebaseUid);
-                ApplyFilter();
+                ApplyFilterAndSort();
             }
         }
 
-        private void HandleFilterChange(TaskFilterOption newFilter)
+        private void HandleSelectedFilterValuesChanged(IEnumerable<TasksListFilterOption>? newFilters)
         {
-            _selectedFilterOption = newFilter;
-            ApplyFilter();
+            _selectedFilterOptions = newFilters?.ToList() ?? [];
+            ApplyFilterAndSort();
         }
 
-        private void ApplyFilter()
+        private void HandleSelectedSortValueChanged(TasksListSortOption sortOption)
+        {
+            _selectedSortOption = sortOption;
+            ApplyFilterAndSort();
+        }
+
+        private void HandleSearchQueryValueChanged(string value)
+        {
+            _searchQuery = value;
+            ApplyFilterAndSort();
+        }
+
+        private void ApplyFilterAndSort()
         {
             if (_tasksResult.Data == null)
             {
-                _filteredTasks = new List<Domain.Entities.Task>();
+                _filteredTasks = [];
                 return;
             }
 
-            var tasks = _tasksResult.Data.OfType<Domain.Entities.Task>();
+            List<Domain.Entities.Task> tasks = _tasksResult.Data;
 
-            switch (_selectedFilterOption)
+            _filteredTasks = _tasksResult.Data
+                .Where(t => (_selectedFilterOptions.Contains(TasksListFilterOption.Completed) && t.IsCompleted)
+                         || (_selectedFilterOptions.Contains(TasksListFilterOption.Uncompleted) && !t.IsCompleted))
+                .Where(t =>
+                {
+                    if (string.IsNullOrWhiteSpace(_searchQuery)) return true;
+
+                    var searchWords = _searchQuery.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                    return searchWords.All(word => t.Name.Contains(word, StringComparison.OrdinalIgnoreCase));
+                })
+                .ToList();
+
+            _filteredTasks = _selectedSortOption switch
             {
-                case TaskFilterOption.All:
-                    _filteredTasks = tasks.OrderByDescending(t => t.CreatedAt)
-                        .ToList();
-                    break;
-                case TaskFilterOption.Active:
-                    _filteredTasks = tasks.Where(t => t.CompletedAt == null)
-                        .OrderByDescending(t => t.CreatedAt)
-                        .ToList();
-                    break;
-                case TaskFilterOption.Completed:
-                    _filteredTasks = tasks.Where(t => t.CompletedAt != null)
-                        .OrderByDescending(t => t.CreatedAt)
-                        .ToList();
-                    break;
-                default:
-                    _filteredTasks = tasks.OrderByDescending(t => t.CreatedAt)
-                        .ToList();
-                    break;
-            }
+                TasksListSortOption.CreationDateAscending => _filteredTasks.OrderBy(t => t.CreatedAt).ToList(),
+                TasksListSortOption.CreationDateDescending => _filteredTasks.OrderByDescending(t => t.CreatedAt).ToList(),
+                TasksListSortOption.CompletionDateAscending => _filteredTasks.OrderBy(t => t.CompletedAt).ToList(),
+                TasksListSortOption.CompletionDateDescending => _filteredTasks.OrderByDescending(t => t.CompletedAt).ToList(),
+                _ => _filteredTasks
+            };
         }
 
         private void HandleCreateTask()
