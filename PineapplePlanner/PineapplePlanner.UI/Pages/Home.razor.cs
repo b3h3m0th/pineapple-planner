@@ -2,8 +2,6 @@
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Layouts;
 using PineapplePlanner.UI.Providers;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace PineapplePlanner.UI.Pages
 {

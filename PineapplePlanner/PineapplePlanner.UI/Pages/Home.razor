@@ -6,21 +6,25 @@
 @using PineapplePlanner.UI.Components
 @using PineapplePlanner.UI.Layouts
 @using PineapplePlanner.UI.Providers
+@using PineapplePlanner.UI.Services
 
 @page "/"
 
 @attribute [Authorize]
 
 @inject IEntryRepository _taskRepository
+@inject LocalizationService _localize
 @inject AuthenticationStateProvider _authStateProvider
 
 <div class="home">
     <div class="modifiers">
         <MudPaper Class="pa-2" Elevation="25">
             <MudSelect T=@TaskFilterOption
+                       AdornmentIcon=@Icons.Material.Rounded.FilterAlt
+                       Adornment=@Adornment.Start
                        Value="@_selectedFilterOption"
                        ValueChanged="@HandleFilterChange"
-                       Label="Filter Tasks"
+                       Label=@_localize["Filter"]
                        Dense
                        AnchorOrigin="Origin.BottomLeft"
                        Margin="Margin.Dense"
@@ -48,11 +52,11 @@
                     <MudPaper Class="pa-6" Elevation="0">
                         @if (_tasksResult.Data.Any())
                         {
-                            <MudText Typo="Typo.body1" Align="Align.Center">No tasks matching the selected filter.</MudText>
+                            <MudText Typo="Typo.body1" Align="Align.Center">@_localize["No tasks match the selected filters."]</MudText>
                         }
                         else
                         {
-                            <MudText Typo="Typo.body1" Align="Align.Center" Class="mb-4">You don't have any tasks yet.</MudText>
+                            <MudText Typo="Typo.body1" Align="Align.Center" Class="mb-4">@_localize["You don't have any tasks yet."]</MudText>
                             <div class="d-flex justify-center">
                                 <MudButton Variant=@Variant.Filled
                                            Color=@Color.Primary
