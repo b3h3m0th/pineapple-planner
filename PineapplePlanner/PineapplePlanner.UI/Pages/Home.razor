@@ -34,7 +34,6 @@
                        SelectedValuesChanged=@HandleSelectedFilterValuesChanged
                        MultiSelection
                        Margin="Margin.Dense"
-                       Dense
                        AdornmentIcon=@Icons.Material.Rounded.FilterAlt
                        AnchorOrigin="Origin.BottomLeft"
                        TransformOrigin=@Origin.BottomLeft
@@ -47,7 +46,6 @@
                        ValueChanged=@HandleSelectedSortValueChanged
                        Label=@_localize["Sort"]
                        Margin=@Margin.Dense
-                       Dense
                        AdornmentIcon=@Icons.Material.Rounded.Sort
                        Variant=@Variant.Outlined>
                 <MudSelectItem Value="@TasksListSortOption.CreationDate">@_localize["Creation date"]</MudSelectItem>
