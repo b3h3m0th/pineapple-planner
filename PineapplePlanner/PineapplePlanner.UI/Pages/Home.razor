@@ -48,7 +48,24 @@
                        Margin=@Margin.Dense
                        AdornmentIcon=@Icons.Material.Rounded.Sort
                        Variant=@Variant.Outlined>
-                <MudSelectItem Value="@TasksListSortOption.CreationDate">@_localize["Creation date"]</MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CreationDateDescending">
+                    <div class="sort-select-item">
+                        @_localize["Creation date"]
+                        <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                    </div>
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CreationDateAscending">
+                    @_localize["Creation date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CompletionDateDescending">
+                    @_localize["Completion date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CompletionDateAscending">
+                    @_localize["Completion date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
             </MudSelect>
         </div>
     </MudPaper>

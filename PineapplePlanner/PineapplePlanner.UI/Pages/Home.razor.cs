@@ -13,7 +13,10 @@ namespace PineapplePlanner.UI.Pages
 
     public enum TasksListSortOption
     {
-        CreationDate
+        CreationDateAscending,
+        CreationDateDescending,
+        CompletionDateAscending,
+        CompletionDateDescending
     }
 
     public partial class Home
@@ -25,7 +28,7 @@ namespace PineapplePlanner.UI.Pages
         private List<Domain.Entities.Task> _filteredTasks = [];
         private string _searchQuery = string.Empty;
         private List<TasksListFilterOption> _selectedFilterOptions = [TasksListFilterOption.Completed, TasksListFilterOption.Uncompleted];
-        private TasksListSortOption _selectedSortOption;
+        private TasksListSortOption _selectedSortOption = TasksListSortOption.CreationDateDescending;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -85,10 +88,14 @@ namespace PineapplePlanner.UI.Pages
                 })
                 .ToList();
 
-            if (_selectedSortOption == TasksListSortOption.CreationDate)
+            _filteredTasks = _selectedSortOption switch
             {
-                _filteredTasks = _filteredTasks.OrderBy(t => t.CreatedAt).ToList();
-            }
+                TasksListSortOption.CreationDateAscending => _filteredTasks.OrderBy(t => t.CreatedAt).ToList(),
+                TasksListSortOption.CreationDateDescending => _filteredTasks.OrderByDescending(t => t.CreatedAt).ToList(),
+                TasksListSortOption.CompletionDateAscending => _filteredTasks.OrderBy(t => t.CompletedAt).ToList(),
+                TasksListSortOption.CompletionDateDescending => _filteredTasks.OrderByDescending(t => t.CompletedAt).ToList(),
+                _ => _filteredTasks
+            };
         }
 
         private void HandleCreateTask()
