@@ -17,25 +17,43 @@
 @inject AuthenticationStateProvider _authStateProvider
 
 <div class="home">
-    <div class="modifiers">
-        <MudPaper Class="pa-2" Elevation="25">
-            <MudSelect T=@TaskFilterOption
-                       AdornmentIcon=@Icons.Material.Rounded.FilterAlt
-                       Adornment=@Adornment.Start
-                       Value="@_selectedFilterOption"
-                       ValueChanged="@HandleFilterChange"
+    <MudPaper Class="ma-2 pa-2" Elevation="25">
+        <div class="modifiers">
+            <MudTextField T="string"
+                          Value=@_searchQuery
+                          ValueChanged=@HandleSearchQueryValueChanged
+                          Immediate
+                          Margin=@Margin.Dense
+                          Label=@_localize["Search"]
+                          Adornment=@Adornment.End
+                          Variant=@Variant.Outlined
+                          AdornmentIcon=@Icons.Material.Rounded.Search />
+            <MudSelect T=@TasksListFilterOption
                        Label=@_localize["Filter"]
-                       Dense
-                       AnchorOrigin="Origin.BottomLeft"
+                       SelectedValues=@_selectedFilterOptions
+                       SelectedValuesChanged=@HandleSelectedFilterValuesChanged
+                       MultiSelection
                        Margin="Margin.Dense"
+                       Dense
+                       AdornmentIcon=@Icons.Material.Rounded.FilterAlt
+                       AnchorOrigin="Origin.BottomLeft"
                        TransformOrigin=@Origin.BottomLeft
                        Variant="Variant.Outlined">
-                <MudSelectItem Value="@TasksListFilterOption.All">All</MudSelectItem>
-                <MudSelectItem Value="@TasksListFilterOption.Active">Active</MudSelectItem>
-                <MudSelectItem Value="@TasksListFilterOption.Completed">Completed</MudSelectItem>
+                <MudSelectItem Value="@TasksListFilterOption.Completed">@_localize["Completed"]</MudSelectItem>
+                <MudSelectItem Value="@TasksListFilterOption.Uncompleted">@_localize["Uncompleted"]</MudSelectItem>
             </MudSelect>
-        </MudPaper>
-    </div>
+            <MudSelect T=@TasksListSortOption
+                       Value=@_selectedSortOption
+                       ValueChanged=@HandleSelectedSortValueChanged
+                       Label=@_localize["Sort"]
+                       Margin=@Margin.Dense
+                       Dense
+                       AdornmentIcon=@Icons.Material.Rounded.Sort
+                       Variant=@Variant.Outlined>
+                <MudSelectItem Value="@TasksListSortOption.CreationDate">@_localize["Creation date"]</MudSelectItem>
+            </MudSelect>
+        </div>
+    </MudPaper>
     <div class="tasks-list">
         @if (_tasksResult.Data != null)
         {
