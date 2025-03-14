@@ -5,7 +5,7 @@ using PineapplePlanner.UI.Providers;
 
 namespace PineapplePlanner.UI.Pages
 {
-    public enum TaskFilterOption
+    public enum TasksListFilterOption
     {
         All,
         Active,
@@ -18,8 +18,8 @@ namespace PineapplePlanner.UI.Pages
         public AuthenticatedLayout? AuthenticatedLayout { get; set; }
 
         private ResultBase<List<Domain.Entities.Task>> _tasksResult = new();
-        private List<Domain.Entities.Task> _filteredTasks = new();
-        private TaskFilterOption _selectedFilterOption = TaskFilterOption.All;
+        private List<Domain.Entities.Task> _filteredTasks = [];
+        private TasksListFilterOption _selectedFilterOption = TasksListFilterOption.All;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -39,7 +39,7 @@ namespace PineapplePlanner.UI.Pages
             }
         }
 
-        private void HandleFilterChange(TaskFilterOption newFilter)
+        private void HandleFilterChange(TasksListFilterOption newFilter)
         {
             _selectedFilterOption = newFilter;
             ApplyFilter();
@@ -57,16 +57,16 @@ namespace PineapplePlanner.UI.Pages
 
             switch (_selectedFilterOption)
             {
-                case TaskFilterOption.All:
+                case TasksListFilterOption.All:
                     _filteredTasks = tasks.OrderByDescending(t => t.CreatedAt)
                         .ToList();
                     break;
-                case TaskFilterOption.Active:
+                case TasksListFilterOption.Active:
                     _filteredTasks = tasks.Where(t => t.CompletedAt == null)
                         .OrderByDescending(t => t.CreatedAt)
                         .ToList();
                     break;
-                case TaskFilterOption.Completed:
+                case TasksListFilterOption.Completed:
                     _filteredTasks = tasks.Where(t => t.CompletedAt != null)
                         .OrderByDescending(t => t.CreatedAt)
                         .ToList();
