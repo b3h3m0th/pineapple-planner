@@ -14,6 +14,17 @@ namespace PineapplePlanner.UI.Pages
         Completed
     }
 
+    public enum TaskSortOption
+    {
+        All,
+        Newest,
+        Oldest,
+        HighPriority,
+        MediumPriority,
+        LowPriority,
+        DueDate
+    }
+
     public partial class Home
     {
         [CascadingParameter(Name = "AuthenticatedLayout")]
@@ -22,6 +33,7 @@ namespace PineapplePlanner.UI.Pages
         private ResultBase<List<Domain.Entities.Task>> _tasksResult = new();
         private List<Domain.Entities.Task> _filteredTasks = new();
         private TaskFilterOption _selectedFilterOption = TaskFilterOption.All;
+        private TaskSortOption _selectedSortOption = TaskSortOption.All;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -37,17 +49,23 @@ namespace PineapplePlanner.UI.Pages
             if (!string.IsNullOrEmpty(firebaseUid))
             {
                 _tasksResult = await _taskRepository.GetAllAsync<Domain.Entities.Task>(firebaseUid);
-                ApplyFilter();
+                ApplyFilterAndSort();
             }
         }
 
         private void HandleFilterChange(TaskFilterOption newFilter)
         {
             _selectedFilterOption = newFilter;
-            ApplyFilter();
+            ApplyFilterAndSort();
         }
 
-        private void ApplyFilter()
+        private void HandleSortChange(TaskSortOption newSort)
+        {
+            _selectedSortOption = newSort;
+            ApplyFilterAndSort();
+        }
+
+        private void ApplyFilterAndSort()
         {
             if (_tasksResult.Data == null)
             {
@@ -60,24 +78,53 @@ namespace PineapplePlanner.UI.Pages
             switch (_selectedFilterOption)
             {
                 case TaskFilterOption.All:
-                    _filteredTasks = tasks.OrderByDescending(t => t.CreatedAt)
-                        .ToList();
+                    tasks = tasks;
                     break;
                 case TaskFilterOption.Active:
-                    _filteredTasks = tasks.Where(t => t.CompletedAt == null)
-                        .OrderByDescending(t => t.CreatedAt)
-                        .ToList();
+                    tasks = tasks.Where(t => t.CompletedAt == null);
                     break;
                 case TaskFilterOption.Completed:
-                    _filteredTasks = tasks.Where(t => t.CompletedAt != null)
-                        .OrderByDescending(t => t.CreatedAt)
-                        .ToList();
+                    tasks = tasks.Where(t => t.CompletedAt != null);
                     break;
                 default:
-                    _filteredTasks = tasks.OrderByDescending(t => t.CreatedAt)
-                        .ToList();
+                    tasks = tasks;
                     break;
             }
+
+            switch (_selectedSortOption)
+            {
+                case TaskSortOption.All:
+                    tasks = tasks.OrderByDescending(t => t.CreatedAt);
+                    break;
+                case TaskSortOption.Newest:
+                    tasks = tasks.OrderByDescending(t => t.CreatedAt);
+                    break;
+                case TaskSortOption.Oldest:
+                    tasks = tasks.OrderBy(t => t.CreatedAt);
+                    break;
+                case TaskSortOption.HighPriority:
+                    tasks = tasks.Where(t => t.Priority == Domain.Enums.Priority.High)
+                                .OrderByDescending(t => t.CreatedAt);
+                    break;
+                case TaskSortOption.MediumPriority:
+                    tasks = tasks.Where(t => t.Priority == Domain.Enums.Priority.Medium)
+                                .OrderByDescending(t => t.CreatedAt);
+                    break;
+                case TaskSortOption.LowPriority:
+                    tasks = tasks.Where(t => t.Priority == Domain.Enums.Priority.Low)
+                                .OrderByDescending(t => t.CreatedAt);
+                    break;
+                case TaskSortOption.DueDate:
+                    tasks = tasks.Where(t => t.DateDue != null)
+                                .OrderBy(t => t.DateDue)
+                                .ThenByDescending(t => t.CreatedAt);
+                    break;
+                default:
+                    tasks = tasks.OrderByDescending(t => t.CreatedAt);
+                    break;
+            }
+
+            _filteredTasks = tasks.ToList();
         }
 
         private void HandleCreateTask()

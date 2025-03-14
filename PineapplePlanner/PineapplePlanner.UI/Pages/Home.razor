@@ -16,7 +16,7 @@
 
 <MudContainer MaxWidth="MaxWidth.False" Class="pa-0">
     <div style="display: flex; justify-content: flex-end; width: 100%;">
-        <div style="width: auto;">
+        <div style="width: auto; display: flex; gap: 8px;">
             <MudSelect T="TaskFilterOption" 
                       Value="@_selectedFilterOption" 
                       ValueChanged="@HandleFilterChange" 
@@ -29,6 +29,24 @@
                 <MudSelectItem Value="@TaskFilterOption.All">All</MudSelectItem>
                 <MudSelectItem Value="@TaskFilterOption.Active">Active</MudSelectItem>
                 <MudSelectItem Value="@TaskFilterOption.Completed">Completed</MudSelectItem>
+            </MudSelect>
+            
+            <MudSelect T="TaskSortOption" 
+                      Value="@_selectedSortOption" 
+                      ValueChanged="@HandleSortChange" 
+                      Label="Sort Tasks" 
+                      Dense="true"
+                      Style="width: 145px; display: inline-block;" 
+                      AnchorOrigin="Origin.BottomCenter"
+                      Margin="Margin.Dense"
+                      Variant="Variant.Outlined">
+                <MudSelectItem Value="@TaskSortOption.All">All</MudSelectItem>
+                <MudSelectItem Value="@TaskSortOption.Newest">Newest</MudSelectItem>
+                <MudSelectItem Value="@TaskSortOption.Oldest">Oldest</MudSelectItem>
+                <MudSelectItem Value="@TaskSortOption.HighPriority">High Priority</MudSelectItem>
+                <MudSelectItem Value="@TaskSortOption.MediumPriority">Medium Priority</MudSelectItem>
+                <MudSelectItem Value="@TaskSortOption.LowPriority">Low Priority</MudSelectItem>
+                <MudSelectItem Value="@TaskSortOption.DueDate">Due Date</MudSelectItem>
             </MudSelect>
         </div>
     </div>
