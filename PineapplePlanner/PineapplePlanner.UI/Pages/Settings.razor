@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 @using PineapplePlanner.Application.Interfaces
+@using PineapplePlanner.UI.Localization
 @using PineapplePlanner.UI.Services
 
 @page "/settings"
@@ -8,32 +9,80 @@
 @attribute [Authorize]
 
 @inject IUserRepository _userRepository
+@inject IEntryRepository _entryRepository
+@inject IDialogService _dialogService
 @inject FirebaseAuthenticationService _authService
 @inject AuthenticationStateProvider _authStateProvider
+@inject LocalizationService _localize
+@inject NavigationManager _navigationManager
 
 <div class="settings">
-    @if (_userResult.Data != null)
+    @if (_user != null)
     {
         <MudPaper Elevation="25" Style="width: 100%; height: 100%; display: flex; flex-direction: column;">
             <div class="settings__content">
                 <MudTabs Rounded @bind-ActivePanelIndex=@_activeTabIndex>
-                    <MudTabPanel Text="Profile" ID=@("profile") Icon=@Icons.Material.Rounded.Person>
+                    <MudTabPanel Text=@_localize["Profile"] ID=@("profile") Icon=@Icons.Material.Rounded.Person>
                         <div class="profile">
-                            <MudTextField @bind-Value=@_user.Username Label="Username" Variant=@Variant.Outlined Margin=@Margin.Dense MaxLength="20" />
+                            <MudTextField @bind-Value=@_user.Username Immediate Label=@_localize["Username"] Variant=@Variant.Outlined Margin=@Margin.Dense MaxLength="20" />
                         </div>
                     </MudTabPanel>
-                    <MudTabPanel Text="Appearance" ID=@("appearance") Icon=@Icons.Material.Rounded.Laptop>
+                    <MudTabPanel Text=@_localize["Apperance"] ID=@("appearance") Icon=@Icons.Material.Rounded.Laptop>
                         <div class="appearance">
-                            <MudSwitch @bind-Value=@_user.IsDarkMode T=@bool Label="Dark Mode" />
+                            <MudSelect @bind-Value=@_user.Culture Label=@_localize["Language"] Variant=@Variant.Outlined Margin=@Margin.Dense>
+                                <MudSelectItem Value=@Culture.English>
+                                    <div class="language-item">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/English_language.svg" class="mr-1" />
+                                        <span>@_localize["English"]</span>
+                                    </div>
+                                </MudSelectItem>
+                                <MudSelectItem Value=@Culture.Swedish>
+                                    <div class="language-item">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Sweden_fixed.svg" height="14" class="mr-1" />
+                                        <span>@_localize["Swedish"]</span>
+                                    </div>
+                                </MudSelectItem>
+                                <MudSelectItem Value=@Culture.German>
+                                    <div class="language-item">
+                                        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" height="14" class="mr-1" />
+                                        <span>@_localize["German"]</span>
+                                    </div>
+                                </MudSelectItem>
+                                <MudSelectItem Value=@Culture.Spanish>
+                                    <div class="language-item">
+                                        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" height="14" class="mr-1" />
+                                        <span>@_localize["Spanish"]</span>
+                                    </div>
+                                </MudSelectItem>
+                                <MudSelectItem Value=@Culture.Russian>
+                                    <div class="language-item">
+                                        <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" height="14" class="mr-1" />
+                                        <span>@_localize["Russian"]</span>
+                                    </div>
+                                </MudSelectItem>
+                            </MudSelect>
+                            <MudSwitch @bind-Value=@_user.IsDarkMode T=@bool Label=@_localize["Dark Mode"] />
+                        </div>
+                    </MudTabPanel>
+                    <MudTabPanel Text=@_localize["Danger zone"] ID=@("danger-zone") Icon=@Icons.Material.Rounded.Dangerous>
+                        <div class="danger-zone">
+                            <MudButton Color=@Color.Error
+                                       OnClick=@HandleDeleteAccount
+                                       Variant=@Variant.Outlined>@_localize["Delete account"]</MudButton>
                         </div>
                     </MudTabPanel>
                 </MudTabs>
             </div>
             <MudDivider />
             <div class="actions">
+                <MudButton OnClick=@HandleCancel
+                           Color=@Color.Surface
+                           Disabled=@(!HasChanges)
+                           Variant=@Variant.Outlined>@_localize["Cancel"]</MudButton>
                 <MudButton OnClick=@HandleSave
                            Color=@Color.Surface
-                           Variant=@Variant.Outlined>Save</MudButton>
+                           Disabled=@(!HasChanges)
+                           Variant=@Variant.Outlined>@_localize["Save changes"]</MudButton>
             </div>
         </MudPaper>
     }

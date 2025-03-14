@@ -9,30 +9,37 @@ namespace PineapplePlanner.UI.Layouts
         [CascadingParameter(Name = "MainLayout")]
         public MainLayout? MainLayout { get; set; }
 
-        private bool _isDarkMode;
         private bool _isTaskDetailOpen;
         private Domain.Entities.Entry? _detailTask;
+        public Domain.Entities.User? User { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            await LoadTheme();
+            await LoadUser();
             await base.OnInitializedAsync();
         }
 
-        public async Task LoadTheme()
+        public async Task LoadUser()
         {
             string? firebaseUid = ((FirebaseAuthStateProvider)_authStateProvider).FirebaseUid;
 
             if (!string.IsNullOrEmpty(firebaseUid))
             {
                 ResultBase<Domain.Entities.User?> userResult = await _userRepository.GetByUIdAsync(firebaseUid);
-                _isDarkMode = userResult.Data?.IsDarkMode ?? false;
 
-                if (MainLayout?.IsDarkMode != _isDarkMode)
+                if (userResult.IsSuccess && userResult.Data != null)
                 {
-                    MainLayout?.SetDarkMode(_isDarkMode);
+                    User = userResult.Data;
+                    MainLayout?.SetDarkMode(userResult.Data.IsDarkMode);
+                    SetCulture(userResult.Data.Culture);
                 }
             }
+        }
+
+        public void SetCulture(string name)
+        {
+            _localizationService.SetCulture(name);
+            StateHasChanged();
         }
 
         public void OpenTaskDetail(Domain.Entities.Entry? entry = null)

@@ -7,6 +7,7 @@
 @inject IEntryRepository _taskRepository
 @inject FirebaseAuthenticationService _authenticationService
 @inject AuthenticationStateProvider _authStateProvider
+@inject LocalizationService _localize
 
 @if (IsOpen)
 {
@@ -16,16 +17,16 @@
                 <MudIconButton Icon=@Icons.Material.Rounded.Close OnClick=@HandleClose Color=@Color.Surface />
             </div>
             <MudForm Class="p-4">
-                <MudTextField Label="Name" @bind-Value=@Entry.Name Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
-                <MudTextField T="string" Label="Description" @bind-Value=@Entry.Description Variant="@Variant.Outlined" FullWidth Lines="4" Margin=@Margin.Dense />
-                <MudSelect T=@(Domain.Enums.Priority?) @bind-Value=@Entry.Priority Label="Priority" Variant=@Variant.Outlined FullWidth Margin=@Margin.Dense>
+                <MudTextField Label=@_localize["Name"] @bind-Value=@Entry.Name Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
+                <MudTextField T="string" Label=@_localize["Description"] @bind-Value=@Entry.Description Variant="@Variant.Outlined" FullWidth Lines="4" Margin=@Margin.Dense />
+                <MudSelect T=@(Domain.Enums.Priority?) @bind-Value=@Entry.Priority Label=@_localize["Priority"] Variant=@Variant.Outlined FullWidth Margin=@Margin.Dense>
                     @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>().Where(p => p != Domain.Enums.Priority.None))
                     {
-                        <MudSelectItem T=@(Domain.Enums.Priority?) Value=@priority>@priority</MudSelectItem>
+                        <MudSelectItem T=@(Domain.Enums.Priority?) Value=@priority>@_localize[priority.ToString()]</MudSelectItem>
                     }
                 </MudSelect>
                 <MudTextField T=@string
-                              Label="Tags"
+                              Label=@_localize["Tags"]
                               @bind-Value=@_addATag
                               Variant=@Variant.Outlined
                               Margin=@Margin.Dense
@@ -45,24 +46,24 @@
                     </MudChipSet>
                 </div>
                 <MudTabs Centered Rounded Class="mt-4" @bind-ActivePanelIndex=@_activeTabIndex @bind-ActivePanelIndex:after=@HandleTabChange>
-                    <MudTabPanel Text="Task" ID=@("task")>
+                    <MudTabPanel Text=@_localize["Task"] ID=@("task")>
                         @if (Entry is Domain.Entities.Task task)
                         {
                             <div class="datetime-row">
                                 <div class="datetime-row-item">
-                                    <MudDatePicker Label="Due Date" @bind-Date=@task.DateDue Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                                    <MudDatePicker Label=@_localize["Due Date"] @bind-Date=@task.DateDue Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
                                 </div>
                                 <div class="datetime-row-item">
                                     @if (task.DateDue != null)
                                     {
-                                        <MudTimePicker Label="Time" @bind-Time=@DueTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
+                                        <MudTimePicker Label=@_localize["Time"] @bind-Time=@DueTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
                                     }
                                 </div>
                             </div>
                         }
-                        <MudCheckBox @bind-Value=@_isCompleted Label="Completed" Color=@Color.Surface T="bool" Class="mt-1" />
+                        <MudCheckBox @bind-Value=@_isCompleted Label=@_localize["Completed"] Color=@Color.Surface T="bool" Class="mt-1" />
                     </MudTabPanel>
-                    <MudTabPanel Text="Event" ID=@("event")>
+                    <MudTabPanel Text=@_localize["Event"] ID=@("event")>
                         @if (Entry is Domain.Entities.Event eventEntry)
                         {
                             <div class="datetime-row">
@@ -72,18 +73,18 @@
                                 <div class="datetime-row-item">
                                     @if (eventEntry.StartDate != null)
                                     {
-                                        <MudTimePicker Label="Time" @bind-Time=@StartDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
+                                        <MudTimePicker Label=@_localize["Time"] @bind-Time=@StartDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
                                     }
                                 </div>
                             </div>
                             <div class="datetime-row">
                                 <div class="datetime-row-item">
-                                    <MudDatePicker Label="End" @bind-Date=@eventEntry.EndDate Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
+                                    <MudDatePicker Label=@_localize["End"] @bind-Date=@eventEntry.EndDate Variant=@Variant.Outlined Margin=@Margin.Dense Editable></MudDatePicker>
                                 </div>
                                 <div class="datetime-row-item">
                                     @if (eventEntry.EndDate != null)
                                     {
-                                        <MudTimePicker Label="Time" @bind-Time=@EndDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
+                                        <MudTimePicker Label=@_localize["Time"] @bind-Time=@EndDateTimeSpan Variant=@Variant.Outlined Margin=@Margin.Dense Editable />
                                     }
                                 </div>
                             </div>
@@ -94,13 +95,13 @@
                 <div class="task-actions">
                     <MudButton OnClick=@HandleSave
                                Color=@Color.Surface
-                               Variant=@Variant.Outlined>Save</MudButton>
+                               Variant=@Variant.Outlined>@_localize["Save"]</MudButton>
 
                     @if (!string.IsNullOrEmpty(Entry.Id))
                     {
                         <MudButton OnClick=@HandleDelete
                                    Color=@Color.Error
-                                   Variant=@Variant.Outlined>Delete</MudButton>
+                                   Variant=@Variant.Outlined>@_localize["Delete"]</MudButton>
                     }
                 </div>
             </MudForm>

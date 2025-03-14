@@ -4,12 +4,12 @@
     {
         public bool IsSuccess { get; set; }
 
-        public List<string> Errors { get; set; } = new List<string>();
+        public List<string> Errors { get; set; } = [];
 
         public ResultBase() { }
 
-        public static ResultBase Success() => new ResultBase() { IsSuccess = true };
-        public static ResultBase Failure() => new ResultBase() { IsSuccess = false };
+        public static ResultBase Success() => new() { IsSuccess = true };
+        public static ResultBase Failure() => new() { IsSuccess = false };
 
         public void AddErrorAndSetFailure(string error)
         {
@@ -29,7 +29,7 @@
             Data = data;
         }
 
-        new public static ResultBase<T> Success() => new ResultBase<T>() { IsSuccess = true };
+        new public static ResultBase<T> Success() => new() { IsSuccess = true };
 
         public static ResultBase<T> Success(T data)
         {
@@ -40,6 +40,6 @@
             };
         }
 
-        new public static ResultBase<T> Failure() => new ResultBase<T>() { IsSuccess = false };
+        new public static ResultBase<T> Failure() => new() { IsSuccess = false };
     }
 }

@@ -70,7 +70,6 @@ namespace PineapplePlanner.UI.Services
 
                 result.AddErrorAndSetFailure("Verification Email sent");
                 //await LoginAsync(email, password);
-                //secret comment by dkxd!
             }
             catch (Exception ex)
             {
@@ -97,6 +96,29 @@ namespace PineapplePlanner.UI.Services
                     result.AddErrorAndSetFailure(signInResult?.Error ?? "");
                     ((FirebaseAuthStateProvider)_authProvider)?.MarkUserAsLoggedOut();
                 }
+            }
+            catch (Exception ex)
+            {
+                result.AddErrorAndSetFailure(ex.Message);
+            }
+
+            return result;
+        }
+
+        public async Task<ResultBase> DeleteAsync()
+        {
+            ResultBase result = ResultBase.Success();
+
+            try
+            {
+                string? firebaseUid = ((FirebaseAuthStateProvider)_authProvider).FirebaseUid;
+                if (string.IsNullOrEmpty(firebaseUid))
+                {
+                    result.AddErrorAndSetFailure(string.Empty);
+                }
+
+                await LogoutAsync();
+                await _auth.DeleteUserAsync(firebaseUid);
             }
             catch (Exception ex)
             {

@@ -2,7 +2,6 @@
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Layouts;
 using PineapplePlanner.UI.Providers;
-using System.Globalization;
 
 namespace PineapplePlanner.UI.Pages
 {
@@ -15,8 +14,6 @@ namespace PineapplePlanner.UI.Pages
         public DateTime FirstDate { get; set; } = DateTime.Today;
 
         private ResultBase<List<Domain.Entities.Event>> _eventsResult = new();
-
-        private readonly string[] _dayNames = new CultureInfo("en").DateTimeFormat.AbbreviatedDayNames;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -88,7 +85,7 @@ namespace PineapplePlanner.UI.Pages
             double offsetY = (displayStart - dayStart).TotalMinutes;
             double height = (displayEnd - displayStart).TotalMinutes;
 
-            return $"margin-top: {offsetY.ToString("0")}px !important; height: {height.ToString("0")}px;";
+            return $"margin-top: {offsetY:0}px !important; height: {height:0}px;";
         }
     }
 }

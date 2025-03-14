@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PineapplePlanner.Application.Interfaces;
 using PineapplePlanner.Application.Repositories;
+using PineapplePlanner.Application.Services;
+using PineapplePlanner.Infrastructure.Extensions;
 
-namespace PineapplePlanner.UI.Extensions
+namespace PineapplePlanner.Application.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -11,6 +13,7 @@ namespace PineapplePlanner.UI.Extensions
             services.AddInfrastructureServices();
             services.AddScoped<IEntryRepository, EntryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddSingleton<CredentialsService>();
 
             return services;
         }

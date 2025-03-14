@@ -16,7 +16,7 @@ namespace PineapplePlanner.Domain.UnitTests.Entities
         [InlineData(null, null)]
         public void PriorityString_ConvertsToPriorityCorrectly(string input, Priority? expectedPriority)
         {
-            Domain.Entities.Entry entry = new Domain.Entities.Entry()
+            Domain.Entities.Entry entry = new()
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = "Test Entry",
