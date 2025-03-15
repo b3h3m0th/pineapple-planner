@@ -92,7 +92,7 @@ namespace PineapplePlanner.AI.Services
 
                 if (taskDtoResult?.Data == null)
                 {
-                    result.AddErrorAndSetFailure("Something went wrong");
+                    result.SetFailure();
                 }
                 else
                 {

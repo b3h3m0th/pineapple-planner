@@ -114,7 +114,7 @@ namespace PineapplePlanner.UI.Services
                 string? firebaseUid = ((FirebaseAuthStateProvider)_authProvider).FirebaseUid;
                 if (string.IsNullOrEmpty(firebaseUid))
                 {
-                    result.AddErrorAndSetFailure(string.Empty);
+                    result.SetFailure();
                 }
 
                 await LogoutAsync();
