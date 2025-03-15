@@ -66,6 +66,14 @@
                     @_localize["Completion date"]
                     <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
                 </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.PriorityAscending">
+                    @_localize["Priority"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.PriorityDescending">
+                    @_localize["Priority"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                </MudSelectItem>
             </MudSelect>
         </div>
     </MudPaper>
