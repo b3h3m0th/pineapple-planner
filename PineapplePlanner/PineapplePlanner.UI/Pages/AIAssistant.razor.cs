@@ -7,8 +7,8 @@ namespace PineapplePlanner.UI.Pages
     public partial class AIAssistant
     {
         private string _prompt = string.Empty;
-        private readonly List<string> _placeholderPrompts = new()
-        {
+        private readonly List<string> _placeholderPrompts =
+        [
             "Prepare meeting notes for tomorrow at 8 pm. It’s crucial for clarity.",
             "Call the marketing team on Monday at 10 am.",
             "Submit the project report by Friday at 5 pm. Don’t miss the deadline.",
@@ -19,8 +19,8 @@ namespace PineapplePlanner.UI.Pages
             "Interview the new candidate on Tuesday at 4 pm.",
             "Plan lunch with the sales team next Thursday at 1 pm.",
             "Compile potential investors by Monday at noon."
-        };
-        private readonly Random random = new Random();
+        ];
+        private readonly Random random = new();
         private ResultBase<Domain.Entities.Entry> _promptResult = ResultBase<Domain.Entities.Entry>.Success();
         private bool _isGeneratingTask;
 

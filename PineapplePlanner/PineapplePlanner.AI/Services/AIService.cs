@@ -76,16 +76,17 @@ namespace PineapplePlanner.AI.Services
                 };
 
                 string json = JsonSerializer.Serialize(requestBody);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                StringContent content = new(json, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await _httpClient.PostAsync("", content);
                 string responseString = await response.Content.ReadAsStringAsync();
 
-                GeminiResponseDto? geminiResponseDto = JsonSerializer.Deserialize<GeminiResponseDto>(responseString, new JsonSerializerOptions()
+                JsonSerializerOptions options = new()
                 {
                     PropertyNameCaseInsensitive = true,
                     DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
-                });
+                };
+                GeminiResponseDto? geminiResponseDto = JsonSerializer.Deserialize<GeminiResponseDto>(responseString, options);
 
                 ResultBase<EntryDto>? taskDtoResult = geminiResponseDto?.GetFirstTaskDto();
 
