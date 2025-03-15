@@ -6,97 +6,113 @@
 @using PineapplePlanner.UI.Components
 @using PineapplePlanner.UI.Layouts
 @using PineapplePlanner.UI.Providers
+@using PineapplePlanner.UI.Services
 
 @page "/"
 
 @attribute [Authorize]
 
 @inject IEntryRepository _taskRepository
+@inject LocalizationService _localize
 @inject AuthenticationStateProvider _authStateProvider
 
-<MudContainer MaxWidth="MaxWidth.False" Class="pa-0">
-    <div style="display: flex; justify-content: flex-end; width: 100%;">
-        <div style="width: auto; display: flex; gap: 8px;">
-            <MudSelect T="TaskFilterOption" 
-                      Value="@_selectedFilterOption" 
-                      ValueChanged="@HandleFilterChange" 
-                      Label="Filter Tasks" 
-                      Dense="true"
-                      Style="width: 145px; display: inline-block;" 
-                      AnchorOrigin="Origin.BottomCenter"
-                      Margin="Margin.Dense"
-                      Variant="Variant.Outlined">
-                <MudSelectItem Value="@TaskFilterOption.All">All</MudSelectItem>
-                <MudSelectItem Value="@TaskFilterOption.Active">Active</MudSelectItem>
-                <MudSelectItem Value="@TaskFilterOption.Completed">Completed</MudSelectItem>
+<div class="home">
+    <MudPaper Class="ma-2 pa-2" Elevation="25">
+        <div class="modifiers">
+            <MudTextField T="string"
+                          Value=@_searchQuery
+                          ValueChanged=@HandleSearchQueryValueChanged
+                          Immediate
+                          Margin=@Margin.Dense
+                          Label=@_localize["Search"]
+                          Adornment=@Adornment.End
+                          Variant=@Variant.Outlined
+                          AdornmentIcon=@Icons.Material.Rounded.Search />
+            <MudSelect T=@TasksListFilterOption
+                       Label=@_localize["Filter"]
+                       SelectedValues=@_selectedFilterOptions
+                       SelectedValuesChanged=@HandleSelectedFilterValuesChanged
+                       MultiSelection
+                       Margin="Margin.Dense"
+                       AdornmentIcon=@Icons.Material.Rounded.FilterAlt
+                       AnchorOrigin="Origin.BottomLeft"
+                       TransformOrigin=@Origin.BottomLeft
+                       Variant="Variant.Outlined">
+                <MudSelectItem Value="@TasksListFilterOption.Completed">@_localize["Completed"]</MudSelectItem>
+                <MudSelectItem Value="@TasksListFilterOption.Uncompleted">@_localize["Uncompleted"]</MudSelectItem>
             </MudSelect>
-            
-            <MudSelect T="TaskSortOption" 
-                      Value="@_selectedSortOption" 
-                      ValueChanged="@HandleSortChange" 
-                      Label="Sort Tasks" 
-                      Dense="true"
-                      Style="width: 145px; display: inline-block;" 
-                      AnchorOrigin="Origin.BottomCenter"
-                      Margin="Margin.Dense"
-                      Variant="Variant.Outlined">
-                <MudSelectItem Value="@TaskSortOption.All">All</MudSelectItem>
-                <MudSelectItem Value="@TaskSortOption.Newest">Newest</MudSelectItem>
-                <MudSelectItem Value="@TaskSortOption.Oldest">Oldest</MudSelectItem>
-                <MudSelectItem Value="@TaskSortOption.HighPriority">High Priority</MudSelectItem>
-                <MudSelectItem Value="@TaskSortOption.MediumPriority">Medium Priority</MudSelectItem>
-                <MudSelectItem Value="@TaskSortOption.LowPriority">Low Priority</MudSelectItem>
-                <MudSelectItem Value="@TaskSortOption.DueDate">Due Date</MudSelectItem>
+            <MudSelect T=@TasksListSortOption
+                       Value=@_selectedSortOption
+                       ValueChanged=@HandleSelectedSortValueChanged
+                       Label=@_localize["Sort"]
+                       Margin=@Margin.Dense
+                       AdornmentIcon=@Icons.Material.Rounded.Sort
+                       Variant=@Variant.Outlined>
+                <MudSelectItem Value="@TasksListSortOption.CreationDateDescending">
+                    <div class="sort-select-item">
+                        @_localize["Creation date"]
+                        <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                    </div>
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CreationDateAscending">
+                    @_localize["Creation date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CompletionDateDescending">
+                    @_localize["Completion date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CompletionDateAscending">
+                    @_localize["Completion date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
             </MudSelect>
         </div>
-    </div>
-
-    <MudGrid Class="mt-4">
-        <MudItem xs="12">
-            @if (_tasksResult.Data != null)
+    </MudPaper>
+    <div class="tasks-list">
+        @if (_tasksResult.Data != null)
+        {
+            @if (_filteredTasks.Any())
             {
-                @if (_filteredTasks.Any())
+                @foreach (Domain.Entities.Task task in _filteredTasks)
                 {
-                    @foreach (Domain.Entities.Task task in _filteredTasks)
-                    {
-                        <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
-                    }
-                }
-                else
-                {
-                    <div class="d-flex justify-center">
-                        <MudPaper Class="pa-6" Elevation="0">
-                            @if (_tasksResult.Data.Any())
-                            {
-                                <MudText Typo="Typo.body1" Align="Align.Center">No tasks matching the selected filter.</MudText>
-                            }
-                            else
-                            {
-                                <MudText Typo="Typo.body1" Align="Align.Center" Class="mb-4">You don't have any tasks yet.</MudText>
-                                <div class="d-flex justify-center">
-                                    <MudButton Variant=@Variant.Filled
-                                            Color=@Color.Primary
-                                            StartIcon=@Icons.Material.Rounded.Add
-                                            OnClick=@HandleCreateTask>
-                                        Create your first task
-                                    </MudButton>
-                                </div>
-                            }
-                        </MudPaper>
-                    </div>
-                }
-            }
-            else if (_tasksResult.Errors.Any())
-            {
-                @foreach (string error in _tasksResult.Errors)
-                {
-                    <MudAlert Severity="Severity.Error" Class="my-2">@error</MudAlert>
+                    <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
                 }
             }
             else
             {
-                <MudProgressLinear Color=@Color.Primary Indeterminate />
+                <div class="no-entries">
+                    <MudPaper Class="pa-6" Elevation="0">
+                        @if (_tasksResult.Data.Any())
+                        {
+                            <MudText Typo="Typo.body1" Align="Align.Center">@_localize["No tasks match the selected filters."]</MudText>
+                        }
+                        else
+                        {
+                            <MudText Typo="Typo.body1" Align="Align.Center" Class="mb-4">@_localize["You don't have any tasks yet."]</MudText>
+                            <div class="d-flex justify-center">
+                                <MudButton Variant=@Variant.Filled
+                                           Color=@Color.Primary
+                                           StartIcon=@Icons.Material.Rounded.Add
+                                           OnClick=@HandleCreateTask>
+                                    Create your first task
+                                </MudButton>
+                            </div>
+                        }
+                    </MudPaper>
+                </div>
             }
-        </MudItem>
-    </MudGrid>
-</MudContainer>
+        }
+        else if (_tasksResult.Errors.Any())
+        {
+            @foreach (string error in _tasksResult.Errors)
+            {
+                <MudAlert Severity="Severity.Error" Class="my-2">@error</MudAlert>
+            }
+        }
+        else
+        {
+            <MudProgressLinear Color=@Color.Primary Indeterminate />
+        }
+    </div>
+</div>

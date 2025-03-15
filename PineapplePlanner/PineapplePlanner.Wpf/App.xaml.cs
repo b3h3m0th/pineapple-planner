@@ -29,8 +29,10 @@ namespace PineapplePlanner.Wpf
             MainWindow mainWindow = new MainWindow(serviceCollection)
             {
                 Title = "Pineapple Planner",
-                Height = 720,
-                Width = 1280,
+                Width = 1536,
+                MinWidth = 1536,
+                Height = 864,
+                MinHeight = 864,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 Icon = new BitmapImage(
                     new Uri(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/pineapple_planner_logo.png"),
