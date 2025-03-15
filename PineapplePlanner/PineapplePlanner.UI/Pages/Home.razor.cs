@@ -16,7 +16,9 @@ namespace PineapplePlanner.UI.Pages
         CreationDateAscending,
         CreationDateDescending,
         CompletionDateAscending,
-        CompletionDateDescending
+        CompletionDateDescending,
+        PriorityAscending,
+        PriorityDescending
     }
 
     public partial class Home
@@ -28,7 +30,7 @@ namespace PineapplePlanner.UI.Pages
         private List<Domain.Entities.Task> _filteredTasks = [];
         private string _searchQuery = string.Empty;
         private List<TasksListFilterOption> _selectedFilterOptions = [TasksListFilterOption.Completed, TasksListFilterOption.Uncompleted];
-        private TasksListSortOption _selectedSortOption = TasksListSortOption.CreationDateDescending;
+        private TasksListSortOption _selectedSortOption = TasksListSortOption.CreationDateAscending;
 
         protected override async Task OnParametersSetAsync()
         {
@@ -94,6 +96,8 @@ namespace PineapplePlanner.UI.Pages
                 TasksListSortOption.CreationDateDescending => _filteredTasks.OrderByDescending(t => t.CreatedAt).ToList(),
                 TasksListSortOption.CompletionDateAscending => _filteredTasks.OrderBy(t => t.CompletedAt).ToList(),
                 TasksListSortOption.CompletionDateDescending => _filteredTasks.OrderByDescending(t => t.CompletedAt).ToList(),
+                TasksListSortOption.PriorityAscending => _filteredTasks.OrderBy(t => t.Priority).ToList(),
+                TasksListSortOption.PriorityDescending => _filteredTasks.OrderByDescending(t => t.Priority).ToList(),
                 _ => _filteredTasks
             };
         }
