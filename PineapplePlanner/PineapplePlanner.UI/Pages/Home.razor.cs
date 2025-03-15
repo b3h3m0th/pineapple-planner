@@ -29,7 +29,7 @@ namespace PineapplePlanner.UI.Pages
         private ResultBase<List<Domain.Entities.Task>> _tasksResult = new();
         private List<Domain.Entities.Task> _filteredTasks = [];
         private string _searchQuery = string.Empty;
-        private List<TasksListFilterOption> _selectedFilterOptions = [TasksListFilterOption.Completed, TasksListFilterOption.Uncompleted];
+        private List<TasksListFilterOption> _selectedFilterOptions = [TasksListFilterOption.Uncompleted];
         private TasksListSortOption _selectedSortOption = TasksListSortOption.CreationDateAscending;
 
         protected override async Task OnParametersSetAsync()
@@ -78,7 +78,7 @@ namespace PineapplePlanner.UI.Pages
 
             List<Domain.Entities.Task> tasks = _tasksResult.Data;
 
-            _filteredTasks = _tasksResult.Data
+            _filteredTasks = [.. _tasksResult.Data
                 .Where(t => (_selectedFilterOptions.Contains(TasksListFilterOption.Completed) && t.IsCompleted)
                          || (_selectedFilterOptions.Contains(TasksListFilterOption.Uncompleted) && !t.IsCompleted))
                 .Where(t =>
@@ -87,12 +87,11 @@ namespace PineapplePlanner.UI.Pages
 
                     var searchWords = _searchQuery.Split(" ", StringSplitOptions.RemoveEmptyEntries);
                     return searchWords.All(word => t.Name.Contains(word, StringComparison.OrdinalIgnoreCase));
-                })
-                .ToList();
+                })];
 
             _filteredTasks = _selectedSortOption switch
             {
-                TasksListSortOption.CreationDateAscending => _filteredTasks.OrderBy(t => t.CreatedAt).ToList(),
+                TasksListSortOption.CreationDateAscending => [.. _filteredTasks.OrderBy(t => t.CreatedAt)],
                 TasksListSortOption.CreationDateDescending => _filteredTasks.OrderByDescending(t => t.CreatedAt).ToList(),
                 TasksListSortOption.CompletionDateAscending => _filteredTasks.OrderBy(t => t.CompletedAt).ToList(),
                 TasksListSortOption.CompletionDateDescending => _filteredTasks.OrderByDescending(t => t.CompletedAt).ToList(),

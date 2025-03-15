@@ -31,7 +31,7 @@ namespace PineapplePlanner.UI.Components
 
         private void HandleCreateTask()
         {
-            AuthenticatedLayout.OpenTaskDetail();
+            AuthenticatedLayout?.OpenTaskDetail();
         }
 
         public void Dispose()

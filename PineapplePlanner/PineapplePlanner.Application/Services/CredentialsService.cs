@@ -5,22 +5,21 @@ namespace PineapplePlanner.Application.Services
 {
     public class CredentialsService
     {
-        private const string APPLICATION_CREDENTIALS_RESOURCE = "pineapple-planner-credentials";
+        private readonly string APPLICATION_CREDENTIALS_RESOURCE = "pineapple-planner-credentials";
 
         public ResultBase Save(string email, string password)
         {
             ResultBase result = ResultBase.Success();
             try
             {
-                using (var cred = new Credential())
-                {
-                    cred.Target = APPLICATION_CREDENTIALS_RESOURCE;
-                    cred.Username = email;
-                    cred.Password = password;
-                    cred.Type = CredentialType.Generic;
-                    cred.PersistanceType = PersistanceType.LocalComputer;
-                    cred.Save();
-                }
+                using Credential credential = new();
+
+                credential.Target = APPLICATION_CREDENTIALS_RESOURCE;
+                credential.Username = email;
+                credential.Password = password;
+                credential.Type = CredentialType.Generic;
+                credential.PersistanceType = PersistanceType.LocalComputer;
+                credential.Save();
             }
             catch (Exception ex)
             {
@@ -36,16 +35,15 @@ namespace PineapplePlanner.Application.Services
 
             try
             {
-                using (var cred = new Credential { Target = APPLICATION_CREDENTIALS_RESOURCE })
+                using Credential credential = new() { Target = APPLICATION_CREDENTIALS_RESOURCE };
+
+                if (credential.Load())
                 {
-                    if (cred.Load())
-                    {
-                        result.Data = (cred.Username, cred.Password);
-                    }
-                    else
-                    {
-                        result.Data = null;
-                    }
+                    result.Data = (credential.Username, credential.Password);
+                }
+                else
+                {
+                    result.Data = null;
                 }
             }
             catch (Exception ex)
@@ -62,12 +60,11 @@ namespace PineapplePlanner.Application.Services
 
             try
             {
-                using (Credential credentials = new() { Target = APPLICATION_CREDENTIALS_RESOURCE })
+                using Credential credentials = new() { Target = APPLICATION_CREDENTIALS_RESOURCE };
+
+                if (credentials.Load())
                 {
-                    if (credentials.Load())
-                    {
-                        credentials.Delete();
-                    }
+                    credentials.Delete();
                 }
             }
             catch (Exception ex)

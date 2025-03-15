@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 namespace PineapplePlanner.Domain.Entities
 {
     [FirestoreData]
-    public class Entry : IBaseFirestoreData
+    public abstract class Entry : IBaseFirestoreData
     {
         [FirestoreProperty]
         public string Type { get; } = nameof(Entry);

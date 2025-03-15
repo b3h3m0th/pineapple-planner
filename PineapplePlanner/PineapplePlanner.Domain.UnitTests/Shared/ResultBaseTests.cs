@@ -61,7 +61,7 @@ namespace PineapplePlanner.Domain.UnitTests.Shared
         [Fact]
         public void ResultBase_DefaultConstructor_ShouldInitializeEmptyErrors()
         {
-            ResultBase result = new ResultBase();
+            ResultBase result = new();
 
             Assert.Empty(result.Errors);
         }
@@ -123,7 +123,7 @@ namespace PineapplePlanner.Domain.UnitTests.Shared
         public void ResultBaseT_ConstructorWithData_ShouldSetData()
         {
             int testData = 42;
-            ResultBase<int> result = new ResultBase<int>(testData);
+            ResultBase<int> result = new(testData);
 
             Assert.Equal(testData, result.Data);
         }

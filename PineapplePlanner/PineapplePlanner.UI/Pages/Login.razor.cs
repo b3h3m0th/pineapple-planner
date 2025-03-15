@@ -5,8 +5,6 @@ namespace PineapplePlanner.UI.Pages
     public partial class Login
     {
         private string _error = "";
-        private string _message = "";
-
         private string _email = "";
         private string _password = "";
         private bool _isLoading = true;
