@@ -11,6 +11,11 @@
         public static ResultBase Success() => new() { IsSuccess = true };
         public static ResultBase Failure() => new() { IsSuccess = false };
 
+        public void SetFailure()
+        {
+            IsSuccess = false;
+        }
+
         public void AddErrorAndSetFailure(string error)
         {
             Errors.Add(error);

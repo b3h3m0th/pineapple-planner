@@ -1,5 +1,4 @@
-﻿@using MediatR
-@using Microsoft.AspNetCore.Authorization
+﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 @using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.Domain.Entities
@@ -65,6 +64,14 @@
                 <MudSelectItem Value="@TasksListSortOption.CompletionDateAscending">
                     @_localize["Completion date"]
                     <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.PriorityAscending">
+                    @_localize["Priority"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.PriorityDescending">
+                    @_localize["Priority"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
                 </MudSelectItem>
             </MudSelect>
         </div>
