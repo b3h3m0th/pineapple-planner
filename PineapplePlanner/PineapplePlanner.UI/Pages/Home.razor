@@ -1,26 +1,87 @@
-﻿@using MediatR
-@using Microsoft.AspNetCore.Authorization
+﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 @using PineapplePlanner.Application.Interfaces
 @using PineapplePlanner.Domain.Entities
 @using PineapplePlanner.UI.Components
 @using PineapplePlanner.UI.Layouts
 @using PineapplePlanner.UI.Providers
+@using PineapplePlanner.UI.Services
 
 @page "/"
 
 @attribute [Authorize]
 
 @inject IEntryRepository _taskRepository
+@inject LocalizationService _localize
 @inject AuthenticationStateProvider _authStateProvider
 
 <div class="home">
+    <MudPaper Class="ma-2 pa-2" Elevation="25">
+        <div class="modifiers">
+            <MudTextField T="string"
+                          Value=@_searchQuery
+                          ValueChanged=@HandleSearchQueryValueChanged
+                          Immediate
+                          Margin=@Margin.Dense
+                          Label=@_localize["Search"]
+                          Adornment=@Adornment.End
+                          Variant=@Variant.Outlined
+                          AdornmentIcon=@Icons.Material.Rounded.Search />
+            <MudSelect T=@TasksListFilterOption
+                       Label=@_localize["Filter"]
+                       SelectedValues=@_selectedFilterOptions
+                       SelectedValuesChanged=@HandleSelectedFilterValuesChanged
+                       MultiSelection
+                       Margin="Margin.Dense"
+                       AdornmentIcon=@Icons.Material.Rounded.FilterAlt
+                       AnchorOrigin="Origin.BottomLeft"
+                       TransformOrigin=@Origin.BottomLeft
+                       Variant="Variant.Outlined">
+                <MudSelectItem Value="@TasksListFilterOption.Completed">@_localize["Completed"]</MudSelectItem>
+                <MudSelectItem Value="@TasksListFilterOption.Uncompleted">@_localize["Uncompleted"]</MudSelectItem>
+            </MudSelect>
+            <MudSelect T=@TasksListSortOption
+                       Value=@_selectedSortOption
+                       ValueChanged=@HandleSelectedSortValueChanged
+                       Label=@_localize["Sort"]
+                       Margin=@Margin.Dense
+                       AdornmentIcon=@Icons.Material.Rounded.Sort
+                       Variant=@Variant.Outlined>
+                <MudSelectItem Value="@TasksListSortOption.CreationDateDescending">
+                    <div class="sort-select-item">
+                        @_localize["Creation date"]
+                        <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                    </div>
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CreationDateAscending">
+                    @_localize["Creation date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CompletionDateDescending">
+                    @_localize["Completion date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.CompletionDateAscending">
+                    @_localize["Completion date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.PriorityAscending">
+                    @_localize["Priority"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.PriorityDescending">
+                    @_localize["Priority"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                </MudSelectItem>
+            </MudSelect>
+        </div>
+    </MudPaper>
     <div class="tasks-list">
         @if (_tasksResult.Data != null)
         {
-            @if (_tasksResult.Data.Any())
+            @if (_filteredTasks.Any())
             {
-                @foreach (Domain.Entities.Task task in (_tasksResult.Data ?? new()).OfType<Domain.Entities.Task>().OrderByDescending(t => t.CompletedAt == null).ThenBy(t => t.CreatedAt))
+                @foreach (Domain.Entities.Task task in _filteredTasks)
                 {
                     <TaskItem Task=@task OnClick=@HandleEditTask OnCompleteChange=@HandleTaskCompleteChange />
                 }
@@ -28,12 +89,24 @@
             else
             {
                 <div class="no-entries">
-                    <MudButton Variant=@Variant.Outlined
-                               Color=@Color.Primary
-                               StartIcon=@Icons.Material.Rounded.Add
-                               OnClick=@HandleCreateTask>
-                        Create your first task!
-                    </MudButton>
+                    <MudPaper Class="pa-6" Elevation="0">
+                        @if (_tasksResult.Data.Any())
+                        {
+                            <MudText Typo="Typo.body1" Align="Align.Center">@_localize["No tasks match the selected filters."]</MudText>
+                        }
+                        else
+                        {
+                            <MudText Typo="Typo.body1" Align="Align.Center" Class="mb-4">@_localize["You don't have any tasks yet."]</MudText>
+                            <div class="d-flex justify-center">
+                                <MudButton Variant=@Variant.Filled
+                                           Color=@Color.Primary
+                                           StartIcon=@Icons.Material.Rounded.Add
+                                           OnClick=@HandleCreateTask>
+                                    Create your first task
+                                </MudButton>
+                            </div>
+                        }
+                    </MudPaper>
                 </div>
             }
         }
@@ -41,7 +114,7 @@
         {
             @foreach (string error in _tasksResult.Errors)
             {
-                <div>@error</div>
+                <MudAlert Severity="Severity.Error" Class="my-2">@error</MudAlert>
             }
         }
         else

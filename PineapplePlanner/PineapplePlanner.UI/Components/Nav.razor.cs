@@ -25,12 +25,13 @@ namespace PineapplePlanner.UI.Components
 
         private async Task HandleLogout()
         {
+            _credentialsService.Remove();
             await _authenticationService.LogoutAsync();
         }
 
         private void HandleCreateTask()
         {
-            AuthenticatedLayout.OpenTaskDetail();
+            AuthenticatedLayout?.OpenTaskDetail();
         }
 
         public void Dispose()

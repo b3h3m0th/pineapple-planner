@@ -17,7 +17,7 @@
                 <MudIconButton Icon=@Icons.Material.Rounded.Close OnClick=@HandleClose Color=@Color.Surface />
             </div>
             <MudForm Class="p-4">
-                <MudTextField Label=@_localize["Name"] @bind-Value=@Entry.Name Variant=@Variant.Outlined Color=@Color.Surface Margin=@Margin.Dense />
+                <MudTextField Label=@_localize["Name"] @bind-Value=@Entry.Name Variant=@Variant.Outlined Margin=@Margin.Dense />
                 <MudTextField T="string" Label=@_localize["Description"] @bind-Value=@Entry.Description Variant="@Variant.Outlined" FullWidth Lines="4" Margin=@Margin.Dense />
                 <MudSelect T=@(Domain.Enums.Priority?) @bind-Value=@Entry.Priority Label=@_localize["Priority"] Variant=@Variant.Outlined FullWidth Margin=@Margin.Dense>
                     @foreach (Domain.Enums.Priority priority in Enum.GetValues(typeof(Domain.Enums.Priority)).Cast<Domain.Enums.Priority>().Where(p => p != Domain.Enums.Priority.None))

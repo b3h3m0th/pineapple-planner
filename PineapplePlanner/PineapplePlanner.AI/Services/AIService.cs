@@ -76,22 +76,23 @@ namespace PineapplePlanner.AI.Services
                 };
 
                 string json = JsonSerializer.Serialize(requestBody);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                StringContent content = new(json, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await _httpClient.PostAsync("", content);
                 string responseString = await response.Content.ReadAsStringAsync();
 
-                GeminiResponseDto? geminiResponseDto = JsonSerializer.Deserialize<GeminiResponseDto>(responseString, new JsonSerializerOptions()
+                JsonSerializerOptions options = new()
                 {
                     PropertyNameCaseInsensitive = true,
                     DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault
-                });
+                };
+                GeminiResponseDto? geminiResponseDto = JsonSerializer.Deserialize<GeminiResponseDto>(responseString, options);
 
                 ResultBase<EntryDto>? taskDtoResult = geminiResponseDto?.GetFirstTaskDto();
 
                 if (taskDtoResult?.Data == null)
                 {
-                    result.AddErrorAndSetFailure("Something went wrong");
+                    result.SetFailure();
                 }
                 else
                 {
@@ -104,11 +105,11 @@ namespace PineapplePlanner.AI.Services
                         Priority = taskDto.Priority,
                         DateDue = taskDto.DateDue,
                         CreatedAt = DateTime.Now,
-                        Tags = taskDto.Tags.Select(t => new Domain.Entities.Tag()
+                        Tags = [.. taskDto.Tags.Select(t => new Domain.Entities.Tag()
                         {
                             Id = string.Empty,
                             Name = t.ToLower()
-                        }).ToList()
+                        })]
                     };
 
                     foreach (string error in taskDtoResult.Errors)

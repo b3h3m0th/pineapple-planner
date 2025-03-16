@@ -53,7 +53,7 @@ namespace PineapplePlanner.UI.Pages
             FirstDate = firstDate;
         }
 
-        private bool TaskOverlapsDay(Domain.Entities.Event eventEntry, DateTime day)
+        private static bool TaskOverlapsDay(Domain.Entities.Event eventEntry, DateTime day)
         {
             DateTime taskStart = eventEntry.StartDate ?? DateTime.MinValue;
             DateTime taskEnd = eventEntry.EndDate ?? DateTime.MaxValue;
@@ -62,7 +62,7 @@ namespace PineapplePlanner.UI.Pages
             return taskStart < dayEnd && taskEnd > day;
         }
 
-        private bool TaskOverlapsHour(Domain.Entities.Event eventEntry, DateTime hour)
+        private static bool TaskOverlapsHour(Domain.Entities.Event eventEntry, DateTime hour)
         {
             DateTime taskStart = eventEntry.StartDate ?? DateTime.MinValue;
             DateTime taskEnd = eventEntry.EndDate ?? DateTime.MaxValue;
@@ -71,7 +71,7 @@ namespace PineapplePlanner.UI.Pages
             return taskStart < dayEnd && taskEnd > hour;
         }
 
-        private string GetTaskStyle(Domain.Entities.Event eventEntry, DateTime currentDate)
+        private static string GetTaskStyle(Domain.Entities.Event eventEntry, DateTime currentDate)
         {
             DateTime taskStart = eventEntry.StartDate ?? DateTime.MinValue;
             DateTime taskEnd = eventEntry.EndDate ?? DateTime.MaxValue;
@@ -85,7 +85,7 @@ namespace PineapplePlanner.UI.Pages
             double offsetY = (displayStart - dayStart).TotalMinutes;
             double height = (displayEnd - displayStart).TotalMinutes;
 
-            return $"margin-top: {offsetY.ToString("0")}px !important; height: {height.ToString("0")}px;";
+            return $"margin-top: {offsetY:0}px !important; height: {height:0}px;";
         }
     }
 }

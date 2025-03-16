@@ -7,17 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="CredentialManagement" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PineapplePlanner.AI\PineapplePlanner.AI.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Domain\PineapplePlanner.Domain.csproj" />
     <ProjectReference Include="..\PineapplePlanner.Infrastructure\PineapplePlanner.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

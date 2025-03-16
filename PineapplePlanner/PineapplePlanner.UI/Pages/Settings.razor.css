@@ -32,3 +32,9 @@
 .language-item img {
     height: 18px;
 }
+
+.theme-select {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}

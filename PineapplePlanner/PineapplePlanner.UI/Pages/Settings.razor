@@ -67,7 +67,13 @@
                                     </div>
                                 </MudSelectItem>
                             </MudSelect>
-                            <MudSwitch @bind-Value=@_user.IsDarkMode T=@bool Label=@_localize["Dark Mode"] />
+                            <div class="theme-select">
+                                <MudToggleIconButton @bind-Toggled=@_user.IsDarkMode
+                                                     Icon="@Icons.Material.Rounded.LightMode"
+                                                     ToggledIcon="@Icons.Material.Filled.DarkMode"
+                                                     ToggledColor="@Color.Dark" />
+                                <MudText Typo=@Typo.body1>@(_user.IsDarkMode ? "Dark theme" : "Light theme")</MudText>
+                            </div>
                         </div>
                     </MudTabPanel>
                     <MudTabPanel Text=@_localize["Danger zone"] ID=@("danger-zone") Icon=@Icons.Material.Rounded.Dangerous>

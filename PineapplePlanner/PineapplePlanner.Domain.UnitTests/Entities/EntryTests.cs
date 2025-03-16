@@ -16,14 +16,13 @@ namespace PineapplePlanner.Domain.UnitTests.Entities
         [InlineData(null, null)]
         public void PriorityString_ConvertsToPriorityCorrectly(string input, Priority? expectedPriority)
         {
-            Domain.Entities.Entry entry = new Domain.Entities.Entry()
+            Domain.Entities.Entry entry = new Domain.Entities.Task
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = "Test Entry",
-                Priority = Priority.Medium
+                Priority = Priority.Medium,
+                PriorityString = input
             };
-
-            entry.PriorityString = input;
 
             Assert.Equal(expectedPriority, entry.Priority);
         }

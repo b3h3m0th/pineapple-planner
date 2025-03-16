@@ -26,11 +26,13 @@ namespace PineapplePlanner.Wpf
 
             base.OnStartup(e);
 
-            MainWindow mainWindow = new MainWindow(serviceCollection)
+            MainWindow mainWindow = new(serviceCollection)
             {
                 Title = "Pineapple Planner",
-                Height = 720,
-                Width = 1280,
+                Width = 1536,
+                MinWidth = 1536,
+                Height = 864,
+                MinHeight = 864,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 Icon = new BitmapImage(
                     new Uri(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/pineapple_planner_logo.png"),
@@ -39,18 +41,18 @@ namespace PineapplePlanner.Wpf
             mainWindow.Show();
         }
 
-        protected void ConfigureServices(IServiceCollection services)
+        protected static void ConfigureServices(IServiceCollection services)
         {
             services.AddWpfBlazorWebView();
 
             if (Configuration != null)
             {
                 services.AddSingleton(Configuration);
-                services.AddUIServices(Configuration);
+                services.AddUIServices();
             }
         }
 
-        private void ConfigureConfiguration()
+        private static void ConfigureConfiguration()
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())

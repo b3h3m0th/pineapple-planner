@@ -5,8 +5,7 @@ namespace PineapplePlanner.UI.Providers
 {
     public class FirebaseAuthStateProvider : AuthenticationStateProvider
     {
-        private ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
-
+        private readonly ClaimsPrincipal _anonymous = new(new ClaimsIdentity());
         private ClaimsPrincipal? _currentUser;
 
         public string? FirebaseUid
