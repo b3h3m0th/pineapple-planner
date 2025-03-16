@@ -14,25 +14,34 @@
 @inject AuthenticationStateProvider _authProvider
 @inject NavigationManager _navigationManager
 @inject CredentialsService _credentialsService
+@inject LocalizationService _localize
 
-<div class="login">
-    @if (_isLoading)
-    {
-        <MudProgressLinear Color=@Color.Primary Indeterminate />
-    }
-    else
-    {
-        <div class="login-container">
-            <h1>Login</h1>
-            <!--<label for="email">Email</label>-->
-            <input @bind-value=@_email id="email" type="email" placeholder="Email" />
-            <!--<label for="password">Password</label>-->
-            <input @bind-value=@_password id="password" type="password" placeholder="Password" /><br />
-            <button @onclick=@HandleLogin>Login</button><br />
-            <p>Not registered? <a href="/register">Create an account</a></p>
-        </div>
-    }
-    <br />
-    @_error
-</div>
+@if (_isLoading)
+{
+    <MudProgressLinear Color=@Color.Primary Indeterminate />
+}
+else
+{
+    <div class="login">
+        <MudPaper Elevation="25" Class="pa-4">
+            <div class="login-form">
+                <MudImage ObjectFit=@ObjectFit.Contain
+                          Height="64"
+                          Width="64"
+                          Src="../images/pineapple_planner_logo.svg"
+                          Alt="Pineapple Planner"
+                          Elevation="0" />
+                <MudText Typo=@Typo.h6>Login</MudText>
+                <MudTextField Label=@_localize["Email"] @bind-Value=@_email Placeholder="Email" Variant=@Variant.Outlined Margin=@Margin.Dense />
+                <MudTextField Label=@_localize["Password"] @bind-Value=@_password InputType=@InputType.Password Placeholder="Password" Variant=@Variant.Outlined Margin=@Margin.Dense />
+                <MudButton Variant=@Variant.Outlined OnClick=@HandleLogin>Login</MudButton>
+                <div>
+                    <MudText Style="display: inline;" Typo=@Typo.body1>@_localize["Not registered yet?"]</MudText> <MudLink Href="/register">@_localize["Create an account"]</MudLink>
+                </div>
+            </div>
+        </MudPaper>
+        <br />
+        @_error
+    </div>
+}
 
