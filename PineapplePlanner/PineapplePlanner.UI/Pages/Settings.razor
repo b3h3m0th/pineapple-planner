@@ -32,55 +32,55 @@
                             <MudSelect @bind-Value=@_user.Culture Label=@_localize["Language"] Variant=@Variant.Outlined Margin=@Margin.Dense>
                                 <MudSelectItem Value=@Culture.English>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/English_language.svg" class="mr-1" />
+                                        <img src="../images/languages/en.svg" class="mr-1" />
                                         <span>@_localize["English"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.Swedish>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Flag_of_Sweden_fixed.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/se.svg" height="14" class="mr-1" />
                                         <span>@_localize["Swedish"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.German>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/de.svg" height="14" class="mr-1" />
                                         <span>@_localize["German"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.Spanish>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/es.svg" height="14" class="mr-1" />
                                         <span>@_localize["Spanish"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.Japanese>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/jp.svg" height="14" class="mr-1" />
                                         <span>@_localize["Japanese"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.Estonian>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Flag_of_Estonia.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/est.svg" height="14" class="mr-1" />
                                         <span>@_localize["Estonian"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.Ukrainian>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/ua.svg" height="14" class="mr-1" />
                                         <span>@_localize["Ukrainian"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.Polish>
                                     <div class="language-item">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_Poland.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/pl.svg" height="14" class="mr-1" />
                                         <span>@_localize["Polish"]</span>
                                     </div>
                                 </MudSelectItem>
                                 <MudSelectItem Value=@Culture.French>
                                     <div class="language-item">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" height="14" class="mr-1" />
+                                        <img src="../images/languages/fr.svg" height="14" class="mr-1" />
                                         <span>@_localize["French"]</span>
                                     </div>
                                 </MudSelectItem>
@@ -90,7 +90,7 @@
                                                      Icon="@Icons.Material.Rounded.LightMode"
                                                      ToggledIcon="@Icons.Material.Filled.DarkMode"
                                                      ToggledColor="@Color.Dark" />
-                                <MudText Typo=@Typo.body1>@(_user.IsDarkMode ? "Dark theme" : "Light theme")</MudText>
+                                <MudText Typo=@Typo.body1>@(_user.IsDarkMode ? @_localize["Dark theme"] : @_localize["Light theme"])</MudText>
                             </div>
                         </div>
                     </MudTabPanel>

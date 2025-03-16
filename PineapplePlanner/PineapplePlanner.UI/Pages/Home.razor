@@ -32,12 +32,13 @@
                        SelectedValues=@_selectedFilterOptions
                        SelectedValuesChanged=@HandleSelectedFilterValuesChanged
                        MultiSelection
+                       MultiSelectionTextFunc="@(new Func<List<string>, string>(GetFilterString))"
                        Margin="Margin.Dense"
                        AdornmentIcon=@Icons.Material.Rounded.FilterAlt
                        AnchorOrigin="Origin.BottomLeft"
                        TransformOrigin=@Origin.BottomLeft
                        Variant="Variant.Outlined">
-                <MudSelectItem Value="@TasksListFilterOption.Completed">@_localize["Completed"]</MudSelectItem>
+                <MudSelectItem Value="@TasksListFilterOption.Completed" >@_localize["Completed"]</MudSelectItem>
                 <MudSelectItem Value="@TasksListFilterOption.Uncompleted">@_localize["Uncompleted"]</MudSelectItem>
             </MudSelect>
             <MudSelect T=@TasksListSortOption
@@ -123,3 +124,11 @@
         }
     </div>
 </div>
+
+@code {
+
+    private string GetFilterString(List<string> selectedValues)
+    {
+        return string.Join(", ", selectedValues.Select(x => _localize[(String)x]));
+    }
+}
