@@ -10,5 +10,6 @@
         public const string Estonian = "ee-EE";
         public const string Ukrainian = "ua-UA";
         public const string Polish = "pl-PL";
+        public const string French = "fr-FR";
     }
 }
