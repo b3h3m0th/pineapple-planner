@@ -38,10 +38,12 @@ else
                 <div>
                     <MudText Style="display: inline;" Typo=@Typo.body1>@_localize["Not registered yet?"]</MudText> <MudLink Href="/register">@_localize["Create an account"]</MudLink>
                 </div>
+                @if (!string.IsNullOrEmpty(_error))
+                {
+                    <MudAlert Severity="Severity.Error" Class="my-2">@_error</MudAlert>
+                }
             </div>
         </MudPaper>
-        <br />
-        @_error
     </div>
 }
 
