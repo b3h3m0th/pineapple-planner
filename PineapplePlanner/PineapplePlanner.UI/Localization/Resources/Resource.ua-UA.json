@@ -17,20 +17,10 @@
   "Appearance":  "Appearance",
   "Username":  "Username",
   "English":  "English",
-<<<<<<< HEAD
-  "Swedish":  "Swedish",
-=======
   "Swedish": "Swedish",
   "German": "German",
   "Spanish": "Spanish",
-<<<<<<< HEAD
   "Russian": "Russian",
->>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
-=======
-  "Ukrainian": "Ukrainian",
-  "Japanese": "Japanese",
-  "Estonian": "Estonian",
->>>>>>> 45d3c6db2c3f406f19f29158a0981cb864239046
   "Dark Mode":  "Dark Mode",
   "Name":  "Name",
   "Description":  "Description",

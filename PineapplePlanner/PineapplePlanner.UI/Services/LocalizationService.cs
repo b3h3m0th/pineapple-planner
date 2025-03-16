@@ -10,8 +10,12 @@ namespace PineapplePlanner.UI.Services
         private string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German];
 =======
         public readonly Dictionary<string, Dictionary<string, string>> _translations = [];
+<<<<<<< HEAD
         private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish];
 >>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
+=======
+        private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German, Culture.Spanish, Culture.Japanese, Culture.Estonian, Culture.Ukrainian, Culture.Polish, Culture.French];
+>>>>>>> 45d3c6db2c3f406f19f29158a0981cb864239046
 
         public string[] SupportedCultures { get => _supportedCultures; }
         public string CurrentCulture { get; private set; } = Culture.English;

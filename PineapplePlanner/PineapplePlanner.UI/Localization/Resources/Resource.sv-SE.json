@@ -16,6 +16,7 @@
   "Profile": "Profil",
   "Appearance": "Utseende",
   "Username": "Användarnamn",
+<<<<<<< HEAD
   "English": "Engelska",
   "Swedish": "Svenska",
 <<<<<<< HEAD
@@ -24,6 +25,16 @@
   "Spanish": "Spanska",
   "Russian": "Ryska",
 >>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
+=======
+  "English": "Inglés",
+  "Swedish": "Sueco",
+  "German": "Alemán",
+  "Spanish": "Español",
+  "Ukrainian": "Ucraniano",
+  "Japanese": "Japonés",
+  "Estonian": "Estonio",
+  "Polish": "Polaco",
+>>>>>>> 45d3c6db2c3f406f19f29158a0981cb864239046
   "Dark Mode": "Mörkt läge",
   "Name": "Namn",
   "Description": "Beskrivning",
