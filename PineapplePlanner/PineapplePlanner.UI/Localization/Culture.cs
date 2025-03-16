@@ -7,5 +7,9 @@
         public const string German = "de-DE";
         public const string Spanish = "es-ES";
         public const string Japanese = "jp-JP";
+        public const string Estonian = "ee-EE";
+        public const string Ukrainian = "ua-UA";
+        public const string Polish = "pl-PL";
+        public const string French = "fr-FR";
     }
 }
