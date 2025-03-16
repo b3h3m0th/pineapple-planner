@@ -66,6 +66,18 @@
                                         <span>@_localize["Estonian"]</span>
                                     </div>
                                 </MudSelectItem>
+                                <MudSelectItem Value=@Culture.Ukrainian>
+                                    <div class="language-item">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg" height="14" class="mr-1" />
+                                        <span>@_localize["Ukrainian"]</span>
+                                    </div>
+                                </MudSelectItem>
+                                <MudSelectItem Value=@Culture.Polish>
+                                    <div class="language-item">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_Poland.svg" height="14" class="mr-1" />
+                                        <span>@_localize["Polish"]</span>
+                                    </div>
+                                </MudSelectItem>
                             </MudSelect>
                             <MudSwitch @bind-Value=@_user.IsDarkMode T=@bool Label=@_localize["Dark Mode"] />
                         </div>
