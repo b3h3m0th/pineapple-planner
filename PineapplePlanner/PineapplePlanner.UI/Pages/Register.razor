@@ -12,17 +12,41 @@
 @inject FirebaseAuthenticationService _authenticationService
 @inject AuthenticationStateProvider _authenticationProvider
 @inject NavigationManager _navigationManager
+@inject LocalizationService _localize
 
-<div class="register-container">
-    <h1>Register</h1>
-    <input id="name" placeholder="Name" />
-    <input @bind-value=@_email id="email" type="email" placeholder="Email" />
-    <input @bind-value=@_password id="password" type="password" placeholder="Password" />
-    <button type="submit" @onclick=@HandleRegister>Register</button><br/>
-    <p>Already registered? <a href="/login">Sign In</a></p>
-</div>
-
-@_message
-<br />
-@_error
+@if (_isLoading)
+{
+    <MudProgressLinear Color=@Color.Primary Indeterminate />
+}
+else
+{
+    <div class="register">
+        <MudPaper Elevation="25" Class="pa-4">
+            <div class="register-form">
+                <MudImage ObjectFit=@ObjectFit.Contain
+                          Height="64"
+                          Width="64"
+                          Src="../images/pineapple_planner_logo.svg"
+                          Alt="Pineapple Planner"
+                          Elevation="0" />
+                <MudText Typo=@Typo.h6>Register</MudText>
+                <MudTextField Label=@_localize["Email"] @bind-Value=@_email Placeholder=@_localize["Email"] Variant=@Variant.Outlined Margin=@Margin.Dense />
+                <MudTextField Label=@_localize["Password"] @bind-Value=@_password InputType=@InputType.Password Placeholder=@_localize["Password"] Variant=@Variant.Outlined Margin=@Margin.Dense />
+                <MudTextField Label=@_localize["Confirm password"] @bind-Value=@_confirmPassword InputType=@InputType.Password Placeholder=@_localize["Confirm Password"] Variant=@Variant.Outlined Margin=@Margin.Dense />
+                <MudButton Variant=@Variant.Outlined OnClick=@HandleRegister>Register</MudButton>
+                <div>
+                    <MudText Style="display: inline;" Typo=@Typo.body1>@_localize["Already registered?"]</MudText> <MudLink Href="/login">@_localize["Login"]</MudLink>
+                </div>
+                @if (!string.IsNullOrEmpty(_message))
+                {
+                    <MudAlert Severity=@Severity.Info Class="my-2">@_message</MudAlert>
+                }
+                @if (!string.IsNullOrEmpty(_error))
+                {
+                    <MudAlert Severity=@Severity.Error Class="my-2">@_error</MudAlert>
+                }
+            </div>
+        </MudPaper>
+    </div>
+}
 

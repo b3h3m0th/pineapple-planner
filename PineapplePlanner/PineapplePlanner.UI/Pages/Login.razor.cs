@@ -32,7 +32,6 @@ namespace PineapplePlanner.UI.Pages
                 }
             }
 
-
             await base.OnAfterRenderAsync(firstRender);
         }
 

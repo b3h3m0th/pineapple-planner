@@ -92,11 +92,11 @@ namespace PineapplePlanner.UI.Pages
             _filteredTasks = _selectedSortOption switch
             {
                 TasksListSortOption.CreationDateAscending => [.. _filteredTasks.OrderBy(t => t.CreatedAt)],
-                TasksListSortOption.CreationDateDescending => _filteredTasks.OrderByDescending(t => t.CreatedAt).ToList(),
-                TasksListSortOption.CompletionDateAscending => _filteredTasks.OrderBy(t => t.CompletedAt).ToList(),
-                TasksListSortOption.CompletionDateDescending => _filteredTasks.OrderByDescending(t => t.CompletedAt).ToList(),
-                TasksListSortOption.PriorityAscending => _filteredTasks.OrderBy(t => t.Priority).ToList(),
-                TasksListSortOption.PriorityDescending => _filteredTasks.OrderByDescending(t => t.Priority).ToList(),
+                TasksListSortOption.CreationDateDescending => [.. _filteredTasks.OrderByDescending(t => t.CreatedAt)],
+                TasksListSortOption.CompletionDateAscending => [.. _filteredTasks.OrderBy(t => t.CompletedAt)],
+                TasksListSortOption.CompletionDateDescending => [.. _filteredTasks.OrderByDescending(t => t.CompletedAt)],
+                TasksListSortOption.PriorityAscending => [.. _filteredTasks.OrderBy(t => t.Priority)],
+                TasksListSortOption.PriorityDescending => [.. _filteredTasks.OrderByDescending(t => t.Priority)],
                 _ => _filteredTasks
             };
         }
