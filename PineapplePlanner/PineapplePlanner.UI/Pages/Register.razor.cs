@@ -79,9 +79,13 @@ namespace PineapplePlanner.UI.Pages
             }
         }
 
-        private async Task CheckEnterKeyReg(KeyboardEventArgs e)
+        private async Task HandleConfirmPasswordKeyDown(KeyboardEventArgs e)
         {
-            if (e.Key == "Enter")
+            if (e.Key == "Enter"
+                && !string.IsNullOrEmpty(_email)
+                && !string.IsNullOrEmpty(_password)
+                && !string.IsNullOrEmpty(_confirmPassword)
+                && IsPasswordValid())
             {
                 await HandleRegister();
             }

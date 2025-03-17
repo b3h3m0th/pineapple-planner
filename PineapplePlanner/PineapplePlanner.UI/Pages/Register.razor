@@ -30,9 +30,9 @@ else
                           Alt="Pineapple Planner"
                           Elevation="0" />
                 <MudText Typo=@Typo.h6>Register</MudText>
-                <MudTextField Label=@_localize["Email"] @bind-Value=@_email Placeholder=@_localize["Email"] Variant=@Variant.Outlined Margin=@Margin.Dense />
-                <MudTextField Label=@_localize["Password"] @bind-Value=@_password InputType=@InputType.Password Placeholder=@_localize["Password"] Variant=@Variant.Outlined Margin=@Margin.Dense />
-                <MudTextField Label=@_localize["Confirm password"] @bind-Value=@_confirmPassword InputType=@InputType.Password Placeholder=@_localize["Confirm Password"] Variant=@Variant.Outlined Margin=@Margin.Dense Immediate="true" @onkeydown="CheckEnterKeyReg" />
+                <MudTextField Label=@_localize["Email"] @bind-Value=@_email Placeholder=@_localize["Email"] Variant=@Variant.Outlined Margin=@Margin.Dense Immediate/>
+                <MudTextField Label=@_localize["Password"] @bind-Value=@_password InputType=@InputType.Password Placeholder=@_localize["Password"] Variant=@Variant.Outlined Margin=@Margin.Dense Immediate/>
+                <MudTextField Label=@_localize["Confirm password"] @bind-Value=@_confirmPassword InputType=@InputType.Password Placeholder=@_localize["Confirm Password"] Variant=@Variant.Outlined Margin=@Margin.Dense Immediate @onkeydown="HandleConfirmPasswordKeyDown" />
                 <MudButton Variant=@Variant.Outlined OnClick=@HandleRegister>Register</MudButton>
                 <div>
                     <MudText Style="display: inline;" Typo=@Typo.body1>@_localize["Already registered?"]</MudText> <MudLink Href="/login">@_localize["Login"]</MudLink>
