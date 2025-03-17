@@ -56,7 +56,7 @@ namespace PineapplePlanner.UI.Pages
 
         private async Task HandlePasswordKeyDown(KeyboardEventArgs e)
         {
-            if (e.Key == "Enter")
+            if (e.Key == "Enter" && !string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
             {
                 await HandleLogin();
             }

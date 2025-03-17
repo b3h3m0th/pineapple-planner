@@ -32,7 +32,7 @@ else
                           Alt="Pineapple Planner"
                           Elevation="0" />
                 <MudText Typo=@Typo.h6>Login</MudText>
-                <MudTextField Label=@_localize["Email"] @bind-Value=@_email Placeholder="Email" Variant=@Variant.Outlined Margin=@Margin.Dense />
+                <MudTextField Label=@_localize["Email"] @bind-Value=@_email Placeholder="Email" Variant=@Variant.Outlined Margin=@Margin.Dense Immediate />
                 <MudTextField Label=@_localize["Password"] @bind-Value=@_password InputType=@InputType.Password Placeholder="Password" Variant=@Variant.Outlined Margin=@Margin.Dense Immediate @onkeydown="HandlePasswordKeyDown" />
                 <MudButton Variant=@Variant.Outlined OnClick=@HandleLogin>Login</MudButton>
                 <div>
