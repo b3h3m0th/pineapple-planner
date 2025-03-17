@@ -54,7 +54,7 @@ namespace PineapplePlanner.UI.Pages
             _isLoading = false;
         }
 
-        private async Task CheckEnterKey(KeyboardEventArgs e)
+        private async Task HandlePasswordKeyDown(KeyboardEventArgs e)
         {
             if (e.Key == "Enter")
             {
