@@ -1,4 +1,5 @@
-﻿using PineapplePlanner.Domain.Shared;
+﻿using Microsoft.AspNetCore.Components.Web;
+using PineapplePlanner.Domain.Shared;
 
 namespace PineapplePlanner.UI.Pages
 {
@@ -51,6 +52,14 @@ namespace PineapplePlanner.UI.Pages
                 _error = string.Join(", ", result.Errors);
             }
             _isLoading = false;
+        }
+
+        private async Task CheckEnterKey(KeyboardEventArgs e)
+        {
+            if (e.Key == "Enter")
+            {
+                await HandleLogin();
+            }
         }
     }
 }

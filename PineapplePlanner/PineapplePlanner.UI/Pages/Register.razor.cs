@@ -1,4 +1,5 @@
 ﻿using FirebaseAdmin.Auth;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Providers;
@@ -75,6 +76,14 @@ namespace PineapplePlanner.UI.Pages
             else
             {
                 ((FirebaseAuthStateProvider)_authenticationProvider)?.MarkUserAsLoggedOut();
+            }
+        }
+
+        private async Task CheckEnterKeyReg(KeyboardEventArgs e)
+        {
+            if (e.Key == "Enter")
+            {
+                await HandleRegister();
             }
         }
     }

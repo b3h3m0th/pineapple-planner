@@ -33,7 +33,7 @@ else
                           Elevation="0" />
                 <MudText Typo=@Typo.h6>Login</MudText>
                 <MudTextField Label=@_localize["Email"] @bind-Value=@_email Placeholder="Email" Variant=@Variant.Outlined Margin=@Margin.Dense />
-                <MudTextField Label=@_localize["Password"] @bind-Value=@_password InputType=@InputType.Password Placeholder="Password" Variant=@Variant.Outlined Margin=@Margin.Dense />
+                <MudTextField Label=@_localize["Password"] @bind-Value=@_password InputType=@InputType.Password Placeholder="Password" Variant=@Variant.Outlined Margin=@Margin.Dense Immediate="true" @onkeydown="CheckEnterKey" />
                 <MudButton Variant=@Variant.Outlined OnClick=@HandleLogin>Login</MudButton>
                 <div>
                     <MudText Style="display: inline;" Typo=@Typo.body1>@_localize["Not registered yet?"]</MudText> <MudLink Href="/register">@_localize["Create an account"]</MudLink>
