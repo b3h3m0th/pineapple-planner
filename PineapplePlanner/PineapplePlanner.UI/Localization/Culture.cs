@@ -11,5 +11,6 @@
         public const string Ukrainian = "ua-UA";
         public const string Polish = "pl-PL";
         public const string French = "fr-FR";
+        public const string Lithuanian = "lt-LT";
     }
 }
