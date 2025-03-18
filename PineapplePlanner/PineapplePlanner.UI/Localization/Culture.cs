@@ -9,10 +9,14 @@
 =======
         public const string Spanish = "es-ES";
 <<<<<<< HEAD
+<<<<<<< HEAD
         public const string Russian = "ru-RU";
 >>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
 =======
         public const string Japanese = "jp-JP";
+=======
+        public const string Japanese = "ja-JP";
+>>>>>>> 501d38a5342797e4038d1b2a5313851ddd02dd3a
         public const string Estonian = "et-EE";
         public const string Ukrainian = "ua-UA";
         public const string Polish = "pl-PL";

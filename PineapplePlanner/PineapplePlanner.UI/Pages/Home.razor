@@ -32,6 +32,7 @@
                        SelectedValues=@_selectedFilterOptions
                        SelectedValuesChanged=@HandleSelectedFilterValuesChanged
                        MultiSelection
+                       MultiSelectionTextFunc=@((items) => string.Join(", ", items.Select(x => _localize[x])))
                        Margin="Margin.Dense"
                        AdornmentIcon=@Icons.Material.Rounded.FilterAlt
                        AnchorOrigin="Origin.BottomLeft"
@@ -48,10 +49,8 @@
                        AdornmentIcon=@Icons.Material.Rounded.Sort
                        Variant=@Variant.Outlined>
                 <MudSelectItem Value="@TasksListSortOption.CreationDateDescending">
-                    <div class="sort-select-item">
-                        @_localize["Creation date"]
-                        <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
-                    </div>
+                    @_localize["Creation date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
                 </MudSelectItem>
                 <MudSelectItem Value="@TasksListSortOption.CreationDateAscending">
                     @_localize["Creation date"]
@@ -65,13 +64,21 @@
                     @_localize["Completion date"]
                     <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
                 </MudSelectItem>
-                <MudSelectItem Value="@TasksListSortOption.PriorityAscending">
-                    @_localize["Priority"]
+                <MudSelectItem Value="@TasksListSortOption.DueDateDescending">
+                    @_localize["Due date"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.DueDateAscending">
+                    @_localize["Due date"]
                     <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
                 </MudSelectItem>
                 <MudSelectItem Value="@TasksListSortOption.PriorityDescending">
                     @_localize["Priority"]
                     <MudIcon Icon=@Icons.Material.Rounded.ArrowDownward />
+                </MudSelectItem>
+                <MudSelectItem Value="@TasksListSortOption.PriorityAscending">
+                    @_localize["Priority"]
+                    <MudIcon Icon=@Icons.Material.Rounded.ArrowUpward />
                 </MudSelectItem>
             </MudSelect>
         </div>
@@ -123,3 +130,4 @@
         }
     </div>
 </div>
+
