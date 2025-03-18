@@ -43,7 +43,7 @@
                 <div class="calendar-grid">
                     @for (int day = 0; day < 7; day++)
                     {
-                        string dayName = CultureInfo.GetCultureInfo(_localize.CurrentCulture).DateTimeFormat.GetDayName((DayOfWeek)day);
+                        string dayName = new CultureInfo(_localize.CurrentCulture).DateTimeFormat.GetDayName((DayOfWeek)day);
                         DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo(_localize.CurrentCulture).DateTimeFormat.FirstDayOfWeek + 7) % 7);
                         DateTime currentDate = firstDateWeek.AddDays(day).Date;
 
