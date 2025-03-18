@@ -32,7 +32,7 @@
                        SelectedValues=@_selectedFilterOptions
                        SelectedValuesChanged=@HandleSelectedFilterValuesChanged
                        MultiSelection
-                       MultiSelectionTextFunc="@(new Func<List<string>, string>(GetFilterString))"
+                       MultiSelectionTextFunc=@((items) => string.Join(", ", items.Select(x => _localize[x])))
                        Margin="Margin.Dense"
                        AdornmentIcon=@Icons.Material.Rounded.FilterAlt
                        AnchorOrigin="Origin.BottomLeft"
@@ -131,10 +131,3 @@
     </div>
 </div>
 
-@code {
-
-    private string GetFilterString(List<string> selectedValues)
-    {
-        return string.Join(", ", selectedValues.Select(x => _localize[x]));
-    }
-}
