@@ -2,7 +2,6 @@
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Layouts;
 using PineapplePlanner.UI.Providers;
-using PineapplePlanner.UI.Services;
 
 namespace PineapplePlanner.UI.Pages
 {
@@ -24,8 +23,6 @@ namespace PineapplePlanner.UI.Pages
         PriorityDescending
     }
 
-
-
     public partial class Home
     {
         [CascadingParameter(Name = "AuthenticatedLayout")]
@@ -37,16 +34,12 @@ namespace PineapplePlanner.UI.Pages
         private List<TasksListFilterOption> _selectedFilterOptions = [TasksListFilterOption.Uncompleted];
         private TasksListSortOption _selectedSortOption = TasksListSortOption.DueDateAscending;
 
-
         protected override async Task OnParametersSetAsync()
         {
             await LoadTasks();
 
             await base.OnParametersSetAsync();
         }
-
-
-
 
         private async Task LoadTasks()
         {
