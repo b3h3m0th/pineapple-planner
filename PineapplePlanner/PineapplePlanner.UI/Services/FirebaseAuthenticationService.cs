@@ -68,8 +68,10 @@ namespace PineapplePlanner.UI.Services
             {
                 RegisterResultDto registerResult = await _jsRuntime.InvokeAsync<RegisterResultDto>("firebaseAuth.register", email, password);
 
-                result.AddErrorAndSetFailure("Verification Email sent");
-                //await LoginAsync(email, password);
+                if (!string.IsNullOrEmpty(registerResult.Error))
+                {
+                    result.AddErrorAndSetFailure(registerResult.Error);
+                }
             }
             catch (Exception ex)
             {

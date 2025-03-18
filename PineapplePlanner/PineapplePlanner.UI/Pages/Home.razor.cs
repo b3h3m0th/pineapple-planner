@@ -18,6 +18,8 @@ namespace PineapplePlanner.UI.Pages
         CreationDateDescending,
         CompletionDateAscending,
         CompletionDateDescending,
+        DueDateAscending,
+        DueDateDescending,
         PriorityAscending,
         PriorityDescending
     }
@@ -33,7 +35,7 @@ namespace PineapplePlanner.UI.Pages
         private List<Domain.Entities.Task> _filteredTasks = [];
         private string _searchQuery = string.Empty;
         private List<TasksListFilterOption> _selectedFilterOptions = [TasksListFilterOption.Uncompleted];
-        private TasksListSortOption _selectedSortOption = TasksListSortOption.CreationDateAscending;
+        private TasksListSortOption _selectedSortOption = TasksListSortOption.DueDateAscending;
 
 
         protected override async Task OnParametersSetAsync()
@@ -99,11 +101,13 @@ namespace PineapplePlanner.UI.Pages
             _filteredTasks = _selectedSortOption switch
             {
                 TasksListSortOption.CreationDateAscending => [.. _filteredTasks.OrderBy(t => t.CreatedAt)],
-                TasksListSortOption.CreationDateDescending => _filteredTasks.OrderByDescending(t => t.CreatedAt).ToList(),
-                TasksListSortOption.CompletionDateAscending => _filteredTasks.OrderBy(t => t.CompletedAt).ToList(),
-                TasksListSortOption.CompletionDateDescending => _filteredTasks.OrderByDescending(t => t.CompletedAt).ToList(),
-                TasksListSortOption.PriorityAscending => _filteredTasks.OrderBy(t => t.Priority).ToList(),
-                TasksListSortOption.PriorityDescending => _filteredTasks.OrderByDescending(t => t.Priority).ToList(),
+                TasksListSortOption.CreationDateDescending => [.. _filteredTasks.OrderByDescending(t => t.CreatedAt)],
+                TasksListSortOption.CompletionDateAscending => [.. _filteredTasks.OrderBy(t => t.CompletedAt)],
+                TasksListSortOption.CompletionDateDescending => [.. _filteredTasks.OrderByDescending(t => t.CompletedAt)],
+                TasksListSortOption.DueDateAscending => [.. _filteredTasks.OrderBy(t => t.DateDue)],
+                TasksListSortOption.DueDateDescending => [.. _filteredTasks.OrderByDescending(t => t.DateDue)],
+                TasksListSortOption.PriorityAscending => [.. _filteredTasks.OrderBy(t => t.Priority)],
+                TasksListSortOption.PriorityDescending => [.. _filteredTasks.OrderByDescending(t => t.Priority)],
                 _ => _filteredTasks
             };
         }
