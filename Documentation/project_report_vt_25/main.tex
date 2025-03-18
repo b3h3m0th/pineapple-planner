@@ -121,16 +121,18 @@
 
 \section{Introduction}
 %✅<Instructions: Write an introduction to your application and its purpose. Also include screenshot>
-
-PineapplePlanner is a Windows application designed to serve as an intuitive to-do list integrated within a calendar.
+Time management is a challenge for individuals that have multiple responsibilities across work, studies, and personal life, what leads to increased stress and decreased productivity.
+Study-related stress and disruption of mental health may take origins from procrastination which is quite common for people with poor time management \cite{ nayak2019impact}.
+Traditional calendars and to-do lists, while useful, may not provide the comprehensive support needed to manage these demands effectively \cite{bek2014study}.\\
+PineapplePlanner is a Windows application designed to serve as an intuitive to-do list integrated within a calendar which aims to minimize stress to help completing daily tasks and improves personal productivity. The application is focused on improving mental health stability with focus on SDG 4.3.2 \cite{worldhealthorganisation_2024_sdg}.
 PineapplePlanner enables users to create and manage tasks efficiently by specifying a start and finish date, selecting a priority level (high, medium, low, or no priority), and providing a descriptive task name before submitting it to the calendar.
-With a user-friendly interface and AI-powered assistance, PineapplePlanner simplifies task creation by allowing users to generate tasks through natural language input—simply describing what they need to do, and the AI will automatically create and categorize the task for them.
-For those who prefer a more hands-on approach, PineapplePlanner also allows users to manually input their tasks, giving them full control over their scheduling.
-This makes the process even more seamless for individuals who feel overwhelmed by a heavy workload or numerous responsibilities, offering a structured and organized approach to task management.
+With a user-friendly interface, multiple language translation, and AI-powered assistance, PineapplePlanner simplifies task creation by allowing users to generate tasks through natural language input—simply describing what they need to do, and the AI will automatically create and categorize the task for them.
+For those who prefer a more hands-on approach, PineapplePlanner also allows users to manually input their tasks, giving them full control over their scheduling. 
+This makes the process even more seamless for individuals who feel overwhelmed by a heavy workload or numerous responsibilities, offering a structured and organized approach to task management. 
 By visually mapping out tasks within a calendar, users can prioritize effectively, track deadlines, and stay on top of their commitments with greater ease and clarity.
 Whether users need to focus on urgent tasks or simply keep track of general activities, PineapplePlanner provides the flexibility to accommodate different levels of importance.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{images/pineapple_planner_screenshot_home.png}
   \label{Infrastructure proposal}
@@ -139,17 +141,19 @@ Whether users need to focus on urgent tasks or simply keep track of general acti
 
 \subsection{Restrictions}
 %< ✅Instructions: List any restrictions that you think is worth mentioning.>
-The only notable restriction is that users must have a Google account to sign up for Pineapple Planner. However, since most people already have one, this limitation is minimal.
+The only restriction PineapplePlanner has is that users must have a Google account to sign up or sign in. However, since most people already have one, this is hardly an issue.
 \subsection{Enhancements}
 %< Instructions: Explain possible extra features that you plan to implement into your application. If you have no extra features, you can remove this 1.2 section.>
 
 %The possible extra features we planned to implement or that has been implemented was custom usernames for users which was already implemented, dark-mode option in settings which transforms the application to dark-mode for users who would prefer to have it that way. AI was another feature that got implemented to help users create tasks faster. Not yet implemented features were Notification features in settings that would allow users to enable/disable notifications, Language option in settings for users whom do not understand english or would rather prefer have it in another language.
-
-The possible extra features we plan to implement are:
+After working on the project for 4 sprints, we thought about many possible features that we planned to increment. Some of them were:
 \begin{enumerate}
   \item Notification Settings: Users will be able to enable or disable notifications based on their preferences;
+  \item Burn out reminder: If user adds has too many deadlines in one day, PineaaplePlanner will suggest to have less tasks and replan them.
+  \item Gamification: For each done task user may assign points that they would get after completing it
+  \item Day streak: To motivate user to use PineapplePlanner, day streaks would encourage user to do tasks daily. 
   \item Recurring Tasks: A feature that allows users to set tasks to repeat at specified intervals;
-  \item Users who do not understand English or prefer another language will have the ability to change the application's language in the settings.
+  \item Family groups: Users can create groups and share tasks and events between each other.
 \end{enumerate}
 
 
@@ -158,7 +162,7 @@ The possible extra features we plan to implement are:
 %<Instructions: In the table below, add a list of all requirements for your application. They shall be numbered from 1..N. Each requirement has a short name and a longer description. Estimate how many hours it will take to complete the task for 1 person working with the task (man hours). At the start of a new iteration, you shall fill in estimated man hours to complete a task (EMH). This is your initial estimate – do NOT change it later. At the end of a weekly iteration, you shall fill in the actual man hours spent (AMH). In this way, you will establish a record that shows how good you are at estimating tasks, and you will hopefully learn from it and become better at next week’s estimate. Then prioritize the feature: How important is it? 1 for most important. 10 for least important. >
 %Table 1 below lists all the requirements for this project. The time estimated (EMH) and time spent on a task (AMH) is measured in man hours. The prio column lists feature priorities where Prio 1 is highest priority and Prio 10 is lowest priority
 
-\begin{table}[h]
+\begin{table}[H]
   \centering
   \begin{tabularx}{\textwidth}{|c|c|X|c|c|c|}
     \toprule
@@ -233,7 +237,7 @@ Each unit test is declared with a \verb|Fact| attribute.
 
 \subsection{UML diagram of partial PineapplePlanner.Domain namespace}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=1\textwidth]{images/domain_uml_diagram.png}
   \label{Partial PineapplePlanner.Domain UML diagram}
