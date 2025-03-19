@@ -25,6 +25,10 @@
 >>>>>>> 45d3c6db2c3f406f19f29158a0981cb864239046
 =======
         public const string Lithuanian = "lt-LT";
+<<<<<<< HEAD
 >>>>>>> 511ba7e59083c5343a376c37de3a3eb4e9c3c423
+=======
+        public const string Urdu = "ur-PK";
+>>>>>>> 3ba06a7808a8c2c51b5162e440884086a7de9656
     }
 }

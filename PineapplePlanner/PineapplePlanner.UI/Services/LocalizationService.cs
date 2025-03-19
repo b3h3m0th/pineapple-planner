@@ -12,6 +12,7 @@ namespace PineapplePlanner.UI.Services
         public readonly Dictionary<string, Dictionary<string, string>> _translations = [];
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish];
 >>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
 =======
@@ -20,6 +21,9 @@ namespace PineapplePlanner.UI.Services
 =======
         private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German, Culture.Spanish, Culture.Japanese, Culture.Estonian, Culture.Ukrainian, Culture.Polish, Culture.French, Culture.Lithuanian];
 >>>>>>> 511ba7e59083c5343a376c37de3a3eb4e9c3c423
+=======
+        private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German, Culture.Spanish, Culture.Japanese, Culture.Estonian, Culture.Ukrainian, Culture.Polish, Culture.French, Culture.Lithuanian, Culture.Urdu];
+>>>>>>> 3ba06a7808a8c2c51b5162e440884086a7de9656
 
         public string[] SupportedCultures { get => _supportedCultures; }
         public string CurrentCulture { get; private set; } = Culture.English;

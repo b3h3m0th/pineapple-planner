@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80">
+  <desc>Flag of Pakistan</desc>
+  <rect width="120" height="80" fill="#01411C"/>
+  <rect width="30" height="80" fill="#fff"/>
+  <circle cx="75" cy="40" r="17" fill="#fff"/>
+  <circle cx="81" cy="34" r="17" fill="#01411C"/>
+  <polygon points="75,28 77.2,34.8 84.5,34.8 78.6,39 80.8,45.9 75,41.7 69.2,45.9 71.4,39 65.5,34.8 72.8,34.8" fill="#fff"/>
+</svg> 
