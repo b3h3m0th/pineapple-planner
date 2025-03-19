@@ -122,9 +122,9 @@
 \section{Introduction}
 %✅<Instructions: Write an introduction to your application and its purpose. Also include screenshot>
 Time management is a challenge for individuals that have multiple responsibilities across work, studies, and personal life, what leads to increased stress and decreased productivity.
-Study-related stress and disruption of mental health may take origins from procrastination which is quite common for people with poor time management \cite{ nayak2019impact}.
+Study-related stress and disruption of mental health may take origins from procrastination which is quite common among individuals with poor time management skills \cite{ nayak2019impact}.
 Traditional calendars and to-do lists, while useful, may not provide the comprehensive support needed to manage these demands effectively \cite{bek2014study}.\\
-PineapplePlanner is a Windows application designed to serve as an intuitive to-do list integrated within a calendar which aims to minimize stress to help completing daily tasks and improves personal productivity. The application is focused on improving mental health stability with focus on SDG 4.3.2 \cite{worldhealthorganisation_2024_sdg}.
+PineapplePlanner is a Windows application designed to serve as an intuitive to-do list integrated within a calendar which aims to minimize stress to help completing daily tasks and refines personal productivity. The application is focused on improving mental health stability with focus on SDG 4.3.2 \cite{worldhealthorganisation_2024_sdg}.
 PineapplePlanner enables users to create and manage tasks efficiently by specifying a start and finish date, selecting a priority level (high, medium, low, or no priority), and providing a descriptive task name before submitting it to the calendar.
 With a user-friendly interface, multiple language translation, and AI-powered assistance, PineapplePlanner simplifies task creation by allowing users to generate tasks through natural language input—simply describing what they need to do, and the AI will automatically create and categorize the task for them.
 For those who prefer a more hands-on approach, PineapplePlanner also allows users to manually input their tasks, giving them full control over their scheduling. 
@@ -149,14 +149,16 @@ The only restriction PineapplePlanner has is that users must have a Google accou
 %< Instructions: Explain possible extra features that you plan to implement into your application. If you have no extra features, you can remove this 1.2 section.>
 
 %The possible extra features we planned to implement or that has been implemented was custom usernames for users which was already implemented, dark-mode option in settings which transforms the application to dark-mode for users who would prefer to have it that way. AI was another feature that got implemented to help users create tasks faster. Not yet implemented features were Notification features in settings that would allow users to enable/disable notifications, Language option in settings for users whom do not understand english or would rather prefer have it in another language.
-After working on the project for 4 sprints, we thought about many possible features that we planned to increment. Some of them were:
+
+Throughout the four sprints, we thought about several possible features that could be done. However, due to time constraints, we were unable to implement them. Some of these planned features are:
+
 \begin{enumerate}
-  \item Notification Settings: Users will be able to enable or disable notifications based on their preferences;
-  \item Burn out reminder: If user adds has too many deadlines in one day, PineaaplePlanner will suggest to have less tasks and replan them.
-  \item Gamification: For each done task user may assign points that they would get after completing it
-  \item Day streak: To motivate user to use PineapplePlanner, day streaks would encourage user to do tasks daily. 
+  \item Notification Settings: Users can enable or disable notifications based on their preferences;
+  \item Burnout reminder:  If a user schedules too many deadlines in a single day, PineapplePlanner will suggest redistributing tasks to prevent overwhelming workloads;
+  \item Gamification: Users can assign points to tasks and earn rewards upon completion, creating a more engaging task management experience;
+  \item Day Streaks: To motivate user to use PineapplePlanner, a streak system would encourage user to complete tasks daily. 
   \item Recurring Tasks: A feature that allows users to set tasks to repeat at specified intervals;
-  \item Family groups: Users can create groups and share tasks and events between each other.
+  \item Family groups: Users can create shared groups to manage tasks and events collaboratively with family members or friends.
 \end{enumerate}
 
 
@@ -171,24 +173,17 @@ After working on the project for 4 sprints, we thought about many possible featu
     \toprule
     \textbf{Nr} & \textbf{Req. Name}         & \textbf{Req. Description}                                                & \textbf{EMH} & \textbf{AMH} & \textbf{Prio} \\
     \hline
-    1           & Log in                     & User is able to log in to see their personal tasks.                      & 5            & 30           & 10            \\    \hline
-    2           & Log out                    & User is able to log out to secure their information                      & 1            & 5            & 10            \\    \hline
-    3           & Task creation              & The project should create a task with a name, description and a deadline & 7            & 30           & 10            \\
-    \hline
-    4           & Edit task                  & The task should be editable and could be marked as completed.            & 2            & 30           & 8             \\
-    \hline
-    5           & Task prioritization        & Task should have priorities: low, medium and high.                       & 3            & 30           & 6             \\
-    \hline
-    6           & View tasks in the calendar & Task should be visible in calendar view.                                 & 10           & 50           & 10            \\
-    \hline
-    7           & Add tasks in the calendar  & There should be a representation of creating a task in the calendar      & 5            & 20           & 6             \\
-    \hline
-    8           & Tags                       & Tasks should have tags for easier management.                            & 4            & 15           & 5             \\
-    \hline
-
-    9           & Dark theme                 & There is an ability to set dark theme in the settings                    & 5            & 20           & 3             \\    \hline
-    10          & AI                         & There is an ability to ask Gemini to create a task or event              & 10           & 30           & 3             \\
-
+    1           & Log in                     & Allows users to log in to see their personal tasks.                      & 10            & 30           & 10            \\    \hline
+    2           & Log out                    & Allows users to log out to secure their information                      & 1            & 5            & 10            \\    \hline
+    3           & Task creation              & Allows users to create a task with a name, description and a deadline & 7            & 30           & 10            \\    \hline
+    4           & Edit task                  & The tasks can be edited and marked as completed.            & 15            & 30           & 8             \\    \hline
+    5           & Task prioritization        & Tasks have priorities: low, medium and high.                       & 5            & 30           & 6             \\    \hline
+    6           & View tasks in the calendar & Tasks(events) are displayed in calendar view.                                 & 10           & 50           & 10            \\    \hline
+    7           & Add tasks in the calendar  & Integrates task creation directly into the calendar view      & 5            & 20           & 6             \\    \hline
+    8           & Tags                       & Provides tagging functionality for easier management.                            & 7            & 15           & 5             \\    \hline
+    9           & Dark theme                 & Offers a dark theme option in the settings                    & 5            & 20           & 3             \\    \hline
+    10          & AI                         & Integrates AI (Gemini) to assist users in generating tasks and events              & 20           & 30           & 3             \\\hline
+    11          & Languages                  & Allows users to switch languages to use the app in their preferred languages                      & 15            & 20           & 3             \\    
     \bottomrule
   \end{tabularx}
   \caption{Requirements}
@@ -268,8 +263,9 @@ Table 2 below contains the current status of implemented and tested requirements
     9           & Dark theme                 & Not Implemented      \\    \hline
     10          & Tags                       & Not Implemented      \\\hline
     11          & AI                         & Not Implemented      \\\hline
-    11          & Domain entities            & Implemented          \\\hline
-    11          & Error handling             & Implemented          \\
+    12          & Languages                  & Not Implemented      \\\hline
+    13          & Domain entities            & Implemented          \\\hline
+    14          & Error handling             & Implemented          \\
     \bottomrule
   \end{tabularx}
   \caption{Requirements}
@@ -332,9 +328,9 @@ Otherwise we had to wait one day for the firebase cooldown to continue developme
 
 \subsection{Correctness of time estimates}
 %<Instructions: Look back on your time estimates and discuss your results. How accurate were they? What have you learned about time estimates and how can you get better in next project?>
-When estimating the time required for each task, we aimed to provide realistic approximations based on complexity and priority. After reviewing our actual development process, we found that most predictions were reasonably accurate. However, certain tasks took longer or shorter than expected due to unforeseen implementation challenges.\\
-One key takeaway from this process is that simpler tasks, such as logging in and out, closely matched their estimated time, while more complex features, like task prioritization and calendar integration, occasionally required more time than anticipated. These deviations were primarily due to unexpected technical difficulties and the need for adjustments during development.\\
-Time estimates are helpful in developing, since it's crucial to have approximate measurement of time that tasks will take. However, the more complex a task is, the less precise predictions are made. For future projects, we plan to track time more precisely by tracking AMH and breaking down complex tasks into smaller, more manageable subtasks. This approach will help improve the accuracy of our time predictions and optimize workflow efficiency.
+
+When estimating the time required for each task, we aimed to provide realistic approximations based on complexity and priority. After reviewing our actual development process, we found that most predictions were not that accurate and we spent nearly twice as much time as initially estimated. However, the additional time was spent mostly for refining features, improving functionalities and smoothing out the code.\\
+Time estimates are helpful in developing, since it's crucial to have approximate measurement of time that tasks will take. However, the less defined the task is, the less precise predictions are made. For future projects, we plan to track time more precisely by tracking AMH and breaking down complex tasks into smaller, more manageable subtasks. Also, Jira might help to improve timetracking better by grouping related tasks into Epics. This approach will help improve the accuracy of our time predictions and optimize workflow efficiency.
 
 \subsection{Priority decisions}
 %<Instructions: Look back on your feature priority settings. Did you prioritize the right features? Did you succeed to deliver the highest prioritized features? Did you disagree with the examiner on some features? Have you learned anything about setting priorities?>
@@ -368,9 +364,9 @@ We learned that setting priorities at the start of the project is important for 
 
 \subsection{Conclusion}
 %<Instructions: Look back on the whole project. Here you can write a bit more freely about your thoughts on this project. What was your overall experience? How was the teamwork? What did you learn? Can you list some points that you will do better in next project? Other thoughts. >
-Overall, it was a nice experience to do project with the team. Working with experienced programmers with relatively newbies was slightly challenging because the gap in knowledge was too huge and it was hard to keep up, but at the same time it gave a rewarding experience to work with completely new frameworks, new programming language, and new development environment.
-For the next project it would be nice to have more frequent discussions in the team, because the more we talk, the fewer misunderstandings and conflicts we’ll have regarding the work. Clearer objectives would be created and members wouldn't be awkward to asking for help in the case of problems.
-
+Overall, it was a rewarding experience to do this project, PineapplePlanner, with the team. Working with experienced programmers and relatively new ones was slightly challenging because of the gap in knowledge. It was hard to keep up for some team members, but at the same time it also provided a valuable experience to work with completely new frameworks, new programming language, and new development environment. \\
+Despite the challenges, the diversity of skills in the team had its advantages. The experienced programmers offered guidance, motivation, and feedback, and other team members worked in comfortable workspace, refactoring and suggesting improvements for PineapplePlanner. This helped create a collaborative environment where we could learn from each other.\\
+For the next project it would be nice to have more frequent discussions in the team, because the more we talk, the fewer misunderstandings and conflicts we’ll have regarding the work. Clearer objectives would be created and members wouldn't be awkward to asking for help in the case of problems. We would also focus on better time management and setting realistic expectations for task completion. This could help streamline the process and ensure that we make steady progress without rushing. Overall, this project was a great learning experience, and I’m looking forward to applying the lessons learned to future teamwork.
 \clearpage
 
 \section{References}
