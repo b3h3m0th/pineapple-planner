@@ -5,25 +5,8 @@ namespace PineapplePlanner.UI.Services
 {
     public class LocalizationService
     {
-<<<<<<< HEAD
-        public readonly Dictionary<string, Dictionary<string, string>> _translations = new();
-        private string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German];
-=======
         public readonly Dictionary<string, Dictionary<string, string>> _translations = [];
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish];
->>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
-=======
-        private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German, Culture.Spanish, Culture.Japanese, Culture.Estonian, Culture.Ukrainian, Culture.Polish, Culture.French];
->>>>>>> 45d3c6db2c3f406f19f29158a0981cb864239046
-=======
-        private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German, Culture.Spanish, Culture.Japanese, Culture.Estonian, Culture.Ukrainian, Culture.Polish, Culture.French, Culture.Lithuanian];
->>>>>>> 511ba7e59083c5343a376c37de3a3eb4e9c3c423
-=======
         private readonly string[] _supportedCultures = [Culture.English, Culture.Swedish, Culture.German, Culture.Spanish, Culture.Japanese, Culture.Estonian, Culture.Ukrainian, Culture.Polish, Culture.French, Culture.Lithuanian, Culture.Urdu];
->>>>>>> 3ba06a7808a8c2c51b5162e440884086a7de9656
 
         public string[] SupportedCultures { get => _supportedCultures; }
         public string CurrentCulture { get; private set; } = Culture.English;
@@ -34,11 +17,7 @@ namespace PineapplePlanner.UI.Services
             foreach (string file in files)
             {
                 string[] filenameParts = Path.GetFileName(file).Split(".");
-<<<<<<< HEAD
-                string culture = filenameParts[filenameParts.Length - 2];
-=======
                 string culture = filenameParts[^2];
->>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
                 string json = File.ReadAllText(file);
                 Dictionary<string, string>? deserialized = JsonSerializer.Deserialize<Dictionary<string, string>>(json, new JsonSerializerOptions()
                 {
