@@ -44,10 +44,14 @@
                     @for (int day = 0; day < 7; day++)
                     {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         string dayName = _dayNames[day];
 =======
                         string dayName = CultureInfo.GetCultureInfo(_localize.CurrentCulture).DateTimeFormat.GetDayName((DayOfWeek)day);
 >>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
+=======
+                        string dayName = new CultureInfo(_localize.CurrentCulture).DateTimeFormat.GetDayName((DayOfWeek)day);
+>>>>>>> 501d38a5342797e4038d1b2a5313851ddd02dd3a
                         DateTime firstDateWeek = FirstDate.AddDays(-(int)(FirstDate.DayOfWeek - new CultureInfo(_localize.CurrentCulture).DateTimeFormat.FirstDayOfWeek + 7) % 7);
                         DateTime currentDate = firstDateWeek.AddDays(day).Date;
 

@@ -32,7 +32,7 @@
                 <MudIcon Icon=@Icons.Material.Rounded.CalendarToday Color=@Color.Surface Size=@Size.Small />
                 <span>
                     <MudText Typo=@Typo.body2>
-                        @Task.DateDue?.ToString("ddd, dd.M.yyyy HH:mm", new CultureInfo(AuthenticatedLayout?.User?.Culture ?? Culture.English))
+                        @Task.DateDue?.ToString("ddd, dd.M.yyyy HH:mm", new CultureInfo(_localize.CurrentCulture))
                     </MudText>
                 </span>
             </div>

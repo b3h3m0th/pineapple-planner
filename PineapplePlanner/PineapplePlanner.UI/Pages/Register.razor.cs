@@ -1,4 +1,5 @@
 ﻿using FirebaseAdmin.Auth;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using PineapplePlanner.Domain.Shared;
 using PineapplePlanner.UI.Providers;
@@ -8,11 +9,55 @@ namespace PineapplePlanner.UI.Pages
 {
     public partial class Register
     {
-        private string _error = "";
-        private string _message = "";
+        private string _error = string.Empty;
+        private string _message = string.Empty;
 
-        private string _email = "";
-        private string _password = "";
+        private string _email = string.Empty;
+        private string _password = string.Empty;
+        private string _confirmPassword = string.Empty;
+
+        private bool _isLoading = true;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                _isLoading = false;
+                StateHasChanged();
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        private async Task HandleRegister()
+        {
+            _isLoading = true;
+            if (!IsPasswordValid())
+            {
+                _error = "Passwords do not match.";
+            }
+            else
+            {
+                ResultBase result = await _authenticationService.RegisterAsync(_email, _password);
+
+                if (result.IsSuccess)
+                {
+                    _message = _localize["Verification email sent."];
+                }
+                else
+                {
+                    _error = string.Join(", ", result.Errors);
+                }
+            }
+
+            _isLoading = false;
+            StateHasChanged();
+        }
+
+        private bool IsPasswordValid()
+        {
+            return _password == _confirmPassword;
+        }
 
         [JSInvokable]
         public async Task OnAuthStateChanged(string idToken)
@@ -27,29 +72,23 @@ namespace PineapplePlanner.UI.Pages
                 ], "firebase"));
 
                 ((FirebaseAuthStateProvider)_authenticationProvider)?.MarkUserAsAuthenticated(user);
-                _message = "logged in";
             }
             else
             {
-                _message = "logged out";
                 ((FirebaseAuthStateProvider)_authenticationProvider)?.MarkUserAsLoggedOut();
             }
         }
 
-        private async Task HandleRegister()
+        private async Task HandleConfirmPasswordKeyDown(KeyboardEventArgs e)
         {
-            ResultBase result = await _authenticationService.RegisterAsync(_email, _password);
-
-            if (result.IsSuccess)
+            if (e.Key == "Enter"
+                && !string.IsNullOrEmpty(_email)
+                && !string.IsNullOrEmpty(_password)
+                && !string.IsNullOrEmpty(_confirmPassword)
+                && IsPasswordValid())
             {
-                _navigationManager.NavigateTo("/");
+                await HandleRegister();
             }
-            else
-            {
-                _error = string.Join(", ", result.Errors);
-            }
-
-            StateHasChanged();
         }
     }
 }
