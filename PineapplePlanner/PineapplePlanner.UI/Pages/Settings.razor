@@ -27,7 +27,7 @@
                             <MudTextField @bind-Value=@_user.Username Immediate Label=@_localize["Username"] Variant=@Variant.Outlined Margin=@Margin.Dense MaxLength="20" />
                         </div>
                     </MudTabPanel>
-                    <MudTabPanel Text=@_localize["Apperance"] ID=@("appearance") Icon=@Icons.Material.Rounded.Laptop>
+                    <MudTabPanel Text=@_localize["Appearance"] ID=@("appearance") Icon=@Icons.Material.Rounded.Laptop>
                         <div class="appearance">
                             <MudSelect @bind-Value=@_user.Culture Label=@_localize["Language"] Variant=@Variant.Outlined Margin=@Margin.Dense>
                                 <MudSelectItem Value=@Culture.English>
@@ -92,7 +92,16 @@
                                         <span>@_localize["French"]</span>
                                     </div>
                                 </MudSelectItem>
+<<<<<<< HEAD
 >>>>>>> 03eb249b61799026dff86e5ee3066aefb6307708
+=======
+                                <MudSelectItem Value=@Culture.Lithuanian>
+                                    <div class="language-item">
+                                        <img src="../images/languages/lt.svg" height="14" class="mr-1" />
+                                        <span>@_localize["Lithuanian"]</span>
+                                    </div>
+                                </MudSelectItem>
+>>>>>>> 511ba7e59083c5343a376c37de3a3eb4e9c3c423
                             </MudSelect>
                             <div class="theme-select">
                                 <MudToggleIconButton @bind-Toggled=@_user.IsDarkMode
