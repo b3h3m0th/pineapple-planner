@@ -12,5 +12,6 @@
         public const string Polish = "pl-PL";
         public const string French = "fr-FR";
         public const string Lithuanian = "lt-LT";
+        public const string Urdu = "ur-PK";
     }
 }
